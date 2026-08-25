@@ -1,1 +1,55 @@
+package com.yourname.app; // আপনার প্যাকেজ নেম এখানে থাকবে
 
+import android.os.Bundle;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    private WebView myWebView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        myWebView = (WebView) findViewById(R.id.webview);
+        WebSettings webSettings = myWebView.getSettings();
+        
+        // জরুরি সেটিংস
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true); // লোকাল স্টোরেজ ও লগইন ঠিক রাখার জন্য
+        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setUseWideViewPort(true);
+
+        // কাস্টম WebViewClient যা আপনার সব সাবডোমেইন অ্যাপের ভেতরেই রাখবে
+        myWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                // চেক করবে লিংকটি আপনার ডোমেইন বা সাবডোমেইনের কিনা
+                if (url.contains("mrmasudar.com")) {
+                    // যদি আপনার সাইট হয়, তবে অ্যাপের ভেতরেই ওপেন হবে
+                    view.loadUrl(url);
+                    return true;
+                } else {
+                    // যদি অন্য কোনো বাইরের ওয়েবসাইট (যেমন ফেসবুক, ইউটিউব বা পেমেন্ট গেটওয়ে লিংক) হয়, তবে ব্রাউজারে ওপেন হবে
+                    return false; 
+                }
+            }
+        });
+
+        // আপনার মূল ওয়েবসাইটের ইউআরএল দিয়ে অ্যাপ শুরু হবে
+        myWebView.loadUrl("https://mrmasudar.com");
+    }
+
+    // ফোনের ব্যাক বাটন হ্যান্ডেল করার জন্য (যাতে আগের পেজে যাওয়া যায়)
+    @Override
+    public void onBackPressed() {
+        if (myWebView.canGoBack()) {
+            myWebView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+}
