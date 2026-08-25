@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR MASUDAR ENTERPRISE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0b0b;
+            color: #fff;
+            padding-bottom: 75px; /* নিচের ফিক্সড ন্যাভবারের জন্য জায়গা */
+        }
+
+        /* হেডার সেকশন (আপনার ছবির মতো গোল্ডেন গ্লো বর্ডার সহ) */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            background: #0b0b0b;
+        }
+
+        .brand-logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: #141414;
+            border: 1.5px solid #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+            font-size: 16px;
+        }
+
+        .brand-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #d4af37;
+            letter-spacing: 1.2px;
+        }
+
+        .header-right-btn {
+            background: #141414;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+        }
+
+        /* সার্চ বার সেকশন (গোল্ডেন বর্ডার সহ) */
+        .search-container {
+            padding: 8px 16px 14px 16px;
+            background: #0b0b0b;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #141414;
+            border: 1.2px solid #d4af37;
+            border-radius: 30px;
+            padding: 10px 16px;
+            gap: 12px;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .search-box input::placeholder {
+            color: #777;
+        }
+
+        .search-icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* প্রোডাক্ট গ্রিড - মোবাইলে নিখুঁত দুটি কলাম ও সমান গ্যাপ */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* মোবাইলে পাশাপাশি একদম দুটি কার্ড */
+            gap: 12px; /* কার্ডগুলোর মাঝখানে সুনির্দিষ্ট ও সমান গ্যাপ */
+            padding: 0 12px;
+        }
+
+        /* প্রোডাক্ট কার্ড */
+        .product-card {
+            background: #141414;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-img-container {
+            width: 100%;
+            height: 180px; /* সমান স্ট্যান্ডার্ড উচ্চতা */
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        /* কার্ডের ফুটার (লাইক, ভিউ, শেয়ার) */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            background: #141414;
+            font-size: 13px;
+            color: #aaa;
+            border-top: 1px solid #1f1f1f;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-item span.heart {
+            color: #ff3366;
+        }
+
+        .stat-item span.eye {
+            color: #d4af37;
+        }
+
+        /* মোবাইল ফ্রেন্ডলি ফিক্সড বটম ন্যাভবার (Bottom Sticky Navbar) */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #0b0b0b;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 0;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #777;
+            font-size: 11px;
+            font-weight: 600;
+            gap: 3px;
+        }
+
+        .nav-item.active {
+            color: #d4af37;
+        }
+
+        .nav-item span.icon {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- হেডার সেকশন -->
+    <header class="header">
+        <div class="brand-logo-area">
+            <div class="logo-icon">🛍️</div>
+            <div class="brand-title">MR MASUDAR ENTERPRISE</div>
+        </div>
+        <div class="header-right-btn">
+            🌐 237+
+        </div>
+    </header>
+
+    <!-- সার্চ বার (গোল্ডেন বর্ডার সহ) -->
+    <div class="search-container">
+        <div class="search-box">
+            <span style="color: #d4af37;">🔍</span>
+            <input type="text" placeholder="Search luxury products...">
+            <button class="search-icon-btn">📷</button>
+            <button class="search-icon-btn">🎙️</button>
+        </div>
+    </div>
+
+    <!-- প্রোডাক্ট গ্রিড সেকশন -->
+    <main class="product-grid">
+        
+        <!-- প্রোডাক্ট কার্ড ১ -->
+        <div class="product-card">
+            <div class="product-img-container">
+                <img src="https://images.unsplash.com/photo-1611591483321-722137db09c0?w=400" alt="Product">
+            </div>
+            <div class="card-footer">
+                <div class="stat-item"><span class="heart">❤️</span> 29</div>
+                <div class="stat-item"><span class="eye">👁️</span> 110</div>
+                <div class="stat-item">🔗</div>
+            </div>
+        </div>
+
+        <!-- প্রোডাক্ট কার্ড ২ -->
+        <div class="product-card">
+            <div class="product-img-container">
+                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400" alt="Product">
+            </div>
+            <div class="card-footer">
+                <div class="stat-item"><span class="heart">❤️</span> 26</div>
+                <div class="stat-item"><span class="eye">👁️</span> 25</div>
+                <div class="stat-item">🔗</div>
+            </div>
+        </div>
+
+        <!-- প্রোডাক্ট কার্ড ৩ -->
+        <div class="product-card">
+            <div class="product-img-container">
+                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400" alt="Product">
+            </div>
+            <div class="card-footer">
+                <div class="stat-item"><span class="heart">❤️</span> 19</div>
+                <div class="stat-item"><span class="eye">👁️</span> 155</div>
+                <div class="stat-item">🔗</div>
+            </div>
+        </div>
+
+        <!-- প্রোডাক্ট কার্ড ৪ -->
+        <div class="product-card">
+            <div class="product-img-container">
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400" alt="Product">
+            </div>
+            <div class="card-footer">
+                <div class="stat-item"><span class="heart">❤️</span> 17</div>
+                <div class="stat-item"><span class="eye">👁️</span> 285</div>
+                <div class="stat-item">🔗</div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ফিক্সড বটম ন্যাভবার (Sticky Bottom Navigation) -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <span class="icon">🏠</span>
+            <span>HOME</span>
+        </a>
+        <a href="study.html" class="nav-item">
+            <span class="icon">⚡</span>
+            <span>E-TECH</span>
+        </a>
+        <a href="seller.html" class="nav-item">
+            <span class="icon">🛍️</span>
+            <span>SELLER</span>
+        </a>
+        <a href="earn.html" class="nav-item">
+            <span class="icon">🤝</span>
+            <span>EARN</span>
+        </a>
+        <a href="item.html" class="nav-item">
+            <span class="icon">🛍️</span>
+            <span>ITEM</span>
+        </a>
+    </nav>
+
+</body>
+</html>
