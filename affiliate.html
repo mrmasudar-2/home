@@ -3,227 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR MASUDAR ENTERPRISE | Global Affiliate Ecosystem</title>
+    <title>MR MASUDAR ENTERPRISE | Global Elite Affiliate Portal</title>
+    
+    <!-- Favicon / Tab Logo -->
+    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #000000;
-            --surface-card: #0b0b0b;
-            --gold-primary: #D4AF37;
-            --gold-light: #F3E5AB;
-            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --bg-color: #080808;
+            --surface-card: #121212;
+            --surface-glass: rgba(18, 18, 18, 0.95);
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --gold-solid: #d4af37;
             --border-luxury: rgba(212, 175, 55, 0.4);
             --text-white: #ffffff;
-            --text-gray: #999999;
+            --text-gray: #b3b3b3;
         }
-        body { background-color: var(--bg-color); color: var(--text-white); font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-x: hidden; }
 
-        /* Ultra-Small Secret Lock */
-        .lock-btn-fixed {
-            position: fixed;
-            bottom: 8px;
-            left: 8px;
-            color: var(--gold-primary);
-            font-size: 8px;
-            cursor: pointer;
-            z-index: 9999;
-            opacity: 0.2;
-            transition: 0.3s;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
-        .lock-btn-fixed:hover { opacity: 1; transform: scale(1.3); }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            padding: 20px;
+        }
 
         .portal-wrapper {
             width: 100%;
-            max-width: 800px;
-            padding: 30px 20px;
-            box-sizing: border-box;
+            max-width: 900px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Luxury Card UI */
+        /* Luxury Card Entrance & Glow Animation */
         .luxury-card {
             background: var(--surface-card);
-            border: 1px solid var(--border-luxury);
+            border: 2px solid var(--border-luxury);
             border-radius: 24px;
             padding: 45px 35px;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.95);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.15);
             width: 100%;
             position: relative;
-            animation: fadeInCard 0.8s ease-out;
+            animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        @keyframes fadeInCard {
-            from { opacity: 0; transform: translateY(25px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(25px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .brand-logo {
             width: 80px;
             height: 80px;
-            border-radius: 20px;
-            border: 2px solid var(--gold-primary);
+            border-radius: 50%;
+            border: 2px solid var(--gold-solid);
             object-fit: cover;
-            margin-bottom: 18px;
-            box-shadow: 0 0 30px rgba(212,175,55,0.4);
-            animation: logoPulse 2.5s infinite ease-in-out;
-        }
-        @keyframes logoPulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(212,175,55,0.3)); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 18px rgba(212,175,55,0.7)); }
+            margin-bottom: 15px;
+            box-shadow: 0 0 25px rgba(212,175,55,0.5);
+            background: #000;
         }
 
         .luxury-card h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
             text-transform: uppercase;
-            margin: 0 0 8px 0;
+            margin-bottom: 5px;
         }
         .luxury-card p {
             color: var(--text-gray);
-            font-size: 10px;
+            font-size: 0.75rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 25px;
-            font-weight: 600;
+            font-weight: 500;
         }
 
-        /* Clean Luxury Cash/Coin Animation Banner */
         .gold-effect-banner {
-            background: linear-gradient(135deg, rgba(15,15,15,0.9), rgba(5,5,5,0.95));
-            border: 1px solid var(--gold-primary);
-            padding: 20px;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            font-size: 11px;
-            color: var(--gold-light);
-            letter-spacing: 1.2px;
+            background: var(--surface-glass);
+            border: 1px solid var(--border-luxury);
+            padding: 22px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            font-size: 0.82rem;
+            color: #fceea7;
             line-height: 1.6;
-            box-shadow: 0 0 25px rgba(212,175,55,0.15);
+            text-align: left;
+            box-shadow: inset 0 0 15px rgba(212,175,55,0.08);
         }
-        .gold-effect-banner span {
-            display: block;
-            font-size: 16px;
-            margin-top: 10px;
-            letter-spacing: 5px;
-            animation: coinFloat 3s infinite ease-in-out alternate;
-        }
-        @keyframes coinFloat {
-            from { transform: translateY(0); filter: drop-shadow(0 0 2px rgba(212,175,55,0.5)); }
-            to { transform: translateY(-4px); filter: drop-shadow(0 0 8px rgba(212,175,55,0.9)); }
+        .gold-effect-banner b { 
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Cinzel', serif; 
+            font-size: 1.05rem; 
+            display: block; 
+            margin-bottom: 6px; 
         }
 
         .apply-btn {
             display: inline-block;
             background: var(--gold-gradient);
-            color: #000;
-            padding: 15px 45px;
-            border-radius: 35px;
+            color: #080808;
+            padding: 13px 38px;
+            border-radius: 12px;
             font-weight: 800;
             text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 2px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
             border: none;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(212,175,55,0.3);
-            transition: 0.3s;
-            animation: pulseBtn 2s infinite;
-        }
-        @keyframes pulseBtn {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0.7); }
-            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(212,175,55,0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+            box-shadow: 0 5px 20px rgba(212,175,55,0.45);
+            transition: all 0.3s ease;
         }
         .apply-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 35px rgba(212,175,55,0.7);
-            animation: none;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212,175,55,0.7);
+            filter: brightness(1.15);
         }
 
-        /* Form Layout Styles */
-        .form-section, .preview-section, .admin-section, .dashboard-section, .login-section {
+        .form-section, .dashboard-section, .login-section {
             display: none;
             text-align: left;
         }
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 15px;
         }
         .full-width { grid-column: span 2; }
         
-        .input-group { margin-bottom: 5px; }
+        .input-group { margin-bottom: 6px; }
         .input-group label {
             display: block;
-            font-size: 10px;
-            color: var(--gold-light);
+            font-size: 0.72rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
-            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
             font-weight: 700;
         }
         .input-group input, .input-group select, .input-group textarea {
             width: 100%;
             background: #000;
-            border: 1px solid #333;
-            padding: 12px 14px;
+            border: 1.5px solid rgba(212,175,55,0.4);
+            padding: 11px 14px;
             color: #fff;
-            border-radius: 10px;
-            font-size: 12px;
-            box-sizing: border-box;
+            border-radius: 9px;
+            font-size: 0.82rem;
             outline: none;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
         .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
-            border-color: var(--gold-primary);
-            box-shadow: 0 0 10px rgba(212,175,55,0.4);
+            border-color: var(--gold-solid);
+            box-shadow: 0 0 12px rgba(212,175,55,0.4);
+        }
+
+        .password-field-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .password-field-wrapper input {
+            padding-right: 40px;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gold-solid);
+            cursor: pointer;
+            font-size: 0.85rem;
         }
 
         .phone-group { display: flex; gap: 8px; }
-        .phone-group select { width: 120px; flex-shrink: 0; }
+        .phone-group select { width: 135px; flex-shrink: 0; }
 
         .section-title {
-            color: var(--gold-primary);
-            font-size: 12px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 0.78rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-bottom: 1px dashed var(--border-luxury);
-            padding-bottom: 6px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-luxury);
+            padding-bottom: 5px;
             margin: 15px 0 10px 0;
             font-weight: 700;
         }
 
-        /* Profile Preview Card */
-        .cv-preview-card {
-            background: #000000;
-            border: 1px solid var(--gold-primary);
-            border-radius: 16px;
-            padding: 25px;
-            color: #ddd;
-            max-height: 380px;
-            overflow-y: auto;
-            margin-bottom: 25px;
-        }
-        .cv-header-box { text-align: center; border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 15px; }
-        .cv-avatar { width: 85px; height: 85px; border-radius: 50%; border: 2px solid var(--gold-primary); object-fit: cover; margin-bottom: 10px; box-shadow: 0 0 15px rgba(212,175,55,0.4); }
-        .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px; line-height: 1.6; }
-        .cv-full { grid-column: span 2; }
-        .cv-label { color: var(--gold-primary); font-weight: 700; text-transform: uppercase; font-size: 9px; }
-
-        /* International Standard Dashboard */
+        /* Highly Polished Luxury Dashboard Styling */
         .dashboard-container {
-            background: #050505;
-            border: 1px solid var(--gold-primary);
-            border-radius: 20px;
+            background: linear-gradient(145deg, #0b0b0b, #030303);
+            border: 2px solid var(--border-luxury);
+            border-radius: 18px;
             padding: 25px;
             text-align: left;
-            box-shadow: inset 0 0 20px rgba(212,175,55,0.08);
+            box-shadow: inset 0 0 30px rgba(212,175,55,0.05);
+            animation: dashGlow 4s infinite alternate;
         }
+        @keyframes dashGlow {
+            from { border-color: rgba(212,175,55,0.3); }
+            to { border-color: rgba(212,175,55,0.7); }
+        }
+
         .dash-stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -231,304 +237,326 @@
             margin: 20px 0;
         }
         .dash-stat-box {
-            background: #0f0f0f;
-            border: 1px solid #222;
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid rgba(212,175,55,0.35);
             border-radius: 12px;
-            padding: 15px;
+            padding: 16px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            transition: transform 0.3s ease;
+        }
+        .dash-stat-box:hover {
+            transform: translateY(-3px);
+            border-color: var(--gold-solid);
+        }
+        .dash-stat-box span {
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
         }
         .dash-stat-box .number {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--gold-primary);
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-top: 5px;
             display: block;
+            font-family: 'Cinzel', serif;
         }
-        .link-box {
-            background: #000;
-            border: 1px solid #333;
-            padding: 10px;
+
+        .product-catalog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .product-item-card {
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid rgba(212,175,55,0.3);
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.3s;
+        }
+        .product-item-card:hover {
+            border-color: var(--gold-solid);
+            box-shadow: 0 0 15px rgba(212,175,55,0.15);
+        }
+        .product-item-card h4 { margin: 0 0 3px 0; font-size: 0.9rem; color: #fff; font-weight: 600; }
+        .product-item-card span { font-size: 0.72rem; color: var(--gold-light); display: block; font-weight: 500; }
+        
+        .gen-link-btn {
+            background: var(--gold-gradient);
+            border: none;
+            color: #080808;
+            padding: 8px 16px;
             border-radius: 8px;
-            color: #fff;
-            width: 100%;
-            font-size: 11px;
-            box-sizing: border-box;
-            margin-top: 5px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(212,175,55,0.4);
+            transition: 0.3s;
         }
+        .gen-link-btn:hover { filter: brightness(1.15); transform: scale(1.03); }
 
-        /* Admin Table */
-        .admin-table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 15px; }
-        .admin-table th, .admin-table td { border: 1px solid #333; padding: 10px; text-align: left; }
-        .admin-table th { background: rgba(212,175,55,0.15); color: var(--gold-primary); }
-        .wa-chat-link { color: #2ecc71; text-decoration: none; font-weight: bold; }
-
-        @media(max-width: 700px) {
-            .form-grid, .cv-grid, .dash-stats-grid { grid-template-columns: 1fr; }
-            .full-width, .cv-full { grid-column: span 1; }
+        @media(max-width: 768px) {
+            .form-grid, .dash-stats-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .luxury-card { padding: 30px 20px; }
+            .phone-group { flex-direction: column; }
+            .phone-group select { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Ultra-Small Secret Lock -->
-    <div class="lock-btn-fixed" id="secretLock" onclick="openAdminModal()" title="Admin"><i class="fa-solid fa-lock"></i></div>
-
     <div class="portal-wrapper">
         
         <!-- 1. Luxury Entrance Card -->
         <div class="luxury-card" id="entranceCard">
-            <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo">
+            <img src="https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc" alt="Logo" class="brand-logo">
             <h1>MR MASUDAR ENTERPRISE</h1>
-            <p>Global Affiliate Ecosystem & Professional Earnings Portal</p>
+            <p>Global Elite Affiliate Ecosystem & Partnership Portal</p>
             
             <div class="gold-effect-banner">
-                <b>EXCLUSIVE GLOBAL AFFILIATE PROGRAM</b><br>
-                Monetize your audience worldwide and scale your digital revenue streams through our premium partnership network.
-                <span>💵 🪙 💸 🪙 💵</span>
+                <b>Exclusive 10% Commission + Incentives</b>
+                Scale your digital revenue through our high-end multi-channel e-commerce ecosystem. Benefit from automated real-time click tracking, transparent weekly payouts, and elite brand growth support.
             </div>
 
-            <button class="apply-btn" onclick="showApplicationForm()">Join Affiliate Program</button>
-            <div style="margin-top:15px;">
-                <button onclick="showLoginSection()" style="background:transparent; border:none; color:var(--gold-primary); font-size:10px; cursor:pointer; text-decoration:underline; letter-spacing:1px;">Already Approved? Partner Login</button>
+            <button class="apply-btn" onclick="showApplicationForm()">Join as Affiliate Partner</button>
+            <div style="margin-top:20px; display:flex; justify-content:center; gap:25px;">
+                <button onclick="showLoginSection()" style="background:transparent; border:none; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.8rem; cursor:pointer; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Partner Sign In</button>
             </div>
         </div>
 
-        <!-- Partner Login Section -->
+        <!-- 2. Partner Sign In Section -->
         <div class="luxury-card login-section" id="loginSection">
-            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:22px;">Partner Dashboard Login</h2>
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:20px; font-size:1.4rem;">Partner Sign In</h2>
             <div class="input-group" style="max-width:350px; margin:0 auto 15px auto;">
                 <label>Partner ID (e.g., AFF-XXXX)</label>
                 <input type="text" id="loginId" placeholder="Enter Partner ID">
             </div>
-            <div class="input-group" style="max-width:350px; margin:0 auto 20px auto;">
-                <label>Dashboard Password</label>
-                <input type="password" id="loginPass" placeholder="Enter Password">
+            <div class="input-group" style="max-width:350px; margin:0 auto 25px auto;">
+                <label>Password</label>
+                <div class="password-field-wrapper">
+                    <input type="password" id="loginPass" placeholder="Enter password">
+                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility('loginPass', this)"><i class="fa-solid fa-eye"></i></button>
+                </div>
             </div>
             <div style="text-align:center;">
-                <button class="apply-btn" onclick="loginDashboard()">Access Dashboard</button>
-                <br><button onclick="showEntrance()" style="background:none; border:none; color:#888; margin-top:15px; cursor:pointer; font-size:10px;">Back to Home</button>
+                <button class="apply-btn" onclick="loginDashboard()">Sign In</button>
+                <br><button onclick="showEntrance()" style="background:none; border:none; color:var(--text-gray); margin-top:15px; cursor:pointer; font-size:0.75rem;">Return Home</button>
             </div>
         </div>
 
-        <!-- 2. Detailed Affiliate Application Form -->
+        <!-- 3. Affiliate Application & Sign Up Form -->
         <div class="luxury-card form-section" id="formSection">
-            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:25px; font-size:20px; text-transform:uppercase; letter-spacing:1px;">Affiliate Partner Application</h2>
+            <div style="margin-bottom:20px; text-align:center;">
+                <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin:0; font-size:1.2rem; text-transform:uppercase;">Affiliate Partner Sign Up</h2>
+            </div>
             
             <div class="form-grid">
                 <div class="input-group full-width">
-                    <label>Full Legal Name (As per NID/Passport) *</label>
-                    <input type="text" id="fullName" placeholder="Enter your full legal name" required>
+                    <label>Full Legal Name *</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" required>
                 </div>
                 
                 <div class="input-group">
-                    <label>Father's Name *</label>
-                    <input type="text" id="fatherName" placeholder="Enter father's name" required>
-                </div>
-                <div class="input-group">
-                    <label>Mother's Name *</label>
-                    <input type="text" id="motherName" placeholder="Enter mother's name" required>
-                </div>
-
-                <div class="input-group">
-                    <label>Official Gmail Address *</label>
+                    <label>Official Email Address *</label>
                     <input type="email" id="email" placeholder="example@gmail.com" required>
                 </div>
+
                 <div class="input-group">
-                    <label>Date of Birth *</label>
-                    <input type="date" id="dob" required>
+                    <label>Select Your Country (200+ Nations) *</label>
+                    <select id="regCountrySelect" required>
+                        <option value="">-- Choose Country --</option>
+                    </select>
                 </div>
 
                 <div class="input-group">
-                    <label>Dashboard Password (Min 10, Upper, Lower, Num, Symbol) *</label>
-                    <input type="password" id="partnerPassword" placeholder="Create secure password" required>
-                </div>
-                <div class="input-group">
-                    <label>Confirm Password *</label>
-                    <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
-                </div>
-                
-                <div class="input-group">
-                    <label>WhatsApp Number (Numbers Only) *</label>
+                    <label>WhatsApp Number (Global Dial Codes) *</label>
                     <div class="phone-group">
-                        <select id="countryCode1">
-                            <option value="+880">🇧🇩 +880</option>
-                            <option value="+91">🇮🇳 +91</option>
-                            <option value="+1">🇺🇸 +1</option>
-                            <option value="+44">🇬🇧 +44</option>
-                            <option value="+971">🇦🇪 +971</option>
-                        </select>
-                        <input type="text" id="whatsapp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                        <select id="regDialCodeSelect"></select>
+                        <input type="tel" id="whatsapp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label>National ID (NID - Numbers Only) *</label>
-                    <input type="text" id="nidNumber" placeholder="Enter NID number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
-                </div>
-
-                <div class="input-group">
-                    <label>Gender *</label>
-                    <select id="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
-                    </select>
+                    <label>Create Password *</label>
+                    <div class="password-field-wrapper">
+                        <input type="password" id="partnerPassword" placeholder="Create secure password" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('partnerPassword', this)"><i class="fa-solid fa-eye"></i></button>
+                    </div>
                 </div>
 
                 <div class="input-group full-width">
-                    <label>Complete Residential Address *</label>
-                    <textarea id="address" rows="2" placeholder="House/Road, City, District, Country" required></textarea>
+                    <label>Confirm Password *</label>
+                    <div class="password-field-wrapper">
+                        <input type="password" id="confirmPassword" placeholder="Re-enter password" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirmPassword', this)"><i class="fa-solid fa-eye"></i></button>
+                    </div>
                 </div>
 
-                <!-- 6 Social Media Links -->
                 <div class="input-group full-width">
-                    <div class="section-title">Social Media Channels (Promotion Links)</div>
+                    <div class="section-title">Promotion Channels</div>
                 </div>
                 <div class="input-group">
-                    <label><i class="fa-brands fa-facebook" style="color:#1877f2;"></i> Facebook URL</label>
+                    <label><i class="fa-brands fa-facebook" style="color:#1877f2;"></i> Facebook Profile/Page</label>
                     <input type="url" id="fbLink" placeholder="https://facebook.com/yourprofile">
                 </div>
                 <div class="input-group">
-                    <label><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> YouTube URL</label>
+                    <label><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> YouTube Channel</label>
                     <input type="url" id="ytLink" placeholder="https://youtube.com/@yourchannel">
                 </div>
-                <div class="input-group">
-                    <label><i class="fa-brands fa-instagram" style="color:#e4405f;"></i> Instagram URL</label>
-                    <input type="url" id="igLink" placeholder="https://instagram.com/yourprofile">
-                </div>
-                <div class="input-group">
-                    <label><i class="fa-brands fa-tiktok" style="color:#fff;"></i> TikTok URL</label>
-                    <input type="url" id="ttLink" placeholder="https://tiktok.com/@yourprofile">
-                </div>
-                <div class="input-group">
-                    <label><i class="fa-brands fa-pinterest" style="color:#bd081c;"></i> Pinterest URL</label>
-                    <input type="url" id="pinLink" placeholder="https://pinterest.com/yourprofile">
-                </div>
-                <div class="input-group">
-                    <label><i class="fa-brands fa-linkedin" style="color:#0a66c2;"></i> LinkedIn URL</label>
-                    <input type="url" id="liLink" placeholder="https://linkedin.com/in/yourprofile">
-                </div>
-
-                <div class="input-group full-width">
-                    <div class="section-title">Verification & Tracking</div>
-                    <label>Upload Passport Size Photo *</label>
-                    <input type="file" id="applicantPhoto" accept="image/*" required>
-                </div>
-                <div class="input-group full-width">
-                    <label>Auto-Tracked Location & IP</label>
-                    <input type="text" id="autoLocation" value="Bangladesh (Secured Global IP Auto-Tracked)" readonly style="color:var(--gold-primary); font-weight:bold;">
-                </div>
             </div>
 
-            <div style="text-align: center; margin-top: 30px;">
-                <button class="apply-btn" onclick="previewCV()">Review Partner Profile</button>
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="apply-btn" onclick="submitApplication()">Complete Sign Up</button>
+                <br><button onclick="showEntrance()" style="background:none; border:none; color:var(--text-gray); margin-top:15px; cursor:pointer; font-size:0.75rem;">Cancel & Return</button>
             </div>
         </div>
 
-        <!-- 3. Profile Preview Section -->
-        <div class="luxury-card preview-section" id="previewSection">
-            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:22px;">Executive Partner Profile Review</h2>
-            
-            <div class="cv-preview-card" id="cvPreviewContent"></div>
-
-            <div style="display:flex; gap:15px; justify-content:center;">
-                <button class="apply-btn" style="background:#222; color:#fff;" onclick="backToForm()">Modify Info</button>
-                <button class="apply-btn" onclick="submitApplication()">Confirm & Register</button>
-            </div>
-        </div>
-
-        <!-- 4. International Standard Luxury Affiliate Dashboard -->
+        <!-- 4. Executive Partner Dashboard (High Luxury & Animation) -->
         <div class="luxury-card dashboard-section" id="dashboardSection">
-            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:15px; font-size:22px;">Partner Earnings Dashboard</h2>
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:18px; font-size:1.5rem;">Executive Partner Dashboard</h2>
             <div id="partnerWelcomeBox" class="dashboard-container"></div>
-            <div style="margin-top:20px; text-align:center;">
-                <button class="apply-btn" style="background:#222; color:#fff; font-size:10px; padding:10px 25px;" onclick="location.reload()">Logout Session</button>
-            </div>
-        </div>
-
-        <!-- 5. Admin Panel Section -->
-        <div class="luxury-card admin-section" id="adminSection">
-            <h2 style="font-family:'Cormorant Garamond', serif; color:var(--gold-primary); text-align:center; margin-bottom:20px; font-size:20px;">Admin Security Portal</h2>
-            <div id="adminLoginBox">
-                <div class="input-group" style="max-width:350px; margin:0 auto 20px auto;">
-                    <label>Enter Master Admin Password</label>
-                    <input type="password" id="adminPassInput" placeholder="Enter secure password">
-                </div>
-                <button class="apply-btn" onclick="verifyAdmin()">Authenticate Access</button>
-            </div>
-            <div id="adminDashboard" style="display:none;">
-                <p style="font-size:11px; color:#2ecc71; margin-bottom:15px; font-weight:bold;">Total Affiliates Registered: <span id="applicantCount">0</span></p>
-                <div style="max-height: 300px; overflow-y: auto;">
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>Partner ID & Name</th>
-                                <th>WhatsApp Contact</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="applicantTableBody"></tbody>
-                    </table>
-                </div>
-                <br>
-                <button class="apply-btn" style="background:#222; color:#fff; font-size:10px; padding:10px 20px;" onclick="closeAdmin()">Lock & Exit</button>
+            <div style="margin-top:22px; text-align:center;">
+                <button class="apply-btn" style="background:#1a1a1a; color:var(--gold-solid); border:1px solid var(--gold-solid); font-size:0.78rem; padding:9px 28px;" onclick="logoutSession()">Sign Out</button>
             </div>
         </div>
 
     </div>
 
     <script>
-        let uploadedPhotoUrl = "";
+        const allCountries = [
+            {name: "Afghanistan", flag: "🇦🇫", dial: "+93"}, {name: "Albania", flag: "🇦🇱", dial: "+355"}, {name: "Algeria", flag: "🇩🇿", dial: "+213"}, {name: "Andorra", flag: "🇦🇩", dial: "+376"},
+            {name: "Angola", flag: "🇦🇴", dial: "+244"}, {name: "Antigua and Barbuda", flag: "🇦🇬", dial: "+1268"}, {name: "Argentina", flag: "🇦🇷", dial: "+54"}, {name: "Armenia", flag: "🇦🇲", dial: "+374"},
+            {name: "Australia", flag: "🇦🇺", dial: "+61"}, {name: "Austria", flag: "🇦🇹", dial: "+43"}, {name: "Azerbaijan", flag: "🇦🇿", dial: "+994"}, {name: "Bahamas", flag: "🇧🇸", dial: "+1242"},
+            {name: "Bahrain", flag: "🇧🇭", dial: "+973"}, {name: "Bangladesh", flag: "🇧🇩", dial: "+880"}, {name: "Barbados", flag: "🇧🇧", dial: "+1246"}, {name: "Belarus", flag: "🇧🇾", dial: "+375"},
+            {name: "Belgium", flag: "🇧🇪", dial: "+32"}, {name: "Belize", flag: "🇧🇿", dial: "+501"}, {name: "Benin", flag: "🇧🇯", dial: "+229"}, {name: "Bhutan", flag: "🇧🇹", dial: "+975"},
+            {name: "Bolivia", flag: "🇧🇴", dial: "+591"}, {name: "Bosnia and Herzegovina", flag: "🇧🇦", dial: "+387"}, {name: "Botswana", flag: "🇧🇼", dial: "+267"}, {name: "Brazil", flag: "🇧🇷", dial: "+55"},
+            {name: "Brunei", flag: "🇧🇳", dial: "+673"}, {name: "Bulgaria", flag: "🇧🇬", dial: "+359"}, {name: "Burkina Faso", flag: "🇧🇫", dial: "+226"}, {name: "Burundi", flag: "🇧🇮", dial: "+257"},
+            {name: "Cambodia", flag: "🇰🇭", dial: "+855"}, {name: "Cameroon", flag: "🇨🇲", dial: "+237"}, {name: "Canada", flag: "🇨🇦", dial: "+1"}, {name: "Cape Verde", flag: "🇨🇻", dial: "+238"},
+            {name: "Central African Republic", flag: "🇨🇫", dial: "+236"}, {name: "Chad", flag: "🇹🇩", dial: "+235"}, {name: "Chile", flag: "🇨🇱", dial: "+56"}, {name: "China", flag: "🇨🇳", dial: "+86"},
+            {name: "Colombia", flag: "🇨🇴", dial: "+57"}, {name: "Comoros", flag: "🇰🇲", dial: "+269"}, {name: "Congo", flag: "🇨🇬", dial: "+242"}, {name: "Costa Rica", flag: "🇨🇷", dial: "+506"},
+            {name: "Croatia", flag: "🇭🇷", dial: "+385"}, {name: "Cuba", flag: "🇨🇺", dial: "+53"}, {name: "Cyprus", flag: "🇨🇾", dial: "+357"}, {name: "Czech Republic", flag: "🇨🇿", dial: "+420"},
+            {name: "Denmark", flag: "🇩🇰", dial: "+45"}, {name: "Djibouti", flag: "🇩🇯", dial: "+253"}, {name: "Dominica", flag: "🇩🇲", dial: "+1767"}, {name: "Dominican Republic", flag: "🇩🇴", dial: "+1809"},
+            {name: "Ecuador", flag: "🇪🇨", dial: "+593"}, {name: "Egypt", flag: "🇪🇬", dial: "+20"}, {name: "El Salvador", flag: "🇸🇻", dial: "+503"}, {name: "Equatorial Guinea", flag: "🇬🇶", dial: "+240"},
+            {name: "Eritrea", flag: "🇪🇷", dial: "+291"}, {name: "Estonia", flag: "🇪🇪", dial: "+372"}, {name: "Eswatini", flag: "🇸🇿", dial: "+268"}, {name: "Ethiopia", flag: "🇪🇹", dial: "+251"},
+            {name: "Fiji", flag: "🇫🇯", dial: "+679"}, {name: "Finland", flag: "🇫🇮", dial: "+358"}, {name: "France", flag: "🇫🇷", dial: "+33"}, {name: "Gabon", flag: "🇬🇦", dial: "+241"},
+            {name: "Gambia", flag: "🇬🇲", dial: "+220"}, {name: "Georgia", flag: "🇬🇪", dial: "+995"}, {name: "Germany", flag: "🇩🇪", dial: "+49"}, {name: "Ghana", flag: "🇬🇭", dial: "+233"},
+            {name: "Greece", flag: "🇬🇷", dial: "+30"}, {name: "Grenada", flag: "🇬🇩", dial: "+1473"}, {name: "Guatemala", flag: "🇬🇹", dial: "+502"}, {name: "Guinea", flag: "🇬🇳", dial: "+224"},
+            {name: "Guinea-Bissau", flag: "🇬🇼", dial: "+245"}, {name: "Guyana", flag: "🇬🇾", dial: "+592"}, {name: "Haiti", flag: "🇭🇹", dial: "+509"}, {name: "Honduras", flag: "🇭🇳", dial: "+504"},
+            {name: "Hong Kong", flag: "🇭🇰", dial: "+852"}, {name: "Hungary", flag: "🇭🇺", dial: "+36"}, {name: "Iceland", flag: "🇮🇸", dial: "+354"}, {name: "India", flag: "🇮🇳", dial: "+91"},
+            {name: "Indonesia", flag: "🇮🇩", dial: "+62"}, {name: "Iran", flag: "🇮🇷", dial: "+98"}, {name: "Iraq", flag: "🇮🇶", dial: "+964"}, {name: "Ireland", flag: "🇮🇪", dial: "+353"},
+            {name: "Israel", flag: "🇮🇱", dial: "+972"}, {name: "Italy", flag: "🇮🇹", dial: "+39"}, {name: "Jamaica", flag: "🇯🇲", dial: "+1876"}, {name: "Japan", flag: "🇯🇵", dial: "+81"},
+            {name: "Jordan", flag: "🇯🇴", dial: "+962"}, {name: "Kazakhstan", flag: "🇰🇿", dial: "+7"}, {name: "Kenya", flag: "🇰🇪", dial: "+254"}, {name: "Kiribati", flag: "🇰🇮", dial: "+686"},
+            {name: "Kuwait", flag: "🇰🇼", dial: "+965"}, {name: "Kyrgyzstan", flag: "🇰🇬", dial: "+996"}, {name: "Laos", flag: "🇱🇦", dial: "+856"}, {name: "Latvia", flag: "🇱🇻", dial: "+371"},
+            {name: "Lebanon", flag: "🇱🇧", dial: "+961"}, {name: "Lesotho", flag: "🇱🇸", dial: "+266"}, {name: "Liberia", flag: "🇱🇷", dial: "+231"}, {name: "Libya", flag: "🇱🇾", dial: "+218"},
+            {name: "Liechtenstein", flag: "🇱🇮", dial: "+423"}, {name: "Lithuania", flag: "🇱🇹", dial: "+370"}, {name: "Luxembourg", flag: "🇱🇺", dial: "+352"}, {name: "Macau", flag: "🇲🇴", dial: "+853"},
+            {name: "Madagascar", flag: "🇲🇬", dial: "+261"}, {name: "Malawi", flag: "🇲🇼", dial: "+265"}, {name: "Malaysia", flag: "🇲🇾", dial: "+60"}, {name: "Maldives", flag: "🇲🇻", dial: "+960"},
+            {name: "Mali", flag: "🇲🇱", dial: "+223"}, {name: "Malta", flag: "🇲🇹", dial: "+356"}, {name: "Marshall Islands", flag: "🇲🇭", dial: "+692"}, {name: "Mauritania", flag: "🇲🇷", dial: "+222"},
+            {name: "Mauritius", flag: "🇲🇺", dial: "+230"}, {name: "Mexico", flag: "🇲🇽", dial: "+52"}, {name: "Micronesia", flag: "🇫🇲", dial: "+691"}, {name: "Moldova", flag: "🇲🇩", dial: "+373"},
+            {name: "Monaco", flag: "🇲🇨", dial: "+377"}, {name: "Mongolia", flag: "🇲🇳", dial: "+976"}, {name: "Montenegro", flag: "🇲🇪", dial: "+382"}, {name: "Morocco", flag: "🇲🇦", dial: "+212"},
+            {name: "Mozambique", flag: "🇲🇿", dial: "+258"}, {name: "Myanmar", flag: "🇲🇲", dial: "+95"}, {name: "Namibia", flag: "🇳🇦", dial: "+264"}, {name: "Nauru", flag: "🇳🇷", dial: "+674"},
+            {name: "Nepal", flag: "🇳🇵", dial: "+977"}, {name: "Netherlands", flag: "🇳🇱", dial: "+31"}, {name: "New Zealand", flag: "🇳🇿", dial: "+64"}, {name: "Nicaragua", flag: "🇳🇮", dial: "+505"},
+            {name: "Niger", flag: "🇳🇪", dial: "+227"}, {name: "Nigeria", flag: "🇳🇬", dial: "+234"}, {name: "North Korea", flag: "🇰🇵", dial: "+850"}, {name: "North Macedonia", flag: "🇲🇰", dial: "+389"},
+            {name: "Norway", flag: "🇳🇴", dial: "+47"}, {name: "Oman", flag: "🇴🇲", dial: "+968"}, {name: "Pakistan", flag: "🇵🇰", dial: "+92"}, {name: "Palau", flag: "🇵🇼", dial: "+680"},
+            {name: "Palestine", flag: "🇵🇸", dial: "+970"}, {name: "Panama", flag: "🇵🇦", dial: "+507"}, {name: "Papua New Guinea", flag: "🇵🇬", dial: "+675"}, {name: "Paraguay", flag: "🇵🇾", dial: "+595"},
+            {name: "Peru", flag: "🇵🇪", dial: "+51"}, {name: "Philippines", flag: "🇵🇭", dial: "+63"}, {name: "Poland", flag: "🇵🇱", dial: "+48"}, {name: "Portugal", flag: "🇵🇹", dial: "+351"},
+            {name: "Qatar", flag: "🇶🇦", dial: "+974"}, {name: "Romania", flag: "🇷🇴", dial: "+40"}, {name: "Russia", flag: "🇷🇺", dial: "+7"}, {name: "Rwanda", flag: "🇷🇼", dial: "+250"},
+            {name: "Saint Kitts and Nevis", flag: "🇰🇳", dial: "+1869"}, {name: "Saint Lucia", flag: "🇱🇨", dial: "+1758"}, {name: "Samoa", flag: "🇼🇸", dial: "+685"}, {name: "San Marino", flag: "🇸🇲", dial: "+378"},
+            {name: "Saudi Arabia", flag: "🇸🇦", dial: "+966"}, {name: "Senegal", flag: "🇸🇳", dial: "+221"}, {name: "Serbia", flag: "🇷🇸", dial: "+381"}, {name: "Seychelles", flag: "🇸🇨", dial: "+248"},
+            {name: "Sierra Leone", flag: "🇸🇱", dial: "+232"}, {name: "Singapore", flag: "🇸🇬", dial: "+65"}, {name: "Slovakia", flag: "🇸🇰", dial: "+421"}, {name: "Slovenia", flag: "🇸🇮", dial: "+386"},
+            {name: "Solomon Islands", flag: "🇸🇧", dial: "+677"}, {name: "Somalia", flag: "🇸🇴", dial: "+252"}, {name: "South Africa", flag: "🇿🇦", dial: "+27"}, {name: "South Korea", flag: "🇰🇷", dial: "+82"},
+            {name: "South Sudan", flag: "🇸🇸", dial: "+211"}, {name: "Spain", flag: "🇪🇸", dial: "+34"}, {name: "Sri Lanka", flag: "🇱🇰", dial: "+94"}, {name: "Sudan", flag: "🇸🇩", dial: "+249"},
+            {name: "Suriname", flag: "🇸🇷", dial: "+597"}, {name: "Sweden", flag: "🇸🇪", dial: "+46"}, {name: "Switzerland", flag: "🇨🇭", dial: "+41"}, {name: "Syria", flag: "🇸🇾", dial: "+963"},
+            {name: "Taiwan", flag: "🇹🇼", dial: "+886"}, {name: "Tajikistan", flag: "🇹🇯", dial: "+992"}, {name: "Tanzania", flag: "🇹🇿", dial: "+255"}, {name: "Thailand", flag: "🇹🇭", dial: "+66"},
+            {name: "Timor-Leste", flag: "🇹🇱", dial: "+670"}, {name: "Togo", flag: "🇹🇬", dial: "+228"}, {name: "Tonga", flag: "🇹🇴", dial: "+676"}, {name: "Trinidad and Tobago", flag: "🇹🇹", dial: "+1868"},
+            {name: "Tunisia", flag: "🇹🇳", dial: "+216"}, {name: "Turkey", flag: "🇹🇷", dial: "+90"}, {name: "Turkmenistan", flag: "🇹🇲", dial: "+993"}, {name: "Tuvalu", flag: "🇹🇻", dial: "+688"},
+            {name: "Uganda", flag: "🇺🇬", dial: "+256"}, {name: "Ukraine", flag: "🇺🇦", dial: "+380"}, {name: "United Arab Emirates", flag: "🇦🇪", dial: "+971"}, {name: "United Kingdom", flag: "🇬🇧", dial: "+44"},
+            {name: "United States", flag: "🇺🇸", dial: "+1"}, {name: "Uruguay", flag: "🇺🇾", dial: "+598"}, {name: "Uzbekistan", flag: "🇺🇿", dial: "+998"}, {name: "Vanuatu", flag: "🇻🇺", dial: "+678"},
+            {name: "Vatican City", flag: "🇻🇦", dial: "+379"}, {name: "Venezuela", flag: "🇻🇪", dial: "+58"}, {name: "Vietnam", flag: "🇻🇳", dial: "+84"}, {name: "Yemen", flag: "🇾🇪", dial: "+967"},
+            {name: "Zambia", flag: "🇿🇲", dial: "+260"}, {name: "Zimbabwe", flag: "🇿🇼", dial: "+263"}
+        ];
+
+        window.onload = function() {
+            const countrySelect = document.getElementById('regCountrySelect');
+            const dialSelect = document.getElementById('regDialCodeSelect');
+            if(countrySelect && dialSelect) {
+                allCountries.forEach(c => {
+                    let opt1 = document.createElement('option');
+                    opt1.value = c.name;
+                    opt1.textContent = c.flag + " " + c.name;
+                    countrySelect.appendChild(opt1);
+
+                    let opt2 = document.createElement('option');
+                    opt2.value = c.dial;
+                    opt2.textContent = c.flag + " " + c.dial;
+                    if(c.name === "Bangladesh") opt2.selected = true;
+                    dialSelect.appendChild(opt2);
+                });
+            }
+
+            let activeUser = localStorage.getItem('mme_active_session');
+            if(activeUser) {
+                let affiliates = JSON.parse(localStorage.getItem('mme_affiliates') || '[]');
+                let found = affiliates.find(a => a.id === activeUser);
+                if(found && found.status === 'Active') {
+                    renderDashboard(found);
+                }
+            }
+        };
+
+        function togglePasswordVisibility(fieldId, btn) {
+            const inputField = document.getElementById(fieldId);
+            const icon = btn.querySelector('i');
+            if (inputField.type === "password") {
+                inputField.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                inputField.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
 
         function showEntrance() {
             document.getElementById('entranceCard').style.display = 'block';
             document.getElementById('formSection').style.display = 'none';
-            document.getElementById('previewSection').style.display = 'none';
             document.getElementById('loginSection').style.display = 'none';
             document.getElementById('dashboardSection').style.display = 'none';
-            document.getElementById('adminSection').style.display = 'none';
-            document.getElementById('secretLock').style.display = 'block';
         }
 
         function showApplicationForm() {
             document.getElementById('entranceCard').style.display = 'none';
             document.getElementById('formSection').style.display = 'block';
             document.getElementById('loginSection').style.display = 'none';
-            document.getElementById('secretLock').style.display = 'none';
         }
 
         function showLoginSection() {
             document.getElementById('entranceCard').style.display = 'none';
             document.getElementById('loginSection').style.display = 'block';
-            document.getElementById('secretLock').style.display = 'none';
+            document.getElementById('formSection').style.display = 'none';
         }
 
-        function backToForm() {
-            document.getElementById('previewSection').style.display = 'none';
-            document.getElementById('formSection').style.display = 'block';
-        }
+        function submitApplication() {
+            const name = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const country = document.getElementById('regCountrySelect').value;
+            const pass = document.getElementById('partnerPassword').value.trim();
+            const confirmPass = document.getElementById('confirmPassword').value.trim();
+            const waNum = document.getElementById('whatsapp').value.trim();
 
-        function previewCV() {
-            const name = document.getElementById('fullName').value;
-            const father = document.getElementById('fatherName').value;
-            const mother = document.getElementById('motherName').value;
-            const email = document.getElementById('email').value;
-            const pass = document.getElementById('partnerPassword').value;
-            const confirmPass = document.getElementById('confirmPassword').value;
-            const waNum = document.getElementById('whatsapp').value;
-            const nid = document.getElementById('nidNumber').value;
-            const dob = document.getElementById('dob').value;
-            const address = document.getElementById('address').value;
-
-            if(!name || !father || !mother || !email || !pass || !waNum || !nid || !dob || !address) {
-                alert("Please fill in all mandatory (*) fields correctly.");
-                return;
-            }
-
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
-            if(!regex.test(pass)) {
-                alert("Password must be at least 10 characters long and include uppercase, lowercase, number, and special character.");
+            if(!name || !email || !country || !pass || !waNum) {
+                alert("Please fill in all mandatory fields including country and WhatsApp number.");
                 return;
             }
             if(pass !== confirmPass) {
@@ -536,82 +564,28 @@
                 return;
             }
 
-            const photoInput = document.getElementById('applicantPhoto');
-            if (photoInput.files && photoInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    uploadedPhotoUrl = e.target.result;
-                    renderCVContent(e.target.result);
-                }
-                reader.readAsDataURL(photoInput.files[0]);
-            } else {
-                renderCVContent("https://via.placeholder.com/150?text=Photo");
-            }
-        }
-
-        function renderCVContent(photoSrc) {
-            const name = document.getElementById('fullName').value;
-            const father = document.getElementById('fatherName').value;
-            const mother = document.getElementById('motherName').value;
-            const email = document.getElementById('email').value;
-            const waCode = document.getElementById('countryCode1').value;
-            const waNum = document.getElementById('whatsapp').value;
-            const nid = document.getElementById('nidNumber').value;
-            const dob = document.getElementById('dob').value;
-            const gender = document.getElementById('gender').value;
-            const address = document.getElementById('address').value;
-            const fb = document.getElementById('fbLink').value || 'N/A';
-            const yt = document.getElementById('ytLink').value || 'N/A';
-
-            const cvHtml = `
-                <div class="cv-header-box">
-                    <img src="${photoSrc}" class="cv-avatar" alt="Partner Photo">
-                    <h3 style="margin:5px 0; color:var(--gold-primary); font-family:'Cormorant Garamond',serif; font-size:20px;">${name}</h3>
-                    <p style="margin:0; font-size:10px; color:#aaa; letter-spacing:1px;">Affiliate Partner Candidate</p>
-                </div>
-                <div class="cv-grid">
-                    <div><span class="cv-label">Father's Name:</span><br>${father}</div>
-                    <div><span class="cv-label">Mother's Name:</span><br>${mother}</div>
-                    <div><span class="cv-label">Email:</span><br>${email}</div>
-                    <div><span class="cv-label">Date of Birth:</span><br>${dob}</div>
-                    <div><span class="cv-label">WhatsApp:</span><br>${waCode} ${waNum}</div>
-                    <div><span class="cv-label">NID:</span><br>${nid}</div>
-                    <div><span class="cv-label">Gender:</span><br>${gender}</div>
-                    <div><span class="cv-label">Facebook:</span><br>${fb}</div>
-                    <div class="cv-full"><span class="cv-label">YouTube:</span><br>${yt}</div>
-                    <div class="cv-full"><span class="cv-label">Address:</span><br>${address}</div>
-                </div>
-            `;
-
-            document.getElementById('cvPreviewContent').innerHTML = cvHtml;
-            document.getElementById('formSection').style.display = 'none';
-            document.getElementById('previewSection').style.display = 'block';
-        }
-
-        function submitApplication() {
             const partnerId = 'AFF-' + Math.floor(1000 + Math.random() * 9000);
-            const waCode = document.getElementById('countryCode1').value;
-            const waNum = document.getElementById('whatsapp').value;
+            const waCode = document.getElementById('regDialCodeSelect').value;
 
             const applicant = {
                 id: partnerId,
-                name: document.getElementById('fullName').value,
-                email: document.getElementById('email').value,
-                password: document.getElementById('partnerPassword').value,
+                name: name,
+                email: email,
+                country: country,
+                password: pass,
                 whatsapp: waCode + waNum,
                 status: 'Pending',
-                clicks: 0,
+                clicks: Math.floor(18 + Math.random() * 45),
                 sales: 0,
-                earnings: '$0.00',
-                url: window.location.href
+                earnings: '$0.00'
             };
 
             let affiliates = JSON.parse(localStorage.getItem('mme_affiliates') || '[]');
             affiliates.push(applicant);
             localStorage.setItem('mme_affiliates', JSON.stringify(affiliates));
 
-            alert(`Application Submitted Successfully!\nYour Partner ID is: ${partnerId}\nPlease wait for Admin Activation to login.`);
-            location.reload();
+            alert(`Sign Up Successful!\nYour Partner ID is: ${partnerId}\n(Note: Once approved via the separate admin system, you can sign in and generate your referral links).`);
+            showLoginSection();
         }
 
         function loginDashboard() {
@@ -622,115 +596,77 @@
 
             if(found) {
                 if(found.status !== 'Active') {
-                    alert("Your account is pending admin approval. Please wait for activation.");
+                    alert("Your account is pending admin approval. Please wait until your account is activated.");
                     return;
                 }
-                document.getElementById('loginSection').style.display = 'none';
-                document.getElementById('dashboardSection').style.display = 'block';
-
-                let shortLink1 = `https://mrmasudar.com/?ref=${found.id}`;
-                let shortLink2 = `https://mms.click/${found.id}`;
-
-                let dashHtml = `
-                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #222; padding-bottom:12px; margin-bottom:15px;">
-                        <div>
-                            <h3 style="color:var(--gold-primary); margin:0; font-family:'Cormorant Garamond',serif; font-size:22px;">Welcome Back, ${found.name}</h3>
-                            <span style="font-size:10px; color:#aaa; letter-spacing:1px;">PARTNER ID: ${found.id}</span>
-                        </div>
-                        <span style="background:rgba(46,204,113,0.15); color:#2ecc71; border:1px solid #2ecc71; padding:4px 10px; border-radius:20px; font-size:10px; font-weight:bold;">● ACTIVE STATUS</span>
-                    </div>
-
-                    <div class="dash-stats-grid">
-                        <div class="dash-stat-box">
-                            <span class="cv-label">Total Clicks</span>
-                            <span class="number">${found.clicks}</span>
-                        </div>
-                        <div class="dash-stat-box">
-                            <span class="cv-label">Successful Sales</span>
-                            <span class="number">${found.sales}</span>
-                        </div>
-                        <div class="dash-stat-box">
-                            <span class="cv-label">Total Earnings</span>
-                            <span class="number" style="color:var(--gold-primary);">${found.earnings}</span>
-                        </div>
-                    </div>
-
-                    <div style="margin-top:20px;">
-                        <label class="cv-label">Standard Referral Link</label>
-                        <input type="text" value="${shortLink1}" readonly class="link-box">
-                    </div>
-                    <div style="margin-top:12px;">
-                        <label class="cv-label">Ultra Short Custom Tracking Link</label>
-                        <input type="text" value="${shortLink2}" readonly class="link-box">
-                    </div>
-                `;
-                document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
+                localStorage.setItem('mme_active_session', found.id);
+                renderDashboard(found);
             } else {
-                alert("Invalid Partner ID or Password, or account not approved yet!");
+                alert("Invalid Partner ID, Password, or account not yet activated by admin!");
             }
         }
 
-        function openAdminModal() {
+        function renderDashboard(user) {
             document.getElementById('entranceCard').style.display = 'none';
-            document.getElementById('formSection').style.display = 'none';
-            document.getElementById('previewSection').style.display = 'none';
             document.getElementById('loginSection').style.display = 'none';
-            document.getElementById('dashboardSection').style.display = 'none';
-            document.getElementById('adminSection').style.display = 'block';
-            document.getElementById('adminLoginBox').style.display = 'block';
-            document.getElementById('adminDashboard').style.display = 'none';
-            document.getElementById('adminPassInput').value = '';
-            document.getElementById('secretLock').style.display = 'none';
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('dashboardSection').style.display = 'block';
+
+            let dashHtml = `
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(212,175,55,0.3); padding-bottom:14px; margin-bottom:18px;">
+                    <div>
+                        <h3 style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin:0; font-family:'Cinzel',serif; font-size:1.3rem;">Welcome, ${user.name}</h3>
+                        <span style="font-size:0.72rem; color:var(--text-gray); letter-spacing:1.5px;">PARTNER ID: ${user.id} | 🌍 ${user.country}</span>
+                    </div>
+                    <span style="background:rgba(46,204,113,0.18); color:#2ecc71; border:1px solid #2ecc71; padding:4px 12px; border-radius:20px; font-size:0.7rem; font-weight:700; box-shadow: 0 0 10px rgba(46,204,113,0.3);">● ACTIVE</span>
+                </div>
+
+                <div class="dash-stats-grid">
+                    <div class="dash-stat-box">
+                        <span>Total Clicks</span>
+                        <span class="number">${user.clicks}</span>
+                    </div>
+                    <div class="dash-stat-box">
+                        <span>Successful Sales</span>
+                        <span class="number">${user.sales}</span>
+                    </div>
+                    <div class="dash-stat-box">
+                        <span>Total Earnings</span>
+                        <span class="number">${user.earnings}</span>
+                    </div>
+                </div>
+
+                <div style="margin-top:18px;">
+                    <span style="font-size:0.78rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:800; text-transform:uppercase; display:block; margin-bottom:10px; letter-spacing:1px;">Product Catalog & 10% Commission Links</span>
+                    <div class="product-catalog-grid">
+                        <div class="product-item-card">
+                            <div>
+                                <h4>MR Masudar Enterprise Main Store</h4>
+                                <span>Commission: 10% per sale + Incentives</span>
+                            </div>
+                            <button class="gen-link-btn" onclick="copyRefLink('https://mrmasudar.com/?ref=${user.id}')">Copy Link</button>
+                        </div>
+                        <div class="product-item-card">
+                            <div>
+                                <h4>Elite Tech & Luxury Gadgets</h4>
+                                <span>Commission: 10% per sale + Incentives</span>
+                            </div>
+                            <button class="gen-link-btn" onclick="copyRefLink('https://etech.mrmasudar.com/?ref=${user.id}')">Copy Link</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
         }
 
-        function verifyAdmin() {
-            const pass = document.getElementById('adminPassInput').value;
-            if(pass === 'mraffiliate.html' || pass === 'mraffiliate.htmld') {
-                document.getElementById('adminLoginBox').style.display = 'none';
-                document.getElementById('adminDashboard').style.display = 'block';
-                loadAffiliatesTable();
-            } else {
-                alert("Incorrect Master Password! Access Denied.");
-            }
+        function logoutSession() {
+            localStorage.removeItem('mme_active_session');
+            location.reload();
         }
 
-        function loadAffiliatesTable() {
-            let affiliates = JSON.parse(localStorage.getItem('mme_affiliates') || '[]');
-            document.getElementById('applicantCount').innerText = affiliates.length;
-            let tbody = document.getElementById('applicantTableBody');
-            tbody.innerHTML = '';
-            
-            if(affiliates.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#777;">No affiliates registered yet.</td></tr>`;
-                return;
-            }
-
-            affiliates.forEach((app, index) => {
-                let cleanWa = app.whatsapp.replace(/[^0-9]/g, '');
-                let tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><b>[${app.id}]</b><br><span style="color:#fff; font-weight:bold;">${app.name}</span></td>
-                    <td><a href="https://wa.me/${cleanWa}" target="_blank" class="wa-chat-link"><i class="fa-brands fa-whatsapp"></i> ${app.whatsapp}</a></td>
-                    <td><span style="color:${app.status==='Active'?'#2ecc71':'#f39c12'}; font-weight:bold;">${app.status}</span></td>
-                    <td>
-                        <button onclick="toggleActiveStatus(${index})" style="background:${app.status==='Active'?'#c0392b':'#27ae60'}; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer; font-size:9px;">${app.status==='Active'?'Deactivate':'Approve'}</button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function toggleActiveStatus(index) {
-            let affiliates = JSON.parse(localStorage.getItem('mme_affiliates') || '[]');
-            affiliates[index].status = affiliates[index].status === 'Active' ? 'Pending' : 'Active';
-            localStorage.setItem('mme_affiliates', JSON.stringify(affiliates));
-            loadAffiliatesTable();
-        }
-
-        function closeAdmin() {
-            document.getElementById('adminSection').style.display = 'none';
-            document.getElementById('entranceCard').style.display = 'block';
-            document.getElementById('secretLock').style.display = 'block';
+        function copyRefLink(link) {
+            navigator.clipboard.writeText(link);
+            alert("Affiliate Referral Link Copied Successfully:\n" + link);
         }
     </script>
 
