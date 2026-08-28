@@ -1,1 +1,577 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR MASUDAR ENTERPRISE - Secure Checkout</title>
+    
+    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-black: #040404;
+            --card-bg: rgba(15, 15, 15, 0.95);
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --gold-solid: #d4af37;
+            --text-white: #ffffff;
+            --text-gray: #b3b3b3;
+            --danger-red: #ff3b30;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            background-image: radial-gradient(circle at 50% 10%, #1c1604 0%, #040404 85%);
+            color: var(--text-white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .checkout-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid var(--gold-solid);
+            width: 100%;
+            max-width: 480px;
+            border-radius: 24px;
+            padding: 25px 30px;
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.3);
+            animation: luxuryPopIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes luxuryPopIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .checkout-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .step-section {
+            display: none;
+        }
+
+        .step-section.active {
+            display: block;
+            animation: fadeInStep 0.4s ease forwards;
+        }
+
+        @keyframes fadeInStep {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .scrollable-cart-box {
+            max-height: 210px;
+            overflow-y: auto;
+            padding-right: 4px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 12px;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.75);
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold-solid) #1a1a1a;
+        }
+        .scrollable-cart-box::-webkit-scrollbar {
+            width: 4px;
+        }
+        .scrollable-cart-box::-webkit-scrollbar-thumb {
+            background: var(--gold-solid);
+            border-radius: 4px;
+        }
+
+        .cart-preview-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(18, 18, 18, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 6px 8px;
+            margin-bottom: 6px;
+            position: relative;
+        }
+        .cart-preview-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .cart-preview-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid var(--gold-solid);
+            flex-shrink: 0;
+        }
+
+        .cart-preview-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .cart-preview-info h4 {
+            font-size: 0.75rem;
+            color: var(--text-white);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 1px;
+        }
+
+        .cart-preview-info p {
+            font-size: 0.68rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .remove-item-btn {
+            background: rgba(255, 59, 48, 0.15);
+            border: 1px solid rgba(255, 59, 48, 0.4);
+            color: #ff3b30;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .remove-item-btn:hover {
+            background: var(--danger-red);
+            color: #fff;
+        }
+
+        .auth-form-group {
+            margin-bottom: 11px;
+            text-align: left;
+        }
+
+        .auth-form-group label {
+            display: block;
+            font-size: 0.7rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 3px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .auth-form-group input, .auth-form-group select, .auth-form-group textarea {
+            width: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            padding: 9px 11px;
+            border-radius: 9px;
+            color: var(--text-white);
+            font-size: 0.8rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .auth-form-group input:focus, .auth-form-group select:focus, .auth-form-group textarea:focus {
+            border-color: var(--gold-solid);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+            background: rgba(20, 20, 20, 0.95);
+        }
+
+        .phone-group { 
+            display: flex; 
+            gap: 8px; 
+        }
+
+        .phone-group select { 
+            width: 125px; 
+            flex-shrink: 0; 
+        }
+
+        .order-summary-box {
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            color: var(--text-gray);
+        }
+
+        .summary-row.total {
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            padding-top: 6px;
+            margin-top: 6px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .currency-notice {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px dashed var(--gold-solid);
+            border-radius: 10px;
+            padding: 8px 10px;
+            margin-bottom: 12px;
+            font-size: 0.72rem;
+            color: var(--text-gray);
+            text-align: center;
+        }
+
+        .currency-notice span {
+            color: var(--gold-solid);
+            font-weight: 700;
+        }
+
+        .local-payment-instruction {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold-solid);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
+            font-size: 0.72rem;
+            color: var(--text-white);
+            display: none;
+        }
+
+        .local-payment-instruction span {
+            color: var(--gold-solid);
+            font-weight: 700;
+        }
+
+        .auth-submit-btn {
+            width: 100%;
+            background: var(--gold-gradient);
+            border: none;
+            padding: 11px;
+            border-radius: 10px;
+            color: #040404;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 4px;
+            box-shadow: 0 5px 18px rgba(212, 175, 55, 0.4);
+            transition: transform 0.2s ease;
+        }
+
+        .auth-submit-btn:active {
+            transform: scale(0.97);
+        }
+
+        .back-link-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-gray);
+            width: 100%;
+            margin-top: 8px;
+            cursor: pointer;
+            font-size: 0.72rem;
+            text-align: center;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-container">
+        <h3 class="checkout-title" id="checkoutHeaderTitle">✨ Secure Checkout</h3>
+        
+        <!-- STEP 1 -->
+        <div class="step-section active" id="step1Section">
+            <div class="scrollable-cart-box" id="scrollableCartContainer">
+                <p style="text-align:center; color:#888; font-size:0.72rem; padding:10px;">Loading cart items...</p>
+            </div>
+
+            <form onsubmit="proceedToShippingPayment(event)">
+                <div class="auth-form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="checkoutName" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="auth-form-group">
+                    <label>Email Address (Gmail) *</label>
+                    <input type="email" id="checkoutEmail" placeholder="customer@gmail.com" required>
+                </div>
+
+                <div class="auth-form-group">
+                    <label>Country *</label>
+                    <select id="checkoutCountry" onchange="updateCountryCalculations()" required>
+                        <option value="">-- Choose Country --</option>
+                    </select>
+                </div>
+
+                <div class="auth-form-group">
+                    <label>WhatsApp Number *</label>
+                    <div class="phone-group">
+                        <select id="checkoutDialCode"></select>
+                        <input type="tel" id="checkoutWhatsApp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                    </div>
+                </div>
+
+                <div class="auth-form-group">
+                    <label>Delivery Address *</label>
+                    <textarea id="checkoutAddress" rows="2" placeholder="House, Road, City, Zip Code..." required></textarea>
+                </div>
+
+                <button type="submit" class="auth-submit-btn">Continue to Payment</button>
+            </form>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step-section" id="step2Section">
+            <div class="order-summary-box">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="summarySubtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping Cost:</span>
+                    <span id="summaryShipping">$3.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total Amount (USD):</span>
+                    <span id="summaryTotal">$0.00</span>
+                </div>
+            </div>
+
+            <div class="currency-notice" id="currencyNoticeBox">
+                💱 Local Currency: <span>Select country</span>
+            </div>
+
+            <form onsubmit="finalizeSecurePayment(event)">
+                <div class="auth-form-group">
+                    <label>Payment Method *</label>
+                    <select id="paymentMethod" onchange="handlePaymentMethodSelection()" required>
+                        <option value="">-- Select Payment Method --</option>
+                        <option value="card_standard">Credit / Debit Card (Visa, Mastercard, Amex)</option>
+                        <option value="payoneer">Payoneer Secure Payment</option>
+                        <option value="paypal">PayPal</option>
+                        <!-- ভ্যালুটি এখানে bkash_nagad রাখা হয়েছে যাতে লজিক সঠিকভাবে কাজ করে -->
+                        <option value="bkash_nagad">bKash / Nagad (Bangladesh)</option>
+                    </select>
+                </div>
+
+                <div class="local-payment-instruction" id="localPaymentBox">
+                    📌 Send money to bKash/Nagad: <span>0176731670</span> (MR MASUDAR ENTERPRISE)<br><br>
+                    <div style="margin-top: 4px;">
+                        <label style="font-size:0.68rem; color:var(--gold-solid); text-transform:uppercase; font-weight:700; display:block; margin-bottom:2px;">Enter Transaction ID (TrxID) *</label>
+                        <input type="text" id="bkashTrxId" placeholder="e.g. 9N87A65B4" style="width:100%; background:#000; border:1px solid var(--gold-solid); padding:7px; border-radius:7px; color:#fff; font-size:0.78rem;">
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-submit-btn">Confirm & Complete Payment</button>
+                <button type="button" class="back-link-btn" onclick="goBackToStep1()">← Back to Edit Details</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const allCountries = [
+            {name: "Bangladesh", flag: "🇧🇩", dial: "+880", curr: "BDT", rate: 117},
+            {name: "United States", flag: "🇺🇸", dial: "+1", curr: "USD", rate: 1},
+            {name: "United Kingdom", flag: "🇬🇧", dial: "+44", curr: "GBP", rate: 0.79},
+            {name: "Canada", flag: "🇨🇦", dial: "+1", curr: "CAD", rate: 1.36},
+            {name: "United Arab Emirates", flag: "🇦🇪", dial: "+971", curr: "AED", rate: 3.67},
+            {name: "Saudi Arabia", flag: "🇸🇦", dial: "+966", curr: "SAR", rate: 3.75},
+            {name: "India", flag: "🇮🇳", dial: "+91", curr: "INR", rate: 83},
+            {name: "Australia", flag: "🇦🇺", dial: "+61", curr: "AUD", rate: 1.52},
+            {name: "Germany", flag: "🇩🇪", dial: "+49", curr: "EUR", rate: 0.92},
+            {name: "France", flag: "🇫🇷", dial: "+33", curr: "EUR", rate: 0.92}
+        ];
+
+        let cartSubtotal = 0.00;
+        let shippingFee = 3.00;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const countrySelect = document.getElementById('checkoutCountry');
+            const dialSelect = document.getElementById('checkoutDialCode');
+
+            if(countrySelect && dialSelect) {
+                allCountries.forEach(c => {
+                    let opt1 = document.createElement('option');
+                    opt1.value = c.name;
+                    opt1.textContent = c.flag + " " + c.name;
+                    countrySelect.appendChild(opt1);
+
+                    let opt2 = document.createElement('option');
+                    opt2.value = c.dial;
+                    opt2.textContent = c.flag + " " + c.dial;
+                    if(c.name === "Bangladesh") opt2.selected = true;
+                    dialSelect.appendChild(opt2);
+                });
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const totalParam = urlParams.get('total');
+            const itemsParam = urlParams.get('items');
+
+            let cartItems = [];
+            if (itemsParam) {
+                let titles = itemsParam.split(',');
+                cartItems = titles.map(t => ({
+                    title: decodeURIComponent(t),
+                    price: totalParam ? `$${(parseFloat(totalParam)/titles.length).toFixed(2)}` : '$145.00',
+                    image: 'https://lh3.googleusercontent.com/d/18yy4G5Nd4OUf5a1T4mKHhvUFTq_6Eds5'
+                }));
+                localStorage.setItem('mme_cart_items', JSON.stringify(cartItems));
+            } else {
+                cartItems = JSON.parse(localStorage.getItem('mme_cart_items') || '[]');
+            }
+
+            renderCartItems(cartItems);
+        });
+
+        function renderCartItems(cartItems) {
+            const cartContainer = document.getElementById('scrollableCartContainer');
+
+            if(cartItems.length > 0) {
+                let html = '';
+                cartSubtotal = 0;
+
+                cartItems.forEach((item, index) => {
+                    let itemPriceNum = parseFloat((item.price || '$145.00').replace(/[^0-9.]/g, '')) || 145.00;
+                    cartSubtotal += itemPriceNum;
+
+                    html += `
+                        <div class="cart-preview-item">
+                            <img src="${item.image || 'https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc'}" alt="Product" class="cart-preview-img">
+                            <div class="cart-preview-info">
+                                <h4>${item.title || 'Luxury Item'}</h4>
+                                <p>Price: ${item.price || '$145.00'}</p>
+                            </div>
+                            <button type="button" class="remove-item-btn" onclick="removeCartItem(${index})" title="Remove item"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    `;
+                });
+                cartContainer.innerHTML = html;
+            } else {
+                cartSubtotal = 0;
+                cartContainer.innerHTML = `
+                    <div style="text-align:center; padding:15px; color:#aaa; font-size:0.75rem;">
+                        Your cart is empty. <br><a href="https://mrmasudar.com/" style="color:var(--gold-solid); text-decoration:underline; font-weight:700; display:inline-block; margin-top:5px;">Go back to shop</a>
+                    </div>
+                `;
+            }
+
+            document.getElementById('summarySubtotal').innerText = `$${cartSubtotal.toFixed(2)}`;
+            updateCountryCalculations();
+        }
+
+        function removeCartItem(index) {
+            let savedItems = JSON.parse(localStorage.getItem('mme_cart_items') || '[]');
+            savedItems.splice(index, 1);
+            localStorage.setItem('mme_cart_items', JSON.stringify(savedItems));
+            renderCartItems(savedItems);
+        }
+
+        function updateCountryCalculations() {
+            const countryName = document.getElementById('checkoutCountry').value;
+            let foundCountry = allCountries.find(c => c.name === countryName);
+
+            if(countryName === "Bangladesh") {
+                shippingFee = 3.00;
+            } else if(countryName === "United States" || countryName === "United Kingdom" || countryName === "Canada") {
+                shippingFee = 20.00;
+            } else {
+                shippingFee = 15.00;
+            }
+
+            let finalTotal = cartSubtotal + shippingFee;
+
+            document.getElementById('summaryShipping').innerText = `$${shippingFee.toFixed(2)}`;
+            document.getElementById('summaryTotal').innerText = `$${finalTotal.toFixed(2)}`;
+
+            if(foundCountry) {
+                let localAmount = (finalTotal * foundCountry.rate).toLocaleString(undefined, {maximumFractionDigits: 2});
+                document.getElementById('currencyNoticeBox').innerHTML = `💱 Local Currency: <span>${localAmount} ${foundCountry.curr}</span>`;
+            }
+        }
+
+        function handlePaymentMethodSelection() {
+            const method = document.getElementById('paymentMethod').value;
+            const localBox = document.getElementById('localPaymentBox');
+            const trxInput = document.getElementById('bkashTrxId');
+            
+            if(method === 'bkash_nagad') {
+                localBox.style.display = 'block';
+                trxInput.setAttribute('required', 'true');
+            } else {
+                localBox.style.display = 'none';
+                trxInput.removeAttribute('required');
+                trxInput.value = ''; // মেথড পরিবর্তন করলে ট্রানজেকশন আইডি ক্লিয়ার হয়ে যাবে
+            }
+        }
+
+        function proceedToShippingPayment(event) {
+            event.preventDefault();
+            let savedItems = JSON.parse(localStorage.getItem('mme_cart_items') || '[]');
+            if(savedItems.length === 0) {
+                alert("Your cart is empty! Please add items before proceeding.");
+                return;
+            }
+            updateCountryCalculations();
+            document.getElementById('step1Section').classList.remove('active');
+            document.getElementById('step2Section').classList.add('active');
+            document.getElementById('checkoutHeaderTitle').innerText = "✨ Secure Payment";
+        }
+
+        function goBackToStep1() {
+            document.getElementById('step2Section').classList.remove('active');
+            document.getElementById('step1Section').classList.add('active');
+            document.getElementById('checkoutHeaderTitle').innerText = "✨ Secure Checkout";
+        }
+
+        function finalizeSecurePayment(event) {
+            event.preventDefault();
+            
+            const method = document.getElementById('paymentMethod').value;
+            if(method === 'bkash_nagad') {
+                const trxVal = document.getElementById('bkashTrxId').value.trim();
+                if(!trxVal) {
+                    alert("Please enter your bKash / Nagad Transaction ID (TrxID) to confirm payment.");
+                    return;
+                }
+            }
+
+            alert("Order and Paid Checkout confirmed successfully! Processing through Secure Gateway.");
+            localStorage.removeItem('mme_cart_items');
+            localStorage.removeItem('mme_cart_total');
+            window.location.href = "https://mrmasudar.com/";
+        }
+    </script>
+</body>
+</html>
