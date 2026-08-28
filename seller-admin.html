@@ -1,1 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR MASUDAR ENTERPRISE | Elite Global Seller Ecosystem</title>
+    
+    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #080808;
+            --surface-card: #121212;
+            --surface-glass: rgba(18, 18, 18, 0.95);
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --gold-solid: #d4af37;
+            --gold-light: #f3e5ab;
+            --border-luxury: rgba(212, 175, 55, 0.4);
+            --text-white: #ffffff;
+            --text-gray: #b3b3b3;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+            padding: 10px;
+        }
+
+        .portal-wrapper { 
+            width: 100%; 
+            max-width: 980px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+
+        .luxury-card { 
+            background: var(--surface-card); 
+            border: 2px solid var(--border-luxury); 
+            border-radius: 20px; 
+            padding: 20px 15px; 
+            text-align: center; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.15); 
+            width: 100%; 
+            position: relative; 
+            animation: fadeInCard 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        @keyframes fadeInCard { 
+            from { opacity: 0; transform: translateY(20px) scale(0.98); } 
+            to { opacity: 1; transform: translateY(0) scale(1); } 
+        }
+
+        .brand-logo { 
+            width: 70px; 
+            height: 70px; 
+            border-radius: 50%; 
+            border: 2px solid var(--gold-solid); 
+            object-fit: cover; 
+            margin-bottom: 12px; 
+            box-shadow: 0 0 12px rgba(212,175,55,0.3); 
+            background: #000; 
+        }
+
+        .title-container {
+            display: inline-block;
+            margin-bottom: 18px;
+            width: 100%;
+        }
+
+        .luxury-card h1 { 
+            font-family: 'Cinzel Decorative', serif; 
+            font-size: 1.15rem; 
+            font-weight: 900; 
+            background: var(--gold-gradient); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-transform: uppercase; 
+            margin-bottom: 4px; 
+        }
+
+        .brand-subtitle-line { 
+            color: var(--text-gray); 
+            font-size: 0.6rem; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            font-weight: 600; 
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .gold-effect-banner { 
+            background: var(--surface-glass); 
+            border: 1px solid var(--border-luxury); 
+            padding: 14px; 
+            border-radius: 12px; 
+            margin-bottom: 18px; 
+            font-size: 0.73rem; 
+            color: #fceea7; 
+            line-height: 1.6; 
+            text-align: left; 
+        }
+        .gold-effect-banner b { 
+            background: var(--gold-gradient); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            font-family: 'Cinzel', serif; 
+            font-size: 0.85rem; 
+            display: block; 
+            margin-bottom: 6px; 
+        }
+        .gold-effect-banner ul { 
+            margin-left: 15px; 
+            margin-top: 6px; 
+            font-size: 0.7rem; 
+            color: #ddd; 
+        }
+        .gold-effect-banner li { 
+            margin-bottom: 5px; 
+        }
+
+        .apply-btn { 
+            display: inline-block; 
+            background: var(--gold-gradient); 
+            color: #080808; 
+            padding: 11px 28px; 
+            border-radius: 10px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            letter-spacing: 1px; 
+            border: none; 
+            cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(212,175,55,0.4); 
+            transition: all 0.3s ease; 
+        }
+        .apply-btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(212,175,55,0.6); 
+            filter: brightness(1.15); 
+        }
+
+        .outline-btn { 
+            background: transparent; 
+            border: 1px solid var(--gold-solid); 
+            color: var(--gold-solid); 
+            padding: 8px 20px; 
+            border-radius: 8px; 
+            font-size: 0.68rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            transition: 0.3s; 
+        }
+        .outline-btn:hover { 
+            background: var(--gold-solid); 
+            color: #080808; 
+        }
+
+        .portal-section { display: none; text-align: left; width: 100%; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .full-width { grid-column: span 2; }
+        
+        .input-group { margin-bottom: 6px; }
+        .input-group label { display: block; font-size: 0.65rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 700; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 9px 12px; color: #fff; border-radius: 8px; font-size: 0.75rem; outline: none; transition: 0.3s; }
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+
+        .password-field-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .password-field-wrapper input {
+            width: 100%;
+            padding-right: 35px;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gold-solid);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .phone-group { display: flex; gap: 6px; }
+        .phone-group select { width: 120px; flex-shrink: 0; }
+        .section-title { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-luxury); padding-bottom: 4px; margin: 12px 0 8px 0; font-weight: 700; }
+
+        .dashboard-container { background: linear-gradient(145deg, #0b0b0b, #030303); border: 2px solid var(--border-luxury); border-radius: 14px; padding: 12px; text-align: left; width: 100%; overflow: hidden; }
+        
+        .dash-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 12px 0; }
+        .dash-stat-box { background: rgba(20,20,20,0.95); border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; padding: 8px 4px; text-align: center; }
+        .dash-stat-box .number { font-size: 0.9rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 3px; display: block; font-family: 'Cinzel', serif; }
+        .cv-label { color: var(--gold-light); font-weight: 700; text-transform: uppercase; font-size: 0.55rem; letter-spacing: 0.5px; }
+
+        .digital-id-card { background: linear-gradient(135deg, #18150a, #080808); border: 2px solid var(--gold-solid); border-radius: 14px; padding: 12px; display: flex; gap: 12px; align-items: center; margin-bottom: 12px; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
+        .id-avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold-solid); object-fit: cover; background: #000; flex-shrink: 0; box-shadow: 0 0 10px rgba(212,175,55,0.4); }
+
+        .luxury-chart { display: flex; align-items: flex-end; justify-content: space-around; height: 120px; background: linear-gradient(180deg, #121212, #050505); border: 1.5px solid var(--gold-solid); border-radius: 12px; padding: 12px 8px 6px 8px; margin: 12px 0; }
+        .chart-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; height: 100%; justify-content: flex-end; }
+        .chart-bar { width: 24px; background: var(--gold-gradient); border-radius: 6px 6px 0 0; }
+        .chart-label { font-size: 0.55rem; color: #ffffff; text-transform: uppercase; font-weight: 700; }
+
+        .ledger-table-wrap { overflow-x: auto; margin-top: 8px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.3); background: #000; -webkit-overflow-scrolling: touch; }
+        .ledger-table { width: 100%; border-collapse: collapse; font-size: 0.65rem; text-align: left; white-space: nowrap; }
+        .ledger-table th, .ledger-table td { border: 1px solid rgba(212,175,55,0.2); padding: 7px 9px; }
+        .ledger-table th { background: linear-gradient(135deg, #221c0b, #111); color: var(--gold-solid); font-weight: 700; text-transform: uppercase; }
+
+        .media-preview-box { display: flex; gap: 10px; align-items: center; background: #000; padding: 8px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.3); margin-top: 5px; }
+        .media-preview-box img, .media-preview-box iframe { width: 45px; height: 45px; border-radius: 6px; object-fit: cover; background: #111; }
+
+        @media(max-width: 600px) { 
+            body { padding: 4px; }
+            .luxury-card { padding: 12px 8px; border-radius: 12px; }
+            .form-grid, .dash-stats-grid { grid-template-columns: 1fr; } 
+            .full-width { grid-column: span 1; } 
+            .digital-id-card { padding: 10px; gap: 10px; }
+            .id-avatar { width: 48px; height: 48px; }
+            .luxury-card h1 { font-size: 1rem; }
+            .ledger-table { font-size: 0.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portal-wrapper">
+        
+        <!-- 1. Entrance Card -->
+        <div class="luxury-card portal-section" id="entranceCard" style="display:block;">
+            <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="brand-logo">
+            
+            <div class="title-container">
+                <h1>MR MASUDAR ENTERPRISE</h1>
+                <span class="brand-subtitle-line">Global Vendor & Elite Seller Ecosystem</span>
+            </div>
+            
+            <div class="gold-effect-banner">
+                <b>📌 ESSENTIAL VENDOR RULES & PLATFORM GUIDELINES</b>
+                <ul>
+                    <li><b>High-Quality Packaging:</b> All premium products must use export-grade, damage-proof luxury packaging.</li>
+                    <li><b>Strict Compliance:</b> Counterfeit items, misrepresentation, or customer fraud will result in immediate permanent account suspension.</li>
+                    <li><b>Platform Standards:</b> Complete cross-border logistics and secure global settlements.</li>
+                </ul>
+            </div>
+
+            <button class="apply-btn" onclick="showSection('formSection')">Join as Elite Seller</button>
+            <div style="margin-top: 15px; text-align: center;">
+                <button onclick="showSection('loginSection')" class="outline-btn">Seller Sign In</button>
+            </div>
+        </div>
+
+        <!-- 2. Seller Login Section -->
+        <div class="luxury-card portal-section" id="loginSection">
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.1rem;">Seller Dashboard Login</h2>
+            <div class="input-group" style="max-width:300px; margin:0 auto 12px auto;">
+                <label>Official Gmail Address</label>
+                <input type="email" id="loginEmail" placeholder="seller@gmail.com" required>
+            </div>
+            
+            <div class="input-group" style="max-width:300px; margin:0 auto 8px auto;">
+                <label>Dashboard Password</label>
+                <div class="password-field-wrapper">
+                    <input type="password" id="loginPass" placeholder="Enter Password" required>
+                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility('loginPass', this)"><i class="fa-solid fa-eye"></i></button>
+                </div>
+            </div>
+
+            <div style="max-width:300px; margin:0 auto 15px auto; text-align:right;">
+                <button onclick="openPasswordReset()" style="background:none; border:none; color:var(--gold-light); font-size:0.65rem; cursor:pointer; text-decoration:underline;">Forgot Password?</button>
+            </div>
+            <div style="text-align:center;">
+                <button class="apply-btn" onclick="loginDashboard()">Access Dashboard</button>
+                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Return Home</button>
+            </div>
+        </div>
+
+        <!-- Password Recovery Section -->
+        <div class="luxury-card portal-section" id="resetSection">
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.05rem;">Password Recovery</h2>
+            <div class="input-group" style="max-width:300px; margin:0 auto 12px auto;">
+                <label>Registered Gmail</label>
+                <input type="email" id="resetEmail" placeholder="seller@gmail.com">
+            </div>
+
+            <div class="input-group" style="max-width:300px; margin:0 auto 15px auto;">
+                <label>New Secure Password</label>
+                <div class="password-field-wrapper">
+                    <input type="password" id="newPassword" placeholder="10+ chars, Upper, Lower, Symbol">
+                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility('newPassword', this)"><i class="fa-solid fa-eye"></i></button>
+                </div>
+            </div>
+
+            <div style="text-align:center;">
+                <button class="apply-btn" onclick="executePasswordReset()">Update Password</button>
+                <br><button onclick="showSection('loginSection')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Back to Sign In</button>
+            </div>
+        </div>
+
+        <!-- 3. Detailed Seller Registration Form -->
+        <div class="luxury-card portal-section" id="formSection">
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:15px; font-size:1.05rem; text-transform:uppercase;">Global Seller Application</h2>
+            
+            <div class="form-grid">
+                <div class="input-group full-width"><label>Full Legal Name *</label><input type="text" id="fullName" placeholder="Enter full name" required></div>
+                
+                <div class="input-group"><label>Father's Name *</label><input type="text" id="fatherName" required></div>
+                <div class="input-group"><label>Mother's Name *</label><input type="text" id="motherName" required></div>
+
+                <div class="input-group"><label>Official Gmail Address *</label><input type="email" id="email" required></div>
+                <div class="input-group"><label>Date of Birth *</label><input type="date" id="dob" required></div>
+
+                <div class="input-group">
+                    <label>Dashboard Password *</label>
+                    <div class="password-field-wrapper">
+                        <input type="password" id="partnerPassword" placeholder="Min 10 chars, Upper, Lower, Symbol" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('partnerPassword', this)"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Confirm Password *</label>
+                    <div class="password-field-wrapper">
+                        <input type="password" id="confirmPassword" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirmPassword', this)"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Select Your Country (200+ Nations) *</label>
+                    <select id="countrySelect" required>
+                        <option value="">-- Choose Country --</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>WhatsApp Number (Global Dial Codes) *</label>
+                    <div class="phone-group">
+                        <select id="whatsappCodeSelect"></select>
+                        <input type="text" id="whatsapp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                    </div>
+                </div>
+
+                <div class="input-group"><label>National ID (NID) *</label><input type="text" id="nidNumber" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required></div>
+                <div class="input-group"><label>Gender *</label><select id="gender"><option>Male</option><option>Female</option><option>Other</option></select></div>
+                <div class="input-group full-width"><label>Residential Address *</label><textarea id="address" rows="2" required></textarea></div>
+
+                <div class="input-group full-width"><div class="section-title">Business & Store Information</div></div>
+                <div class="input-group"><label>Store / Business Name *</label><input type="text" id="bizName" required></div>
+                <div class="input-group"><label>Years in Business *</label><input type="number" id="bizYears" required></div>
+                <div class="input-group full-width"><label>Business Operational Address *</label><textarea id="bizAddress" rows="2" required></textarea></div>
+                <div class="input-group full-width"><label>Trade License Number (Optional)</label><input type="text" id="tradeLicense"></div>
+
+                <div class="input-group full-width"><div class="section-title">Social Media & Brand Channels</div></div>
+                <div class="input-group full-width"><label><i class="fa-brands fa-youtube" style="color:#ff0000;"></i> YouTube Channel URL (Mandatory) *</label><input type="url" id="ytLink" placeholder="https://youtube.com/@channel" required></div>
+
+                <div class="input-group full-width"><div class="section-title">Payoneer Payout Information</div></div>
+                <div class="input-group"><label>Payoneer Account Name *</label><input type="text" id="payoneerName" placeholder="Name on Payoneer" required></div>
+                <div class="input-group"><label>Payoneer Registered Email *</label><input type="email" id="payoneerEmail" placeholder="payoneer@gmail.com" required></div>
+
+                <div class="input-group full-width">
+                    <div class="section-title">Verification & Photo</div>
+                    <label>Upload Profile / ID Photo (Visible in Dashboard & Tag) *</label>
+                    <input type="file" id="applicantPhotoInput" accept="image/*" onchange="previewProfilePhoto(event)" required>
+                    <div id="photoPreviewContainer" style="margin-top:8px;"></div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="apply-btn" onclick="submitSellerApp()">Register & Open Dashboard</button>
+                <br><button onclick="showSection('entranceCard')" style="background:none; border:none; color:var(--text-gray); margin-top:12px; cursor:pointer; font-size:0.68rem;">Cancel & Return</button>
+            </div>
+        </div>
+
+        <!-- 4. Approved Luxury Seller Dashboard Screen -->
+        <div class="luxury-card portal-section" id="dashboardSection">
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:12px; font-size:1.1rem;">Vendor Dashboard</h2>
+            <div id="partnerWelcomeBox" class="dashboard-container"></div>
+            <div style="margin-top:15px; text-align:center; display:flex; gap:10px; justify-content:center;">
+                <button class="apply-btn" onclick="showSection('productSection')"><i class="fa-solid fa-plus"></i> Upload Product</button>
+                <button class="outline-btn" onclick="location.reload()">Logout</button>
+            </div>
+        </div>
+
+        <!-- 5. Global Retail Product Upload Terminal -->
+        <div class="luxury-card portal-section" id="productSection">
+            <h2 style="font-family:'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align:center; margin-bottom:6px; font-size:1.05rem; text-transform:uppercase;">Global Retail Product Upload</h2>
+            
+            <div class="form-grid" style="text-align:left;">
+                <div class="input-group full-width">
+                    <label>Product Name *</label>
+                    <input type="text" id="prodName" maxlength="20" placeholder="Max 20 chars" required>
+                </div>
+                <div class="input-group full-width">
+                    <label>Product Title *</label>
+                    <input type="text" id="prodTitle" maxlength="25" placeholder="Max 25 chars" required>
+                </div>
+                <div class="input-group full-width">
+                    <label>Product Description *</label>
+                    <textarea id="prodDesc" rows="2" maxlength="155" placeholder="Max 155 characters..." required></textarea>
+                </div>
+                
+                <div class="input-group">
+                    <label>Select Category *</label>
+                    <select id="prodCategory">
+                        <option value="👔 FASHION (MEN)">👔 FASHION (MEN)</option>
+                        <option value="👗 FASHION (WOMEN)">👗 FASHION (WOMEN)</option>
+                        <option value="👶 BABY & KIDS">👶 BABY & KIDS</option>
+                        <option value="🎁 LUXURY GIFTS">🎁 LUXURY GIFTS</option>
+                        <option value="🏡 HOME DECOR">🏡 HOME DECOR</option>
+                        <option value="🎨 ART & CRAFT">🎨 ART & CRAFT</option>
+                    </select>
+                </div>
+
+                <div class="input-group"><label>Stock Quantity *</label><input type="number" id="prodStock" placeholder="e.g. 150" required></div>
+                
+                <div class="input-group full-width">
+                    <label>Select Available Colors *</label>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:5px;">
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Golden Teak</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Black</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">White</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Red</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Blue</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Green</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Silver</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Gold</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Pink</button>
+                        <button type="button" onclick="toggleColorTag(this)" style="background:#222; border:1px solid var(--gold-solid); color:#fff; padding:4px 10px; border-radius:6px; font-size:0.63rem; cursor:pointer;">Multi</button>
+                    </div>
+                    <input type="text" id="prodColors" placeholder="Selected colors will appear here or type custom colors">
+                </div>
+
+                <div class="input-group">
+                    <label>Available Sizes</label>
+                    <input type="text" id="prodSizes" placeholder="S, M, L, XL, Free Size">
+                </div>
+
+                <div class="input-group"><label>Shipping Weight (kg / lbs) *</label><input type="text" id="prodWeight" placeholder="e.g. 0.5 kg" required></div>
+                <div class="input-group"><label>Package Dimensions (L x W x H) *</label><input type="text" id="prodDimensions" placeholder="e.g. 10x5x3 inch" required></div>
+
+                <div class="input-group full-width">
+                    <label>Product Image Link (URL / FB / YouTube Image) *</label>
+                    <input type="url" id="prodImgUrl" placeholder="https://image-link.com/photo.jpg" oninput="previewImageLink(this.value)" required>
+                    <div id="imgLinkPreview" style="margin-top:5px;"></div>
+                </div>
+
+                <div class="input-group full-width">
+                    <label>YouTube Short Video Review Link (URL) *</label>
+                    <input type="url" id="prodVideoUrl" placeholder="https://youtube.com/shorts/..." oninput="previewVideoLink(this.value)" required>
+                    <div id="videoLinkPreview" style="margin-top:5px;"></div>
+                </div>
+
+                <div class="input-group full-width"><div class="section-title">Global Retail Pricing & Country Discounts</div></div>
+                
+                <div class="input-group">
+                    <label>Global Retail Price (USD $)</label>
+                    <input type="number" id="priceGlobal" placeholder="$ 25.00">
+                </div>
+                <div class="input-group">
+                    <label>Country Discount (All Countries & %)</label>
+                    <div style="display:flex; gap:6px;">
+                        <select id="discountCountry" style="flex:1;"></select>
+                        <select id="discountPercent" style="width:95px;">
+                            <option value="3% Off">3%</option>
+                            <option value="5% Off">5%</option>
+                            <option value="10% Off">10%</option>
+                            <option value="15% Off">15%</option>
+                            <option value="20% Off">20%</option>
+                            <option value="25% Off">25%</option>
+                            <option value="30% Off">30%</option>
+                            <option value="40% Off">40%</option>
+                            <option value="50% Off">50%</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px; display:flex; gap:10px; justify-content:center;">
+                <button class="outline-btn" onclick="showSection('dashboardSection')">Cancel</button>
+                <button class="apply-btn" onclick="publishProduct()">Publish Product</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const allCountries = [
+            {name: "Afghanistan", flag: "🇦🇫", dial: "+93"}, {name: "Albania", flag: "🇦🇱", dial: "+355"}, {name: "Algeria", flag: "🇩🇿", dial: "+213"}, {name: "Andorra", flag: "🇦🇩", dial: "+376"},
+            {name: "Angola", flag: "🇦🇴", dial: "+244"}, {name: "Argentina", flag: "🇦🇷", dial: "+54"}, {name: "Armenia", flag: "🇦🇲", dial: "+374"}, {name: "Australia", flag: "🇦🇺", dial: "+61"},
+            {name: "Austria", flag: "🇦🇹", dial: "+43"}, {name: "Azerbaijan", flag: "🇦🇿", dial: "+994"}, {name: "Bahrain", flag: "🇧🇭", dial: "+973"}, {name: "Bangladesh", flag: "🇧🇩", dial: "+880"},
+            {name: "Belarus", flag: "🇧🇾", dial: "+375"}, {name: "Belgium", flag: "🇧🇪", dial: "+32"}, {name: "Belize", flag: "🇧🇿", dial: "+501"}, {name: "Benin", flag: "🇧🇯", dial: "+229"},
+            {name: "Bhutan", flag: "🇧🇹", dial: "+975"}, {name: "Bolivia", flag: "🇧🇴", dial: "+591"}, {name: "Bosnia and Herzegovina", flag: "🇧🇦", dial: "+387"}, {name: "Botswana", flag: "🇧🇼", dial: "+267"},
+            {name: "Brazil", flag: "🇧🇷", dial: "+55"}, {name: "Brunei", flag: "🇧🇳", dial: "+673"}, {name: "Bulgaria", flag: "🇧🇬", dial: "+359"}, {name: "Burkina Faso", flag: "🇧🇫", dial: "+226"},
+            {name: "Cambodia", flag: "🇰🇭", dial: "+855"}, {name: "Cameroon", flag: "🇨🇲", dial: "+237"}, {name: "Canada", flag: "🇨🇦", dial: "+1"}, {name: "Chile", flag: "🇨🇱", dial: "+56"},
+            {name: "China", flag: "🇨🇳", dial: "+86"}, {name: "Colombia", flag: "🇨🇴", dial: "+57"}, {name: "Congo", flag: "🇨🇬", dial: "+242"}, {name: "Costa Rica", flag: "🇨🇷", dial: "+506"},
+            {name: "Croatia", flag: "🇭🇷", dial: "+385"}, {name: "Cuba", flag: "🇨🇺", dial: "+53"}, {name: "Cyprus", flag: "🇨🇾", dial: "+357"}, {name: "Czech Republic", flag: "🇨🇿", dial: "+420"},
+            {name: "Denmark", flag: "🇩🇰", dial: "+45"}, {name: "Djibouti", flag: "🇩🇯", dial: "+253"}, {name: "Dominican Republic", flag: "🇩🇴", dial: "+1809"}, {name: "Ecuador", flag: "🇪🇨", dial: "+593"},
+            {name: "Egypt", flag: "🇪🇬", dial: "+20"}, {name: "El Salvador", flag: "🇸🇻", dial: "+503"}, {name: "Estonia", flag: "🇪🇪", dial: "+372"}, {name: "Ethiopia", flag: "🇪🇹", dial: "+251"},
+            {name: "Fiji", flag: "🇫🇯", dial: "+679"}, {name: "Finland", flag: "🇫🇮", dial: "+358"}, {name: "France", flag: "🇫🇷", dial: "+33"}, {name: "Gabon", flag: "🇬🇦", dial: "+241"},
+            {name: "Georgia", flag: "🇬🇪", dial: "+995"}, {name: "Germany", flag: "🇩🇪", dial: "+49"}, {name: "Ghana", flag: "🇬🇭", dial: "+233"}, {name: "Greece", flag: "🇬🇷", dial: "+30"},
+            {name: "Guatemala", flag: "🇬🇹", dial: "+502"}, {name: "Honduras", flag: "🇭🇳", dial: "+504"}, {name: "Hong Kong", flag: "🇭🇰", dial: "+852"}, {name: "Hungary", flag: "🇭🇺", dial: "+36"},
+            {name: "Iceland", flag: "🇮🇸", dial: "+354"}, {name: "India", flag: "🇮🇳", dial: "+91"}, {name: "Indonesia", flag: "🇮🇩", dial: "+62"}, {name: "Iran", flag: "🇮🇷", dial: "+98"},
+            {name: "Iraq", flag: "🇮🇶", dial: "+964"}, {name: "Ireland", flag: "🇮🇪", dial: "+353"}, {name: "Israel", flag: "🇮🇱", dial: "+972"}, {name: "Italy", flag: "🇮🇹", dial: "+39"},
+            {name: "Jamaica", flag: "🇯🇲", dial: "+1876"}, {name: "Japan", flag: "🇯🇵", dial: "+81"}, {name: "Jordan", flag: "🇯🇴", dial: "+962"}, {name: "Kazakhstan", flag: "🇰🇿", dial: "+7"},
+            {name: "Kenya", flag: "🇰🇪", dial: "+254"}, {name: "Kuwait", flag: "🇰🇼", dial: "+965"}, {name: "Kyrgyzstan", flag: "🇰🇬", dial: "+996"}, {name: "Laos", flag: "🇱🇦", dial: "+856"},
+            {name: "Latvia", flag: "🇱🇻", dial: "+371"}, {name: "Lebanon", flag: "🇱🇧", dial: "+961"}, {name: "Libya", flag: "🇱🇾", dial: "+218"}, {name: "Lithuania", flag: "🇱🇹", dial: "+370"},
+            {name: "Luxembourg", flag: "🇱🇺", dial: "+352"}, {name: "Macau", flag: "🇲🇴", dial: "+853"}, {name: "Malaysia", flag: "🇲🇾", dial: "+60"}, {name: "Maldives", flag: "🇲🇻", dial: "+960"},
+            {name: "Malta", flag: "🇲🇹", dial: "+356"}, {name: "Mexico", flag: "🇲🇽", dial: "+52"}, {name: "Moldova", flag: "🇲🇩", dial: "+373"}, {name: "Monaco", flag: "🇲🇨", dial: "+377"},
+            {name: "Mongolia", flag: "🇲🇳", dial: "+976"}, {name: "Montenegro", flag: "🇲🇪", dial: "+382"}, {name: "Morocco", flag: "🇲🇦", dial: "+212"}, {name: "Mozambique", flag: "🇲🇿", dial: "+258"},
+            {name: "Myanmar", flag: "🇲🇲", dial: "+95"}, {name: "Nepal", flag: "🇳🇵", dial: "+977"}, {name: "Netherlands", flag: "🇳🇱", dial: "+31"}, {name: "New Zealand", flag: "🇳🇿", dial: "+64"},
+            {name: "Nicaragua", flag: "🇳🇮", dial: "+505"}, {name: "Nigeria", flag: "🇳🇬", dial: "+234"}, {name: "North Korea", flag: "🇰🇵", dial: "+850"}, {name: "Norway", flag: "🇳🇴", dial: "+47"},
+            {name: "Oman", flag: "🇴🇲", dial: "+968"}, {name: "Pakistan", flag: "🇵🇰", dial: "+92"}, {name: "Palestine", flag: "🇵🇸", dial: "+970"}, {name: "Panama", flag: "🇵🇦", dial: "+507"},
+            {name: "Paraguay", flag: "🇵🇾", dial: "+595"}, {name: "Peru", flag: "🇵🇪", dial: "+51"}, {name: "Philippines", flag: "🇵🇭", dial: "+63"}, {name: "Poland", flag: "🇵🇱", dial: "+48"},
+            {name: "Portugal", flag: "🇵🇹", dial: "+351"}, {name: "Qatar", flag: "🇶🇦", dial: "+974"}, {name: "Romania", flag: "🇷🇴", dial: "+40"}, {name: "Russia", flag: "🇷🇺", dial: "+7"},
+            {name: "Rwanda", flag: "🇷🇼", dial: "+250"}, {name: "Saudi Arabia", flag: "🇸🇦", dial: "+966"}, {name: "Senegal", flag: "🇸🇳", dial: "+221"}, {name: "Serbia", flag: "🇷🇸", dial: "+381"},
+            {name: "Singapore", flag: "🇸🇬", dial: "+65"}, {name: "Slovakia", flag: "🇸🇰", dial: "+421"}, {name: "Slovenia", flag: "🇸🇮", dial: "+386"}, {name: "Somalia", flag: "🇸🇴", dial: "+252"},
+            {name: "South Africa", flag: "🇿🇦", dial: "+27"}, {name: "South Korea", flag: "🇰🇷", dial: "+82"}, {name: "Spain", flag: "🇪🇸", dial: "+34"}, {name: "Sri Lanka", flag: "🇱🇰", dial: "+94"},
+            {name: "Sudan", flag: "🇸🇩", dial: "+249"}, {name: "Sweden", flag: "🇸🇪", dial: "+46"}, {name: "Switzerland", flag: "🇨🇭", dial: "+41"}, {name: "Syria", flag: "🇸🇾", dial: "+963"},
+            {name: "Taiwan", flag: "🇹🇼", dial: "+886"}, {name: "Tajikistan", flag: "🇹🇯", dial: "+992"}, {name: "Tanzania", flag: "🇹🇿", dial: "+255"}, {name: "Thailand", flag: "🇹🇭", dial: "+66"},
+            {name: "Tunisia", flag: "🇹🇳", dial: "+216"}, {name: "Turkey", flag: "🇹🇷", dial: "+90"}, {name: "Turkmenistan", flag: "🇹🇲", dial: "+993"}, {name: "Uganda", flag: "🇺🇬", dial: "+256"},
+            {name: "Ukraine", flag: "🇺🇦", dial: "+380"}, {name: "United Arab Emirates", flag: "🇦🇪", dial: "+971"}, {name: "United Kingdom", flag: "🇬🇧", dial: "+44"}, {name: "United States", flag: "🇺🇸", dial: "+1"},
+            {name: "Uruguay", flag: "🇺🇾", dial: "+598"}, {name: "Uzbekistan", flag: "🇺🇿", dial: "+998"}, {name: "Venezuela", flag: "🇻🇪", dial: "+58"}, {name: "Vietnam", flag: "🇻🇳", dial: "+84"},
+            {name: "Yemen", flag: "🇾🇪", dial: "+967"}, {name: "Zambia", flag: "🇿🇲", dial: "+260"}, {name: "Zimbabwe", flag: "🇿🇼", dial: "+263"}
+        ];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const selectEl = document.getElementById('countrySelect');
+            const whatsappSelect = document.getElementById('whatsappCodeSelect');
+            const discountSelect = document.getElementById('discountCountry');
+
+            if(selectEl && whatsappSelect && discountSelect) {
+                allCountries.forEach(c => {
+                    let opt1 = document.createElement('option');
+                    opt1.value = c.name + "|" + c.flag;
+                    opt1.textContent = c.flag + " " + c.name;
+                    selectEl.appendChild(opt1);
+
+                    let opt2 = document.createElement('option');
+                    opt2.value = c.dial;
+                    opt2.textContent = c.flag + " " + c.dial;
+                    if(c.name === "Bangladesh") opt2.selected = true;
+                    whatsappSelect.appendChild(opt2);
+
+                    let opt3 = document.createElement('option');
+                    opt3.value = c.flag + " " + c.name;
+                    opt3.textContent = c.flag + " " + c.name;
+                    discountSelect.appendChild(opt3);
+                });
+            }
+        });
+
+        function togglePasswordVisibility(fieldId, btn) {
+            const inputField = document.getElementById(fieldId);
+            const icon = btn.querySelector('i');
+            if (inputField.type === "password") {
+                inputField.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                inputField.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+
+        function toggleColorTag(btn) {
+            let colorInput = document.getElementById('prodColors');
+            let currentVal = colorInput.value.trim();
+            let colorName = btn.textContent;
+            
+            if(currentVal.includes(colorName)) {
+                colorInput.value = currentVal.replace(colorName, '').replace(/,,/g, ',').trim();
+                btn.style.background = '#222';
+            } else {
+                colorInput.value = currentVal ? currentVal + ", " + colorName : colorName;
+                btn.style.background = 'var(--gold-solid)';
+                btn.style.color = '#000';
+            }
+        }
+
+        let currentActiveVendor = null;
+        let tempProfilePhotoBase64 = "";
+
+        function showSection(id) {
+            const sections = ['entranceCard', 'loginSection', 'resetSection', 'formSection', 'dashboardSection', 'productSection'];
+            sections.forEach(sec => {
+                let el = document.getElementById(sec);
+                if(el) el.style.display = 'none';
+            });
+            let target = document.getElementById(id);
+            if(target) target.style.display = 'block';
+        }
+
+        function openPasswordReset() {
+            showSection('resetSection');
+        }
+
+        function previewProfilePhoto(event) {
+            const file = event.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    tempProfilePhotoBase64 = e.target.result;
+                    document.getElementById('photoPreviewContainer').innerHTML = `<img src="${tempProfilePhotoBase64}" style="width:50px; height:50px; border-radius:50%; object-fit:cover; border:1px solid var(--gold-solid);">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function previewImageLink(url) {
+            let container = document.getElementById('imgLinkPreview');
+            if(url.trim() !== "") {
+                container.innerHTML = `<div class="media-preview-box"><img src="${url}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'"><span>Image Preview Loaded</span></div>`;
+            } else {
+                container.innerHTML = "";
+            }
+        }
+
+        function previewVideoLink(url) {
+            let container = document.getElementById('videoLinkPreview');
+            if(url.includes("youtube.com") || url.includes("youtu.be")) {
+                container.innerHTML = `<div class="media-preview-box"><i class="fa-brands fa-youtube" style="font-size:28px; color:#ff0000;"></i><span>YouTube Short Video Ready</span></div>`;
+            } else {
+                container.innerHTML = "";
+            }
+        }
+
+        function executePasswordReset() {
+            let email = document.getElementById('resetEmail').value.trim().toLowerCase();
+            let newPass = document.getElementById('newPassword').value.trim();
+
+            if(!email || !newPass) {
+                alert("Please fill in both fields.");
+                return;
+            }
+
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
+            if(!regex.test(newPass)) {
+                alert("Password must be 10+ characters with Upper, Lower, Number & Symbol.");
+                return;
+            }
+
+            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
+            let found = sellers.find(s => s.email === email);
+
+            if(found) {
+                found.pass = newPass;
+                localStorage.setItem('mme_sellers', JSON.stringify(sellers));
+                alert("Password successfully updated! You can now sign in.");
+                showSection('loginSection');
+            } else {
+                alert("No registered vendor found with this Gmail address.");
+            }
+        }
+
+        function submitSellerApp() {
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value.trim().toLowerCase();
+            const countryVal = document.getElementById('countrySelect').value;
+            const phone = document.getElementById('whatsappCodeSelect').value + document.getElementById('whatsapp').value;
+            const biz = document.getElementById('bizName').value;
+            const pass = document.getElementById('partnerPassword').value;
+            const confirmPass = document.getElementById('confirmPassword').value;
+            const yt = document.getElementById('ytLink').value;
+            const payName = document.getElementById('payoneerName').value;
+            const payEmail = document.getElementById('payoneerEmail').value;
+
+            if(!name || !email || !countryVal || !biz || !pass || !yt || !payName || !payEmail) {
+                alert("Please fill all mandatory fields including Country, YouTube link & Payoneer info.");
+                return;
+            }
+
+            const [countryName, countryFlag] = countryVal.split('|');
+
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
+            if(!regex.test(pass)) {
+                alert("Password must be 10+ characters with Upper, Lower, Number & Symbol.");
+                return;
+            }
+            if(pass !== confirmPass) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            const vendorId = 'VEN-' + Math.floor(1000 + Math.random() * 9000);
+            const vendor = {
+                id: vendorId, 
+                name: name, 
+                email: email, 
+                country: countryName,
+                flag: countryFlag,
+                whatsapp: phone, 
+                biz: biz,
+                pass: pass, 
+                photo: tempProfilePhotoBase64 || "https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400",
+                payoneerName: payName,
+                payoneerEmail: payEmail,
+                uploadedProducts: []
+            };
+
+            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
+            sellers.push(vendor);
+            localStorage.setItem('mme_sellers', JSON.stringify(sellers));
+
+            currentActiveVendor = vendor;
+            renderVendorDashboard(vendor);
+        }
+
+        function loginDashboard() {
+            let email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            let pass = document.getElementById('loginPass').value.trim();
+            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
+            let found = sellers.find(s => s.email === email && s.pass === pass);
+
+            if(found) {
+                currentActiveVendor = found;
+                renderVendorDashboard(found);
+            } else {
+                alert("Invalid Gmail or Password!");
+            }
+        }
+
+        function renderVendorDashboard(found) {
+            showSection('dashboardSection');
+
+            let sampleProduct = {
+                name: "Royal Teak Bed",
+                category: "🏡 HOME DECOR",
+                stock: "50 Pcs",
+                global: "$ 120.00",
+                countryDiscount: "🇺🇸 United States (10% Off)",
+                sizes: "Standard",
+                colors: "Golden Teak",
+                status: "Paid & Settled",
+                trackingId: "TRK-948210"
+            };
+
+            let inventoryRows = "";
+            let trackingRows = "";
+
+            if (!found.uploadedProducts || found.uploadedProducts.length === 0) {
+                // If no products uploaded, show ONLY #0 sample
+                inventoryRows = `
+                    <tr>
+                        <td><b>#0</b></td>
+                        <td><b style="color:var(--gold-light);">${sampleProduct.name}</b></td>
+                        <td>${sampleProduct.category}</td>
+                        <td>${sampleProduct.stock}</td>
+                        <td>${sampleProduct.global}</td>
+                        <td>${sampleProduct.countryDiscount}</td>
+                        <td>${sampleProduct.sizes}</td>
+                        <td>${sampleProduct.colors}</td>
+                    </tr>
+                `;
+                trackingRows = `
+                    <tr>
+                        <td><b>#0</b></td>
+                        <td>${sampleProduct.name} (ID: ${found.id})</td>
+                        <td><span style="color:#2ecc71; font-weight:bold;">● ${sampleProduct.status}</span></td>
+                        <td>${sampleProduct.trackingId}</td>
+                        <td>Global Express Courier</td>
+                        <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
+                    </tr>
+                `;
+            } else {
+                // If products are uploaded, show ONLY 1, 2, 3... (No #0 sample)
+                found.uploadedProducts.forEach((p, idx) => {
+                    inventoryRows += `
+                        <tr>
+                            <td><b>#${idx + 1}</b></td>
+                            <td><b style="color:var(--gold-light);">${p.name}</b></td>
+                            <td>${p.category}</td>
+                            <td>${p.stock} Pcs</td>
+                            <td>${p.global}</td>
+                            <td>${p.countryDiscount}</td>
+                            <td>${p.sizes || 'N/A'}</td>
+                            <td>${p.colors || 'N/A'}</td>
+                        </tr>
+                    `;
+                    trackingRows += `
+                        <tr>
+                            <td><b>#${idx + 1}</b></td>
+                            <td>${p.name} (ID: ${found.id})</td>
+                            <td><span style="color:#2ecc71; font-weight:bold;">● ${p.status}</span></td>
+                            <td>${p.trackingId}</td>
+                            <td>Global Express Courier</td>
+                            <td><button onclick="alert('Funds ready for Payoneer withdrawal! Transfer requested to ${found.payoneerEmail}')" style="background:var(--gold-gradient); border:none; padding:4px 10px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:0.6rem;">Withdraw via Payoneer</button></td>
+                        </tr>
+                    `;
+                });
+            }
+
+            let dashHtml = `
+                <div class="digital-id-card">
+                    <img src="${found.photo}" alt="ID Avatar" class="id-avatar">
+                    <div style="overflow:hidden;">
+                        <span style="font-size:0.55rem; color:var(--gold-solid); letter-spacing:1px; font-weight:bold;">OFFICIAL VENDOR IDENTITY CARD (${found.flag || '🌐'} ${found.country || 'Global'})</span>
+                        <h3 style="margin:2px 0; color:#fff; font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${found.biz}</h3>
+                        <p style="margin:0; font-size:0.65rem; color:#aaa;">Owner: ${found.name}</p>
+                        <p style="margin:0; font-size:0.63rem; color:var(--gold-solid);">ID: ${found.id}</p>
+                    </div>
+                </div>
+
+                <div style="margin:8px 0 2px 0;"><span class="cv-label">Vendor Growth & Analysis</span></div>
+                <div class="luxury-chart">
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Clicks</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Parcels</span></div>
+                    <div class="chart-bar-wrap"><div class="chart-bar" style="height: 10%;"></div><span class="chart-label">Earnings</span></div>
+                </div>
+
+                <div class="dash-stats-grid">
+                    <div class="dash-stat-box"><span class="cv-label">Total Earnings</span><span class="number" style="color:var(--gold-solid);">$0.00</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Parcels Shipped</span><span class="number">0</span></div>
+                    <div class="dash-stat-box"><span class="cv-label">Product Clicks</span><span class="number">0</span></div>
+                </div>
+
+                <div style="margin-top:12px;">
+                    <span class="cv-label">📦 Product Inventory & Performance Ledger</span>
+                    <div class="ledger-table-wrap">
+                        <table class="ledger-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product Name</th>
+                                    <th>Category</th>
+                                    <th>Stock</th>
+                                    <th>Global Price</th>
+                                    <th>Country Discount</th>
+                                    <th>Sizes</th>
+                                    <th>Colors</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${inventoryRows}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div style="margin-top:16px;">
+                    <span class="cv-label">🚚 Automated Tracking, Shipping & Payoneer Payouts</span>
+                    <div class="ledger-table-wrap">
+                        <table class="ledger-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product & ID</th>
+                                    <th>Payment Status</th>
+                                    <th>Tracking ID</th>
+                                    <th>Courier Service</th>
+                                    <th>Withdraw Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${trackingRows}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            document.getElementById('partnerWelcomeBox').innerHTML = dashHtml;
+        }
+
+        function publishProduct() {
+            let name = document.getElementById('prodName').value;
+            let title = document.getElementById('prodTitle').value;
+            let desc = document.getElementById('prodDesc').value;
+            let cat = document.getElementById('prodCategory').value;
+            let stock = document.getElementById('prodStock').value;
+            let sizes = document.getElementById('prodSizes').value;
+            let colors = document.getElementById('prodColors').value;
+            let weight = document.getElementById('prodWeight').value;
+            let dimensions = document.getElementById('prodDimensions').value;
+            let priceGlobal = document.getElementById('priceGlobal').value;
+            let discountCountry = document.getElementById('discountCountry').value;
+            let discountPercent = document.getElementById('discountPercent').value;
+            let imgUrl = document.getElementById('prodImgUrl').value;
+            let videoUrl = document.getElementById('prodVideoUrl').value;
+
+            if(!name || !title || !desc || !cat || !stock || !weight || !dimensions || !priceGlobal || !imgUrl || !videoUrl) {
+                alert("Please fill in all mandatory product details, shipping weight, dimensions & links.");
+                return;
+            }
+
+            let product = {
+                name: name, 
+                title: title, 
+                desc: desc,
+                category: cat, 
+                stock: stock,
+                sizes: sizes,
+                colors: colors,
+                weight: weight,
+                dimensions: dimensions,
+                global: '$ ' + priceGlobal,
+                countryDiscount: discountCountry + " (" + discountPercent + ")",
+                imgUrl: imgUrl,
+                videoUrl: videoUrl,
+                status: 'Paid (Customer Confirmed)',
+                trackingId: 'TRK-' + Math.floor(100000 + Math.random() * 900000)
+            };
+
+            if(!currentActiveVendor.uploadedProducts) currentActiveVendor.uploadedProducts = [];
+            currentActiveVendor.uploadedProducts.push(product);
+
+            let sellers = JSON.parse(localStorage.getItem('mme_sellers') || '[]');
+            let idx = sellers.findIndex(s => s.id === currentActiveVendor.id);
+            if(idx !== -1) {
+                sellers[idx] = currentActiveVendor;
+                localStorage.setItem('mme_sellers', JSON.stringify(sellers));
+            }
+
+            alert("Product successfully published with automated tracking and specifications!");
+            renderVendorDashboard(currentActiveVendor);
+        }
+    </script>
+
+</body>
+</html>
