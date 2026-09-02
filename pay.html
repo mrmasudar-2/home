@@ -65,7 +65,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html, body { width: 100%; overflow-x: hidden !important; background-color: var(--bg-black); color: var(--text-white); position: relative; font-family: var(--font-body); }
-        body { padding-top: 74px; padding-bottom: 40px; }
+        body { padding-top: 74px; padding-bottom: 30px; }
 
         h1, h2, h3, h4, h5, h6, .brand-title-main, .section-title, .auth-title, .dash-welcome { font-family: var(--font-luxury); }
 
@@ -86,85 +86,91 @@
 
         .custom-toast { position: fixed; top: 78px; left: 50%; transform: translateX(-50%); background: rgba(18, 18, 18, 0.95); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 8px 18px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; z-index: 9999; display: none; font-family: var(--font-body); }
 
-        .checkout-main-container { width: 100%; max-width: 920px; margin: 0 auto; padding: 15px; display: flex; flex-direction: column; gap: 18px; }
-        .section-box { background: var(--card-bg); border: 1.5px solid rgba(212,175,55,0.4); border-radius: 16px; padding: 16px; }
-        .section-title { font-size: 0.85rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .checkout-main-container { width: 100%; max-width: 920px; margin: 0 auto; padding: 12px; display: flex; flex-direction: column; gap: 14px; }
+        .section-box { background: var(--card-bg); border: 1.5px solid rgba(212,175,55,0.4); border-radius: 14px; padding: 14px; }
+        .section-title { font-size: 0.82rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
 
         /* প্রোডাক্ট টেবিল */
-        .luxury-sheet-table { width: 100%; border-collapse: collapse; margin-top: 5px; }
-        .luxury-sheet-table th { background: rgba(212, 175, 55, 0.15); color: var(--gold-solid); font-size: 0.68rem; font-weight: 800; text-transform: uppercase; padding: 8px 10px; border: 1px solid rgba(212,175,55,0.3); text-align: left; font-family: var(--font-luxury); }
-        .luxury-sheet-table td { padding: 8px 10px; border: 1px solid rgba(212,175,55,0.2); font-size: 0.72rem; color: #fff; vertical-align: middle; }
-        .sheet-product-cell { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .sheet-product-img { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; border: 1px solid var(--gold-solid); flex-shrink: 0; }
-        .sheet-product-info { display: flex; flex-direction: column; gap: 2px; }
-        .sheet-product-name { font-size: 0.72rem; font-weight: 700; color: #fff; font-family: var(--font-body); line-height: 1.2; }
-        .sheet-product-sub { font-size: 0.55rem; color: var(--gold-solid); font-family: var(--font-body); font-weight: 600; }
-        .sheet-delete-btn { background: transparent; border: none; color: #ff2d55; font-size: 0.85rem; cursor: pointer; padding: 4px 8px; }
+        .luxury-sheet-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+        .luxury-sheet-table th { background: rgba(212, 175, 55, 0.15); color: var(--gold-solid); font-size: 0.65rem; font-weight: 800; text-transform: uppercase; padding: 7px 8px; border: 1px solid rgba(212,175,55,0.3); text-align: left; font-family: var(--font-luxury); }
+        .luxury-sheet-table td { padding: 6px 8px; border: 1px solid rgba(212,175,55,0.2); font-size: 0.7rem; color: #fff; vertical-align: middle; text-align: center; }
+        .luxury-sheet-table td:first-child { text-align: left; }
+        
+        .sheet-product-img-wrap { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; position: relative; }
+        .sheet-product-img { width: 44px; height: 44px; border-radius: 6px; object-fit: cover; border: 1.5px solid var(--gold-solid); flex-shrink: 0; transition: 0.3s; }
+        .sheet-product-img:hover { transform: scale(1.05); }
+        .sheet-info-badge { font-size: 0.58rem; color: var(--gold-solid); font-weight: 700; background: rgba(212,175,55,0.1); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(212,175,55,0.3); display: inline-flex; align-items: center; gap: 4px; }
+        .sheet-delete-btn { background: transparent; border: none; color: #ff2d55; font-size: 0.85rem; cursor: pointer; padding: 4px; }
 
-        /* সাইন আপ / সাইন ইন অ্যাকশন বার */
-        .auth-action-banner { background: var(--card-bg); border: 1.5px solid var(--gold-solid); border-radius: 16px; padding: 18px; text-align: center; box-shadow: 0 0 25px rgba(212,175,55,0.2); display: flex; flex-direction: column; gap: 10px; }
-        .auth-banner-title { font-size: 0.95rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; font-family: var(--font-luxury); }
-        .auth-btns-row { display: flex; gap: 10px; justify-content: center; margin-top: 5px; }
-        .auth-trigger-btn { flex: 1; background: var(--gold-gradient); border: none; padding: 10px; border-radius: 8px; color: #000; font-weight: 900; font-size: 0.75rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); transition: 0.3s; }
-        .auth-trigger-btn.alt { background: transparent; border: 1.5px solid var(--gold-solid); color: var(--gold-solid); }
-        .auth-trigger-btn:hover { transform: scale(1.02); }
+        /* টেবিলের নিচের অংশে সাইন আপ / সাইন ইন অপশন */
+        .table-auth-footer { margin-top: 12px; border-top: 1px solid rgba(212,175,55,0.3); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; text-align: center; }
+        .table-auth-title { font-size: 0.82rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; font-family: var(--font-luxury); }
+        .table-auth-sub { font-size: 0.62rem; color: var(--text-gray); font-family: var(--font-body); font-weight: 500; }
+        .table-auth-btns { display: flex; gap: 8px; justify-content: center; margin-top: 2px; }
+        .table-auth-btn { flex: 1; background: var(--gold-gradient); border: none; padding: 8px; border-radius: 6px; color: #000; font-weight: 900; font-size: 0.7rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); transition: 0.3s; }
+        .table-auth-btn.alt { background: transparent; border: 1.5px solid var(--gold-solid); color: var(--gold-solid); }
+        .table-auth-btn:hover { transform: scale(1.01); }
 
-        /* পপআপ মডাল (সাইন আপ ও সাইন ইন) */
+        /* পপআপ মোডাল */
         .auth-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 6000; backdrop-filter: blur(6px); padding: 15px; }
-        .auth-modal-box { background: #141414; border: 1.5px solid var(--gold-solid); width: 100%; max-width: 380px; border-radius: 18px; padding: 25px 18px; text-align: center; position: relative; box-shadow: 0 0 30px rgba(212,175,55,0.3); font-family: var(--font-body); }
-        .auth-modal-title { font-size: 1.05rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 14px; font-family: var(--font-luxury); }
-        .auth-input-group { margin-bottom: 12px; text-align: left; }
-        .auth-input-group label { font-size: 0.62rem; font-weight: 700; color: var(--text-gray); text-transform: uppercase; margin-bottom: 4px; display: block; }
+        .auth-modal-box { background: #141414; border: 1.5px solid var(--gold-solid); width: 100%; max-width: 380px; border-radius: 16px; padding: 22px 16px; text-align: center; position: relative; box-shadow: 0 0 30px rgba(212,175,55,0.3); font-family: var(--font-body); max-height: 90vh; overflow-y: auto; }
+        .auth-modal-title { font-size: 1rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 12px; font-family: var(--font-luxury); }
+        .auth-input-group { margin-bottom: 10px; text-align: left; }
+        .auth-input-group label { font-size: 0.6rem; font-weight: 700; color: var(--text-gray); text-transform: uppercase; margin-bottom: 3px; display: block; }
         .auth-input-group label span { color: var(--pink-heart); }
-        .auth-input { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 10px 12px; border-radius: 8px; color: #fff; font-size: 0.8rem; font-weight: 600; outline: none; }
+        .auth-input { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 9px 10px; border-radius: 8px; color: #fff; font-size: 0.75rem; font-weight: 600; outline: none; }
         .auth-input:focus { border-color: var(--gold-solid); }
-        .auth-submit-btn { width: 100%; background: var(--gold-gradient); border: none; padding: 11px; border-radius: 8px; color: #000; font-weight: 900; font-size: 0.8rem; cursor: pointer; text-transform: uppercase; margin-top: 10px; font-family: var(--font-luxury); transition: 0.3s; }
+        .phone-input-row { display: flex; gap: 6px; }
+        .modal-country-select { background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 9px 4px; border-radius: 8px; color: #fff; font-size: 0.68rem; font-weight: 600; outline: none; width: 140px; }
+        .modal-country-select option { background: #121212; color: #fff; }
+
+        .auth-submit-btn { width: 100%; background: var(--gold-gradient); border: none; padding: 10px; border-radius: 8px; color: #000; font-weight: 900; font-size: 0.78rem; cursor: pointer; text-transform: uppercase; margin-top: 10px; font-family: var(--font-luxury); transition: 0.3s; }
         .auth-modal-close { position: absolute; top: 10px; right: 12px; background: transparent; border: none; color: var(--gold-solid); font-size: 1.1rem; cursor: pointer; }
 
-        .dashboard-content-area { display: none; flex-direction: column; gap: 18px; }
-        .dash-top-bar { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); border: 1.5px solid var(--gold-solid); padding: 16px 20px; border-radius: 16px; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
-        .dash-welcome { font-size: 1.05rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.5px; }
-        .logout-btn { background: transparent; border: 1.5px solid #ff2d55; color: #ff2d55; padding: 6px 12px; border-radius: 6px; font-size: 0.65rem; font-weight: 800; cursor: pointer; transition: 0.3s; font-family: var(--font-luxury); }
+        .dashboard-content-area { display: none; flex-direction: column; gap: 14px; }
+        .dash-top-bar { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); border: 1.5px solid var(--gold-solid); padding: 14px 18px; border-radius: 14px; box-shadow: 0 0 15px rgba(212,175,55,0.2); }
+        .dash-welcome { font-size: 1rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 0.5px; }
+        .logout-btn { background: transparent; border: 1.5px solid #ff2d55; color: #ff2d55; padding: 6px 12px; border-radius: 6px; font-size: 0.62rem; font-weight: 800; cursor: pointer; transition: 0.3s; font-family: var(--font-luxury); }
         .logout-btn:hover { background: #ff2d55; color: #fff; }
 
-        .analytics-card { background: var(--card-bg); border: 1.5px solid rgba(212,175,55,0.5); border-radius: 16px; padding: 15px; }
-        .analytics-title { font-size: 0.8rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-luxury); }
+        .analytics-card { background: var(--card-bg); border: 1.5px solid rgba(212,175,55,0.5); border-radius: 14px; padding: 14px; }
+        .analytics-title { font-size: 0.78rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-luxury); }
 
-        .payment-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .payment-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
         .full-span { grid-column: span 2; }
         .phone-input-row { display: flex; gap: 8px; }
-        .country-code-select { background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 10px 6px; border-radius: 8px; color: #fff; font-size: 0.72rem; font-weight: 600; outline: none; width: 175px; font-family: var(--font-body); }
+        .country-code-select { background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 9px 6px; border-radius: 8px; color: #fff; font-size: 0.7rem; font-weight: 600; outline: none; width: 170px; font-family: var(--font-body); }
         .country-code-select option { background: #121212; color: #fff; }
 
-        .payment-methods-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }
-        .pay-option-card { background: #181818; border: 1.5px solid rgba(212,175,55,0.4); padding: 12px; border-radius: 10px; cursor: pointer; text-align: center; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .payment-methods-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 8px; }
+        .pay-option-card { background: #181818; border: 1.5px solid rgba(212,175,55,0.4); padding: 10px; border-radius: 10px; cursor: pointer; text-align: center; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 4px; }
         .pay-option-card.selected, .pay-option-card:hover { border-color: var(--gold-solid); background: rgba(212,175,55,0.1); }
-        .pay-option-card i { font-size: 1.2rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .pay-option-card span { font-size: 0.7rem; font-weight: 800; color: #fff; font-family: var(--font-body); }
+        .pay-option-card i { font-size: 1.1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .pay-option-card span { font-size: 0.68rem; font-weight: 800; color: #fff; font-family: var(--font-body); }
 
-        .lux-btn { background: var(--gold-gradient); border: none; padding: 12px 16px; border-radius: 10px; color: #000; font-weight: 900; font-size: 0.8rem; cursor: pointer; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 0 12px rgba(212,175,55,0.3); width: 100%; margin-top: 14px; font-family: var(--font-luxury); }
+        .lux-btn { background: var(--gold-gradient); border: none; padding: 11px 14px; border-radius: 10px; color: #000; font-weight: 900; font-size: 0.78rem; cursor: pointer; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 0 12px rgba(212,175,55,0.3); width: 100%; margin-top: 12px; font-family: var(--font-luxury); }
         .lux-btn:hover { transform: scale(1.01); }
 
-        .tracking-status-box { background: #161616; border: 1px solid var(--gold-solid); border-radius: 10px; padding: 12px; margin-top: 8px; font-size: 0.72rem; font-weight: 600; display: flex; flex-direction: column; gap: 6px; font-family: var(--font-body); }
+        .tracking-status-box { background: #161616; border: 1px solid var(--gold-solid); border-radius: 10px; padding: 10px; margin-top: 6px; font-size: 0.7rem; font-weight: 600; display: flex; flex-direction: column; gap: 5px; font-family: var(--font-body); }
         .tracking-link { color: var(--gold-solid); text-decoration: underline; font-weight: 800; word-break: break-all; }
 
-        .support-chat-box { background: #0f0f0f; border: 1.5px solid rgba(212,175,55,0.4); border-radius: 12px; height: 200px; display: flex; flex-direction: column; overflow: hidden; margin-top: 10px; }
-        .chat-messages-area { flex: 1; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-size: 0.7rem; font-family: var(--font-body); }
-        .chat-msg { max-width: 80%; padding: 8px 12px; border-radius: 10px; font-weight: 600; line-height: 1.35; }
+        .support-chat-box { background: #0f0f0f; border: 1.5px solid rgba(212,175,55,0.4); border-radius: 10px; height: 180px; display: flex; flex-direction: column; overflow: hidden; margin-top: 8px; }
+        .chat-messages-area { flex: 1; padding: 8px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; font-size: 0.68rem; font-family: var(--font-body); }
+        .chat-msg { max-width: 80%; padding: 6px 10px; border-radius: 8px; font-weight: 600; line-height: 1.3; }
         .chat-msg.customer { background: rgba(212,175,55,0.2); border: 1px solid var(--gold-solid); align-self: flex-end; color: #fff; }
         .chat-msg.admin { background: #222; border: 1px solid #444; align-self: flex-start; color: var(--text-gray); }
-        .chat-input-bar { display: flex; border-top: 1.5px solid rgba(212,175,55,0.3); background: #141414; padding: 6px; }
-        .chat-input-bar input { flex: 1; background: transparent; border: none; outline: none; color: #fff; font-size: 0.7rem; padding: 4px 8px; font-weight: 600; font-family: var(--font-body); }
-        .chat-send-btn { background: var(--gold-gradient); border: none; width: 32px; border-radius: 6px; color: #000; font-weight: 900; cursor: pointer; }
+        .chat-input-bar { display: flex; border-top: 1.5px solid rgba(212,175,55,0.3); background: #141414; padding: 5px; }
+        .chat-input-bar input { flex: 1; background: transparent; border: none; outline: none; color: #fff; font-size: 0.68rem; padding: 4px 6px; font-weight: 600; font-family: var(--font-body); }
+        .chat-send-btn { background: var(--gold-gradient); border: none; width: 30px; border-radius: 6px; color: #000; font-weight: 900; cursor: pointer; }
 
         /* প্রোডাক্ট ডিটেইলস পপআপ মোডাল */
         .prod-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 5000; backdrop-filter: blur(6px); padding: 15px; }
-        .prod-modal-box { background: #141414; border: 1.5px solid var(--gold-solid); width: 100%; max-width: 380px; border-radius: 16px; padding: 25px 16px 16px 16px; text-align: center; position: relative; box-shadow: 0 0 25px rgba(212,175,55,0.3); font-family: var(--font-body); }
-        .prod-modal-img { width: 100px; height: 100px; border-radius: 10px; object-fit: cover; border: 1.5px solid var(--gold-solid); margin-bottom: 12px; }
-        .prod-modal-title { font-size: 0.95rem; font-weight: 800; color: #fff; margin-bottom: 6px; font-family: var(--font-luxury); }
-        .prod-modal-desc { font-size: 0.7rem; color: var(--text-gray); margin-bottom: 12px; line-height: 1.4; }
-        .prod-modal-details { background: #1c1c1c; border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 8px; font-size: 0.7rem; color: #fff; margin-bottom: 14px; display: flex; justify-content: space-around; font-weight: 600; }
-        .prod-modal-close { background: var(--gold-gradient); border: none; padding: 8px 16px; border-radius: 6px; color: #000; font-weight: 800; font-size: 0.72rem; cursor: pointer; font-family: var(--font-luxury); width: 100%; }
+        .prod-modal-box { background: #141414; border: 1.5px solid var(--gold-solid); width: 100%; max-width: 360px; border-radius: 16px; padding: 22px 16px; text-align: center; position: relative; box-shadow: 0 0 25px rgba(212,175,55,0.3); font-family: var(--font-body); }
+        .prod-modal-img { width: 110px; height: 110px; border-radius: 10px; object-fit: cover; border: 1.5px solid var(--gold-solid); margin-bottom: 10px; }
+        .prod-modal-title { font-size: 0.95rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; font-family: var(--font-luxury); }
+        .prod-modal-desc { font-size: 0.7rem; color: var(--text-gray); margin-bottom: 10px; line-height: 1.4; }
+        .prod-modal-details { background: #1c1c1c; border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 8px; font-size: 0.68rem; color: #fff; margin-bottom: 12px; display: flex; justify-content: space-around; font-weight: 600; }
+        .prod-modal-close { background: var(--gold-gradient); border: none; padding: 8px 14px; border-radius: 6px; color: #000; font-weight: 800; font-size: 0.7rem; cursor: pointer; font-family: var(--font-luxury); width: 100%; }
     </style>
 </head>
 <body>
@@ -174,6 +180,7 @@
     <!-- প্রোডাক্ট ইনফো পপআপ মোডাল -->
     <div class="prod-modal-overlay" id="prodModalOverlay" onclick="closeProdModal(event)">
         <div class="prod-modal-box">
+            <button class="auth-modal-close" onclick="document.getElementById('prodModalOverlay').style.display='none'"><i class="fa-solid fa-xmark"></i></button>
             <img src="" id="modalProdImg" class="prod-modal-img" alt="Product">
             <h3 id="modalProdTitle" class="prod-modal-title">Product Name</h3>
             <p id="modalProdDesc" class="prod-modal-desc">Exclusive luxury craftsmanship details.</p>
@@ -189,7 +196,7 @@
     <div class="auth-modal-overlay" id="signUpModalOverlay" onclick="closeAuthModal(event, 'signUpModalOverlay')">
         <div class="auth-modal-box">
             <button class="auth-modal-close" onclick="document.getElementById('signUpModalOverlay').style.display='none'"><i class="fa-solid fa-xmark"></i></button>
-            <h2 class="auth-modal-title">Member Sign Up</h2>
+            <h2 class="auth-modal-title">Sign Up</h2>
             <div class="auth-input-group">
                 <label>Full Name <span>*</span></label>
                 <input type="text" class="auth-input" id="regFullName" placeholder="Masudar Rahman" required>
@@ -202,7 +209,14 @@
                 <label>Password <span>*</span></label>
                 <input type="password" class="auth-input" id="regPassword" placeholder="Enter secure password" required>
             </div>
-            <button class="auth-submit-btn" onclick="handleSignUpSubmit()">Create Account</button>
+            <div class="auth-input-group">
+                <label>WhatsApp Number <span>*</span></label>
+                <div class="phone-input-row">
+                    <select class="modal-country-select" id="regCountryCode"></select>
+                    <input type="text" class="auth-input" id="regWhatsapp" placeholder="1712345678" required>
+                </div>
+            </div>
+            <button class="auth-submit-btn" onclick="handleSignUpSubmit()">Create Account & Enter Dashboard</button>
         </div>
     </div>
 
@@ -210,7 +224,7 @@
     <div class="auth-modal-overlay" id="signInModalOverlay" onclick="closeAuthModal(event, 'signInModalOverlay')">
         <div class="auth-modal-box">
             <button class="auth-modal-close" onclick="document.getElementById('signInModalOverlay').style.display='none'"><i class="fa-solid fa-xmark"></i></button>
-            <h2 class="auth-modal-title">Member Sign In</h2>
+            <h2 class="auth-modal-title">Sign In</h2>
             <div class="auth-input-group">
                 <label>Gmail <span>*</span></label>
                 <input type="email" class="auth-input" id="loginEmail" placeholder="yourname@gmail.com" required>
@@ -219,7 +233,7 @@
                 <label>Password <span>*</span></label>
                 <input type="password" class="auth-input" id="loginPassword" placeholder="Enter password" required>
             </div>
-            <button class="auth-submit-btn" onclick="handleSignInSubmit()">Sign In to Dashboard</button>
+            <button class="auth-submit-btn" onclick="handleSignInSubmit()">Sign In Dashboard</button>
         </div>
     </div>
 
@@ -238,46 +252,46 @@
 
     <div class="checkout-main-container">
 
-        <!-- লাক্সারি প্রোডাক্ট শিট -->
+        <!-- প্রোডাক্ট টেবিল ও সাইন আপ/সাইন ইন বক্স একত্রে -->
         <div class="section-box">
             <div class="section-title"><i class="fa-solid fa-gem"></i> Luxury Product</div>
             <div style="overflow-x: auto;">
                 <table class="luxury-sheet-table">
                     <thead>
                         <tr>
-                            <th>Item & Product</th>
+                            <th style="width: 50%;">Image & Info</th>
                             <th>Qty</th>
                             <th>Price</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="cartSheetTableBody">
-                        <!-- Dynamic Cart Rows Here -->
+                        <!-- Dynamic Rows Here -->
                     </tbody>
                 </table>
             </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; border-top:1px solid rgba(212,175,55,0.3); padding-top:10px;">
-                <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-body);">TOTAL PAYABLE AMOUNT:</span>
-                <span style="font-size:0.95rem; font-weight:900; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-family:var(--font-body);" id="sheetTotalPrice">$0.00</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; border-top:1px solid rgba(212,175,55,0.3); padding-top:8px;">
+                <span style="font-size:0.7rem; font-weight:700; font-family:var(--font-body);">TOTAL PAYABLE AMOUNT:</span>
+                <span style="font-size:0.9rem; font-weight:900; background:var(--gold-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-family:var(--font-body);" id="sheetTotalPrice">$0.00</span>
+            </div>
+
+            <!-- টেবিলের ঠিক নিচের অংশে সাইন আপ / সাইন ইন বাটন -->
+            <div class="table-auth-footer" id="authFooterBox">
+                <span class="table-auth-title">ENTER THE LUXURY REALM</span>
+                <span class="table-auth-sub">Please sign up or sign in to access your secure dashboard.</span>
+                <div class="table-auth-btns">
+                    <button class="table-auth-btn" onclick="openAuthModal('signUp')">Sign Up</button>
+                    <button class="table-auth-btn alt" onclick="openAuthModal('signIn')">Sign In</button>
+                </div>
             </div>
         </div>
 
-        <!-- সাইন আপ / সাইন ইন অ্যাকশন ব্যানার (যদি লগইন না থাকে) -->
-        <div class="auth-action-banner" id="authBannerBox">
-            <span class="auth-banner-title">Unlock Your Luxury Hub</span>
-            <p style="font-size:0.7rem; color:var(--text-gray); font-family:var(--font-body);">Please sign up or sign in to access your secure dashboard and complete orders.</p>
-            <div class="auth-btns-row">
-                <button class="auth-trigger-btn" onclick="openAuthModal('signUp')">Sign Up</button>
-                <button class="auth-trigger-btn alt" onclick="openAuthModal('signIn')">Sign In</button>
-            </div>
-        </div>
-
-        <!-- ড্যাশবোর্ড এরিয়া -->
+        <!-- ড্যাশবোর্ড এরিয়া (লগইন করার পর দৃশ্যমান হবে) -->
         <div class="dashboard-content-area" id="dashboardContentArea">
             <div class="dash-top-bar">
                 <div>
                     <span class="dash-welcome" id="dashUserName">Welcome, User</span>
-                    <p style="font-size:0.6rem; color:var(--text-gray); font-weight:500; font-family:var(--font-body);">Secure Global Luxury Member Hub</p>
+                    <p style="font-size:0.58rem; color:var(--text-gray); font-weight:500; font-family:var(--font-body);">Secure Global Luxury Member Hub</p>
                 </div>
                 <button class="logout-btn" onclick="handleLogout()"><i class="fa-solid fa-power-off"></i> Logout</button>
             </div>
@@ -285,9 +299,9 @@
             <div class="analytics-card">
                 <div class="analytics-title">
                     <span><i class="fa-solid fa-chart-line"></i> Monthly Spending & Order Analytics</span>
-                    <span style="font-size:0.65rem; color:#fff; font-family:var(--font-body);" id="totalSpentText">Spent: $0.00</span>
+                    <span style="font-size:0.62rem; color:#fff; font-family:var(--font-body);" id="totalSpentText">Spent: $0.00</span>
                 </div>
-                <div style="width:100%; height:150px;">
+                <div style="width:100%; height:140px;">
                     <canvas id="spendingChart"></canvas>
                 </div>
             </div>
@@ -298,9 +312,7 @@
                     <div class="auth-input-group">
                         <label>WhatsApp Number <span>*</span></label>
                         <div class="phone-input-row">
-                            <select class="country-code-select" id="payCountryCode">
-                                <!-- ১৯৫+ স্বাধীন দেশের কোড ও ফ্ল্যাগ ডায়নামিকালি পপুলেট হবে -->
-                            </select>
+                            <select class="country-code-select" id="payCountryCode"></select>
                             <input type="text" class="auth-input" id="payWhatsapp" placeholder="1712345678" required>
                         </div>
                     </div>
@@ -314,8 +326,8 @@
                     </div>
                 </div>
 
-                <div style="margin-top: 14px;">
-                    <label style="font-size:0.65rem; font-weight:700; color:var(--text-gray); text-transform:uppercase; display:block; margin-bottom:8px; font-family:var(--font-body);">Select Secure Payment Gateway</label>
+                <div style="margin-top: 10px;">
+                    <label style="font-size:0.62rem; font-weight:700; color:var(--text-gray); text-transform:uppercase; display:block; margin-bottom:6px; font-family:var(--font-body);">Select Secure Payment Gateway</label>
                     <div class="payment-methods-grid">
                         <div class="pay-option-card selected" onclick="selectPaymentMethod('Payoneer', this)">
                             <i class="fa-solid fa-globe"></i>
@@ -464,33 +476,31 @@
             setTimeout(() => { toast.style.display = 'none'; }, 2200);
         }
 
-        // ১৯৫+ দেশের ড্রপডাউন পপুলেট করা এবং অটো-লোকেশন ট্র্যাক করে কোড সেট করা
         function populateAllCountryCodes() {
-            let select = document.getElementById('payCountryCode');
+            let paySelect = document.getElementById('payCountryCode');
+            let regSelect = document.getElementById('regCountryCode');
             let countryField = document.getElementById('payCountry');
-            if(!select) return;
 
-            select.innerHTML = "";
+            let optionsHtml = "";
             allWorldCountries.forEach(c => {
-                let opt = document.createElement('option');
-                opt.value = c.code;
-                opt.innerText = `${c.flag} ${c.name} (${c.code})`;
-                select.appendChild(opt);
+                optionsHtml += `<option value="${c.code}">${c.flag} ${c.name} (${c.code})</option>`;
             });
 
-            // অটো-লোকেশন ডিটেকশন সিস্টেম
+            if(paySelect) paySelect.innerHTML = optionsHtml;
+            if(regSelect) regSelect.innerHTML = optionsHtml;
+
             try {
                 let tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
                 let matched = allWorldCountries.find(item => tz.includes(item.zone));
-                if(matched) {
-                    select.value = matched.code;
-                    countryField.value = matched.name;
-                } else {
-                    select.value = "+880";
-                    countryField.value = "Bangladesh";
-                }
+                let targetCode = matched ? matched.code : "+880";
+                let targetCountry = matched ? matched.name : "Bangladesh";
+
+                if(paySelect) paySelect.value = targetCode;
+                if(regSelect) regSelect.value = targetCode;
+                if(countryField) countryField.value = targetCountry;
             } catch(e) {
-                select.value = "+880";
+                if(paySelect) paySelect.value = "+880";
+                if(regSelect) regSelect.value = "+880";
             }
         }
 
@@ -512,8 +522,10 @@
             let name = document.getElementById('regFullName').value.trim();
             let email = document.getElementById('regEmail').value.trim();
             let pass = document.getElementById('regPassword').value.trim();
+            let whtCode = document.getElementById('regCountryCode').value;
+            let whtNum = document.getElementById('regWhatsapp').value.trim();
 
-            if(!name || !email || !pass) {
+            if(!name || !email || !pass || !whtNum) {
                 showCustomToast("Please fill in all required fields (*)!");
                 return;
             }
@@ -523,7 +535,9 @@
                 return;
             }
 
-            let userData = { email: email, name: name, timestamp: new Date().toISOString() };
+            let fullWhatsapp = whtCode + whtNum;
+            let userData = { email: email, name: name, whatsapp: fullWhatsapp, timestamp: new Date().toISOString() };
+            
             try {
                 if(window.db && window.firebaseAddDoc && window.firebaseCollection) {
                     await window.firebaseAddDoc(window.firebaseCollection(window.db, "customers"), userData);
@@ -531,6 +545,10 @@
             } catch(e) {}
 
             localStorage.setItem('mme_logged_user', JSON.stringify(userData));
+            
+            let shippingInfo = { code: whtCode, whatsapp: whtNum, country: document.getElementById('payCountry') ? document.getElementById('payCountry').value : 'Bangladesh', address: '' };
+            localStorage.setItem('mme_saved_shipping', JSON.stringify(shippingInfo));
+
             document.getElementById('signUpModalOverlay').style.display = 'none';
             showCustomToast("Account created successfully!");
             checkAuthStatus();
@@ -560,12 +578,12 @@
         function checkAuthStatus() {
             let user = JSON.parse(localStorage.getItem('mme_logged_user') || 'null');
             if(user) {
-                document.getElementById('authBannerBox').style.display = 'none';
+                document.getElementById('authFooterBox').style.display = 'none';
                 document.getElementById('dashboardContentArea').style.display = 'flex';
                 document.getElementById('dashUserName').innerText = `Welcome, ${user.name}`;
                 loadTrackingData();
             } else {
-                document.getElementById('authBannerBox').style.display = 'flex';
+                document.getElementById('authFooterBox').style.display = 'flex';
                 document.getElementById('dashboardContentArea').style.display = 'none';
             }
         }
@@ -584,7 +602,7 @@
             let cartItems = window.subdomainCartItems || [];
 
             if(cartItems.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-gray); padding:15px; font-weight:600;">Your luxury product list is currently empty.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-gray); padding:12px; font-weight:600;">Your luxury product list is currently empty.</td></tr>`;
                 document.getElementById('sheetTotalPrice').innerText = "$0.00";
                 document.getElementById('totalSpentText').innerText = "Spent: $0.00";
                 return;
@@ -599,12 +617,9 @@
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>
-                        <div class="sheet-product-cell" onclick='openProductDetailsModal(${JSON.stringify(item)})'>
+                        <div class="sheet-product-img-wrap" onclick='openProductDetailsModal(${JSON.stringify(item)})'>
                             <img src="${item.image || 'https://via.placeholder.com/40'}" class="sheet-product-img" loading="lazy">
-                            <div class="sheet-product-info">
-                                <span class="sheet-product-name">${item.title || 'Luxury Product'}</span>
-                                <span class="sheet-product-sub"><i class="fa-solid fa-circle-info"></i> View Details</span>
-                            </div>
+                            <span class="sheet-info-badge"><i class="fa-solid fa-circle-info"></i> View</span>
                         </div>
                     </td>
                     <td style="font-weight:700;">${item.quantity || 1}</td>
@@ -620,11 +635,11 @@
         }
 
         function openProductDetailsModal(item) {
-            document.getElementById('modalProdImg').src = item.image || 'https://via.placeholder.com/100';
-            document.getElementById('modalProdTitle').innerText = item.title || 'Exclusive Product';
-            document.getElementById('modalProdDesc').innerText = item.desc || 'Premium hand-crafted luxury item designed for absolute perfection and elegance.';
-            document.getElementById('modalProdColor').innerText = item.color || 'Standard';
-            document.getElementById('modalProdSize').innerText = item.size || 'Standard';
+            document.getElementById('modalProdImg').src = item.image || 'https://via.placeholder.com/110';
+            document.getElementById('modalProdTitle').innerText = item.title || 'Exclusive Luxury Item';
+            document.getElementById('modalProdDesc').innerText = item.desc || 'Premium hand-crafted luxury item designed for absolute perfection, elegance, and supreme quality.';
+            document.getElementById('modalProdColor').innerText = item.color || 'Standard Gold';
+            document.getElementById('modalProdSize').innerText = item.size || 'Standard Fit';
             document.getElementById('prodModalOverlay').style.display = 'flex';
         }
 
