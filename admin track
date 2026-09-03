@@ -1,1 +1,186 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mrmasudar.com - Admin Tracking Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
+    <style>
+        :root {
+            --bg-black: #050505;
+            --card-bg: #0c0c0c;
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --gold-solid: #d4af37;
+            --text-white: #ffffff;
+            --text-gray: #b8b8b8;
+            --success-green: #2ecc71;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-black); color: var(--text-white); font-family: 'Poppins', sans-serif; padding: 20px; }
+        .admin-container { max-width: 600px; margin: 0 auto; background: var(--card-bg); border: 1.5px solid var(--gold-solid); border-radius: 16px; padding: 20px; box-shadow: 0 0 25px rgba(212,175,55,0.15); }
+        h2 { font-family: 'Cinzel', serif; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 15px; font-size: 1.2rem; }
+        .form-group { margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; }
+        label { font-size: 0.7rem; color: var(--gold-solid); font-weight: 600; }
+        input, select { background: #000; border: 1px solid rgba(212,175,55,0.4); padding: 9px 12px; border-radius: 8px; color: #fff; font-size: 0.75rem; outline: none; }
+        input:focus, select:focus { border-color: var(--gold-solid); }
+        .save-btn { background: var(--gold-gradient); border: none; color: #000; font-weight: 900; padding: 10px; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 10px; font-family: 'Cinzel', serif; font-size: 0.8rem; transition: 0.3s; }
+        .save-btn:hover { opacity: 0.9; transform: scale(1.01); }
+        .order-list { margin-top: 25px; border-top: 1px solid rgba(212,175,55,0.2); padding-top: 15px; }
+        .order-item { background: #111; border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; padding: 10px; margin-bottom: 8px; font-size: 0.68rem; display: flex; justify-content: space-between; align-items: center; }
+        .del-btn { background: #e74c3c; color: #fff; border: none; padding: 5px 8px; border-radius: 5px; cursor: pointer; font-size: 0.6rem; }
+        .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #111; border: 1px solid var(--success-green); color: var(--success-green); padding: 8px 16px; border-radius: 20px; font-size: 0.7rem; display: none; z-index: 9999; }
+    </style>
+</head>
+<body>
+
+    <div class="toast" id="adminToast">Saved Successfully!</div>
+
+    <div class="admin-container">
+        <h2><i class="fa-solid fa-gauge-high"></i> Admin Tracking Panel (Firebase)</h2>
+        
+        <div class="form-group">
+            <label>Product ID (e.g., mme-01)</label>
+            <input type="text" id="pId" placeholder="Enter Product ID...">
+        </div>
+        <div class="form-group">
+            <label>Customer WhatsApp Number (e.g., 017xxxxxxxx)</label>
+            <input type="text" id="cWhatsapp" placeholder="Enter WhatsApp number...">
+        </div>
+        <div class="form-group">
+            <label>Customer Email (e.g., user@gmail.com)</label>
+            <input type="email" id="cEmail" placeholder="Enter Email address...">
+        </div>
+        <div class="form-group">
+            <label>Product / Order Title</label>
+            <input type="text" id="pTitle" placeholder="e.g., Luxury Gown / Gamar Table">
+        </div>
+        <div class="form-group">
+            <label>Live Status</label>
+            <select id="pStatus">
+                <option value="Order Confirmed">Order Confirmed</option>
+                <option value="Dispatched from Hub">Dispatched from Hub</option>
+                <option value="Out for Delivery">Out for Delivery</option>
+                <option value="Delivered Successfully">Delivered Successfully</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Courier Name</label>
+            <input type="text" id="cName" placeholder="e.g., DHL / RedX / Steadfast">
+        </div>
+        <div class="form-group">
+            <label>Tracking ID / Code</label>
+            <input type="text" id="tId" placeholder="e.g., DHL-TRK-9920">
+        </div>
+        <div class="form-group">
+            <label>Live Tracking URL (Link)</label>
+            <input type="url" id="tLink" placeholder="https://www.courier.com/track/...">
+        </div>
+
+        <button class="save-btn" onclick="saveToFirebase()"><i class="fa-solid fa-cloud-arrow-up"></i> Save & Publish to Firebase</button>
+
+        <div class="order-list">
+            <label style="margin-bottom: 8px; display: block;">Cloud Tracked Orders List:</label>
+            <div id="activeOrdersList"><span style="color:var(--text-gray);">Loading from Firebase...</span></div>
+        </div>
+    </div>
+
+    <script>
+        // আপনার ফায়ারবেস কনফিগারেশন এখানে বসান
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        function showToast(msg) {
+            let t = document.getElementById('adminToast');
+            t.innerText = msg;
+            t.style.display = 'block';
+            setTimeout(() => t.style.display = 'none', 2000);
+        }
+
+        // ফায়ারবেস থেকে রিয়েল-টাইম ডাটা লোড করা
+        db.ref('track_orders').on('value', (snapshot) => {
+            let container = document.getElementById('activeOrdersList');
+            if(!container) return;
+            let data = snapshot.val();
+            if(!data) {
+                container.innerHTML = `<span style="color:var(--text-gray);">No tracking record found in cloud.</span>`;
+                return;
+            }
+            let html = '';
+            Object.keys(data).forEach(firebaseKey => {
+                let item = data[firebaseKey];
+                html += `
+                    <div class="order-item">
+                        <div>
+                            <strong>ID:</strong> ${item.searchKey} | <strong>Title:</strong> ${item.title}<br>
+                            <span style="color:var(--gold-solid);">WA: ${item.whatsapp} | Email: ${item.email}</span><br>
+                            <span style="color:var(--success-green);">Status: ${item.status}</span>
+                        </div>
+                        <button class="del-btn" onclick="deleteFromFirebase('${firebaseKey}')"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        });
+
+        function saveToFirebase() {
+            let searchKey = document.getElementById('pId').value.trim();
+            let whatsapp = document.getElementById('cWhatsapp').value.trim();
+            let email = document.getElementById('cEmail').value.trim().toLowerCase();
+            let title = document.getElementById('pTitle').value.trim();
+            let status = document.getElementById('pStatus').value;
+            let courierName = document.getElementById('cName').value.trim();
+            let trackingId = document.getElementById('tId').value.trim();
+            let trackingLink = document.getElementById('tLink').value.trim();
+            let date = new Date().toISOString().split('T')[0];
+
+            if(!searchKey || !title || !trackingLink) {
+                alert("Please fill Product ID, Title and Tracking URL!");
+                return;
+            }
+
+            let orderData = { searchKey, whatsapp, email, title, status, courierName, trackingId, trackingLink, date };
+
+            // ইউনিক প্রডাক্ট আইডি দিয়ে ফায়ারবেসে পুশ করা
+            db.ref('track_orders').push(orderData, (error) => {
+                if (error) {
+                    alert("Failed to save data!");
+                } else {
+                    showToast("Published to Firebase Successfully!");
+                    // ফর্ম ক্লিয়ার করা
+                    document.getElementById('pId').value = '';
+                    document.getElementById('cWhatsapp').value = '';
+                    document.getElementById('pTitle').value = '';
+                    document.getElementById('cEmail').value = '';
+                    document.getElementById('cName').value = '';
+                    document.getElementById('tId').value = '';
+                    document.getElementById('tLink').value = '';
+                }
+            });
+        }
+
+        function deleteFromFirebase(key) {
+            if(confirm("Are you sure to delete this tracking record?")) {
+                db.ref('track_orders/' + key).remove().then(() => {
+                    showToast("Deleted from Firebase!");
+                });
+            }
+        }
+    </script>
+</body>
+</html>
