@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>mrmasudar.com - Tracking</title>
+    
+    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+    <style>
+        :root {
+            --bg-black: #050505;
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --gold-solid: #d4af37;
+            --text-white: #ffffff;
+            --text-gray: #b8b8b8;
+            --success-green: #2ecc71;
+            --font-luxury: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; background-color: var(--bg-black); color: var(--text-white); font-family: var(--font-body); }
+        body { padding-top: 55px; padding-bottom: 20px; display: flex; flex-direction: column; min-height: 100vh; }
+
+        h1, h2, h3, h4, .brand-title-main { font-family: var(--font-luxury); }
+
+        header.app-header {
+            display: flex; justify-content: center; align-items: center; padding: 10px 14px;
+            background: rgba(10, 10, 10, 0.98); position: fixed; top: 0; left: 0; z-index: 1000;
+            backdrop-filter: blur(12px); width: 100%; border-bottom: none;
+        }
+        .brand-container { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+        .logo { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--gold-solid); background: #000; box-shadow: 0 0 10px rgba(212,175,55,0.3); }
+        .brand-title-main { font-size: 0.78rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1.2px; }
+
+        .custom-toast { position: fixed; top: 65px; left: 50%; transform: translateX(-50%); background: rgba(16, 16, 16, 0.96); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 6px 16px; border-radius: 30px; font-size: 0.68rem; font-weight: 700; z-index: 9999; display: none; box-shadow: 0 0 15px rgba(212,175,55,0.3); }
+
+        .track-main-wrapper { width: 100%; max-width: 700px; margin: 0 auto; padding: 8px 12px; display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: space-between; }
+        
+        .track-hero-section { text-align: center; display: flex; flex-direction: column; gap: 6px; }
+        .track-subtitle { font-size: 0.6rem; color: var(--text-gray); font-weight: 500; }
+
+        .search-input-group { display: flex; align-items: center; background: #080808; border: 1.5px solid var(--gold-solid); border-radius: 12px; overflow: hidden; padding: 3px; box-shadow: inset 0 0 10px rgba(0,0,0,0.8); }
+        .track-search-input { flex: 1; background: transparent; border: none; outline: none; color: #fff; padding: 8px 10px; font-size: 0.7rem; font-weight: 600; font-family: var(--font-body); min-width: 0; }
+        .track-search-btn { background: var(--gold-gradient); border: none; padding: 8px 14px; border-radius: 9px; font-weight: 900; font-size: 0.65rem; cursor: pointer; color: #000; font-family: var(--font-luxury); transition: 0.3s; flex-shrink: 0; }
+        .track-search-btn:hover { opacity: 0.9; transform: scale(1.02); }
+
+        /* ফুল-উইডথ রেসপন্সিভ পাহাড় ও ল্যান্ডস্কেপ আর্ট */
+        .scenery-art-box { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; height: 110px; overflow: hidden; margin-top: 2px; background: linear-gradient(to bottom, rgba(5,5,5,0), rgba(212,175,55,0.04)); }
+        .scenery-svg { width: 100%; height: 100%; display: block; }
+
+        /* ফুল-স্ক্রিন এজ-টু-এজ হাইওয়ে অ্যানিমেশন */
+        .luxury-highway-animation-box { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; flex: 1; min-height: 200px; background: rgba(6, 6, 6, 0.65); overflow: hidden; display: flex; flex-direction: column; justify-content: center; border-top: 1px solid rgba(212,175,55,0.15); border-bottom: 1px solid rgba(212,175,55,0.15); }
+
+        .highway-lane { width: 100%; height: 45px; border-bottom: 2px dashed rgba(212,175,55,0.28); position: relative; display: flex; align-items: center; overflow: hidden; margin: 4px 0; }
+        
+        .highway-vehicle { position: absolute; right: -80px; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 10px var(--gold-solid)); animation: driveRightToLeft linear infinite; }
+        
+        .vehicle-truck { font-size: 1.6rem; top: 8px; animation-duration: 5.5s; }
+        .vehicle-van { font-size: 1.35rem; top: 10px; animation-duration: 4s; animation-delay: 1.2s; }
+        .vehicle-bike { font-size: 1.15rem; top: 12px; animation-duration: 3s; animation-delay: 0.4s; }
+
+        @keyframes driveRightToLeft {
+            0% { right: -80px; transform: scaleX(-1); }
+            100% { right: 108%; transform: scaleX(-1); }
+        }
+
+        .highway-badge-overlay { position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); background: rgba(5,5,5,0.95); border: 1px solid var(--gold-solid); padding: 3px 14px; border-radius: 20px; font-size: 0.55rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-luxury); z-index: 10; white-space: nowrap; box-shadow: 0 0 10px rgba(212,175,55,0.2); }
+
+        /* ট্র্যাকিং রেজাল্ট কার্ড */
+        .result-container { display: none; flex-direction: column; gap: 10px; margin-top: 4px; text-align: left; }
+        .result-card { background: rgba(18, 18, 18, 0.98); border: 1.5px solid rgba(212,175,55,0.45); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 20px rgba(212,175,55,0.1); animation: fadeInResult 0.4s ease; }
+        @keyframes fadeInResult { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .result-header-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 5px; }
+        .product-name-txt { font-size: 0.75rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: var(--font-luxury); }
+        .status-badge { background: rgba(46, 204, 113, 0.15); border: 1px solid var(--success-green); color: var(--success-green); padding: 2px 6px; border-radius: 5px; font-size: 0.52rem; font-weight: 700; text-transform: uppercase; }
+
+        .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; font-size: 0.6rem; color: var(--text-gray); }
+        .info-grid span strong { color: #fff; font-weight: 600; }
+
+        .courier-box { background: #050505; border: 1.5px solid var(--gold-solid); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; margin-top: 2px; }
+        .courier-info { display: flex; flex-direction: column; gap: 2px; }
+        .courier-name { font-size: 0.65rem; font-weight: 800; color: #fff; }
+        .tracking-id-txt { font-size: 0.55rem; color: var(--gold-solid); font-weight: 700; }
+        
+        .track-external-btn { background: var(--gold-gradient); border: none; padding: 5px 10px; border-radius: 6px; color: #000; font-weight: 900; font-size: 0.55rem; cursor: pointer; text-decoration: none; font-family: var(--font-luxury); display: inline-flex; align-items: center; gap: 4px; }
+
+        /* নিচে ব্যাক টু হোম বাটন */
+        .bottom-home-wrap { display: flex; justify-content: center; margin-top: auto; padding-top: 6px; }
+        .back-home-btn-large { background: var(--gold-gradient); border: none; color: #000; padding: 8px 20px; border-radius: 25px; font-size: 0.68rem; font-weight: 900; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; font-family: var(--font-luxury); box-shadow: 0 4px 18px rgba(212,175,55,0.3); transition: 0.3s; }
+        .back-home-btn-large:hover { opacity: 0.9; transform: scale(1.03); }
+    </style>
+</head>
+<body>
+
+    <div class="custom-toast" id="customToast">Action completed successfully!</div>
+
+    <header class="app-header">
+        <a href="https://mrmasudar.com" class="brand-container">
+            <img src="https://lh3.googleusercontent.com/d/1POhz8vb-MocaPNHg-i6nDSKwV4ky16Lc" alt="Logo" class="logo">
+            <span class="brand-title-main">MRMASUDAR.COM</span>
+        </a>
+    </header>
+
+    <div class="track-main-wrapper">
+        
+        <div class="track-hero-section">
+            <p class="track-subtitle">Track your active orders using Product ID, WhatsApp or Email</p>
+            <div class="search-input-group">
+                <input type="text" id="trackSearchInput" class="track-search-input" placeholder="Enter Product ID / WhatsApp / Email..." onkeypress="handleSearchKey(event)">
+                <button class="track-search-btn" onclick="performFirebaseTrackingSearch()">TRACK NOW</button>
+            </div>
+        </div>
+
+        <!-- ফুল-উইডথ রেসপন্সিভ পাহাড় ও ল্যান্ডস্কেপ আর্ট -->
+        <div class="scenery-art-box">
+            <svg class="scenery-svg" viewBox="0 0 1200 110" preserveAspectRatio="none">
+                <path d="M0,110 L0,55 Q180,10 360,60 Q540,15 720,58 Q900,12 1200,50 L1200,110 Z" fill="url(#mountainGrad1)"/>
+                <path d="M0,110 L0,75 Q200,30 400,78 Q600,22 800,72 Q1000,35 1200,68 L1200,110 Z" fill="url(#mountainGrad2)']"/>
+                
+                <defs>
+                    <linearGradient id="mountainGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#d4af37" stop-opacity="0.14"/>
+                        <stop offset="100%" stop-color="#050505" stop-opacity="0.0"/>
+                    </linearGradient>
+                    <linearGradient id="mountainGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#d4af37" stop-opacity="0.25"/>
+                        <stop offset="100%" stop-color="#050505" stop-opacity="0.95"/>
+                    </linearGradient>
+                </defs>
+
+                <circle cx="150" cy="70" r="3" fill="#fcf6ba" opacity="0.6"/>
+                <circle cx="380" cy="62" r="3.5" fill="#d4af37" opacity="0.7"/>
+                <circle cx="650" cy="68" r="3" fill="#fcf6ba" opacity="0.6"/>
+                <circle cx="890" cy="60" r="4" fill="#d4af37" opacity="0.7"/>
+                <circle cx="1100" cy="66" r="3" fill="#fcf6ba" opacity="0.6"/>
+            </svg>
+        </div>
+
+        <!-- ট্র্যাকিং রেজাল্ট কন্টেইনার -->
+        <div class="result-container" id="resultContainer"></div>
+
+        <!-- ফুল-স্ক্রিন এজ-টু-এজ হাইওয়ে অ্যানিমেশন -->
+        <div class="luxury-highway-animation-box" id="highwayBox">
+            <div class="highway-lane">
+                <div class="highway-vehicle vehicle-truck"><i class="fa-solid fa-truck-moving"></i></div>
+            </div>
+            <div class="highway-lane">
+                <div class="highway-vehicle vehicle-van"><i class="fa-solid fa-van-shuttle"></i></div>
+            </div>
+            <div class="highway-lane" style="border-bottom: none;">
+                <div class="highway-vehicle vehicle-bike"><i class="fa-solid fa-motorcycle"></i></div>
+            </div>
+            <div class="highway-badge-overlay"><i class="fa-solid fa-shield-halved"></i> Global Secure Transit</div>
+        </div>
+
+        <!-- নিচে ব্যাক টু হোম বাটন -->
+        <div class="bottom-home-wrap">
+            <a href="https://mrmasudar.com" class="back-home-btn-large"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        </div>
+
+    </div>
+
+    <script>
+        // আপনার ফায়ারবেস কনফিগারেশন এখানে বসান
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        function showToast(msg) {
+            let t = document.getElementById('customToast');
+            if(!t) return;
+            t.innerText = msg;
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 2200);
+        }
+
+        function performFirebaseTrackingSearch() {
+            let inputEl = document.getElementById('trackSearchInput');
+            let container = document.getElementById('resultContainer');
+            let highwayBox = document.getElementById('highwayBox');
+            let sceneryBox = document.querySelector('.scenery-art-box');
+            
+            if(!inputEl || !container) return;
+
+            let q = inputEl.value.trim().toLowerCase();
+            
+            if(!q) {
+                showToast("Please enter Product ID, WhatsApp or Email!");
+                return;
+            }
+
+            db.ref('track_orders').once('value').then((snapshot) => {
+                let data = snapshot.val();
+                if(!data) {
+                    showResultNotFound(q, container);
+                    return;
+                }
+
+                let foundItems = [];
+                Object.keys(data).forEach(key => {
+                    let item = data[key];
+                    let sKey = (item.searchKey || "").toLowerCase();
+                    let wa = (item.whatsapp || "").toLowerCase();
+                    let em = (item.email || "").toLowerCase();
+
+                    if(sKey.includes(q) || wa.includes(q) || em.includes(q)) {
+                        foundItems.push(item);
+                    }
+                });
+
+                if(foundItems.length === 0) {
+                    showResultNotFound(q, container);
+                    return;
+                }
+
+                if(highwayBox) highwayBox.style.display = 'none';
+                if(sceneryBox) sceneryBox.style.display = 'none';
+
+                let html = "";
+                foundItems.forEach(item => {
+                    html += `
+                        <div class="result-card">
+                            <div class="result-header-row">
+                                <span class="product-name-txt">${item.title}</span>
+                                <span class="status-badge"><i class="fa-solid fa-circle-check"></i> ${item.status}</span>
+                            </div>
+                            <div class="info-grid">
+                                <span>Product ID: <strong>${item.searchKey}</strong></span>
+                                <span>Date: <strong>${item.date}</strong></span>
+                                <span>WhatsApp: <strong>${item.whatsapp}</strong></span>
+                                <span>Email: <strong>${item.email}</strong></span>
+                            </div>
+                            <div class="courier-box">
+                                <div class="courier-info">
+                                    <span class="courier-name"><i class="fa-solid fa-truck"></i> ${item.courierName}</span>
+                                    <span class="tracking-id-txt">Tracking ID: ${item.trackingId}</span>
+                                </div>
+                                <a href="${item.trackingLink}" target="_blank" class="track-external-btn">
+                                    Live Track <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.style.display = 'flex';
+                container.innerHTML = html;
+            }).catch(err => {
+                showToast("Connection error. Please try again.");
+            });
+        }
+
+        function showResultNotFound(q, container) {
+            let highwayBox = document.getElementById('highwayBox');
+            let sceneryBox = document.querySelector('.scenery-art-box');
+            if(highwayBox) highwayBox.style.display = 'none';
+            if(sceneryBox) sceneryBox.style.display = 'none';
+
+            container.style.display = 'flex';
+            container.innerHTML = `
+                <div class="result-card" style="text-align:center; padding:16px;">
+                    <i class="fa-solid fa-triangle-exclamation" style="font-size:1.5rem; color:var(--gold-solid); margin-bottom:5px;"></i>
+                    <span style="font-size:0.75rem; font-weight:700; color:#fff;">No tracking record found for "${q}"</span>
+                    <span style="font-size:0.62rem; color:var(--text-gray);">Please check your Product ID, WhatsApp or Email address.</span>
+                </div>
+            `;
+        }
+
+        function handleSearchKey(e) {
+            if(e.key === 'Enter') performFirebaseTrackingSearch();
+        }
+    </script>
+</body>
+</html>
