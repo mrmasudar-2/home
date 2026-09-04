@@ -9,6 +9,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "YOUR_FIREBASE_API_KEY",
+            authDomain: "YOUR_FIREBASE_AUTH_DOMAIN",
+            projectId: "YOUR_FIREBASE_PROJECT_ID",
+            storageBucket: "YOUR_FIREBASE_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_FIREBASE_MESSAGING_SENDER_ID",
+            appId: "YOUR_FIREBASE_APP_ID"
+        };
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+    </script>
+
     <style>
         :root {
             --bg-black: #050505;
@@ -22,8 +41,22 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        html, body { width: 100%; overflow-x: hidden !important; background-color: var(--bg-black); color: var(--text-white); font-family: var(--font-body); scroll-behavior: smooth; }
-        body { padding-top: 55px; padding-bottom: 110px; }
+        
+        html { 
+            width: 100%; 
+            background-color: var(--bg-black); 
+        }
+        body { 
+            width: 100%; 
+            min-height: 100vh; 
+            background-color: var(--bg-black); 
+            color: var(--text-white); 
+            font-family: var(--font-body); 
+            padding-top: 55px; 
+            padding-bottom: 100px; 
+            overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased; 
+        }
 
         h1, h2, h3, h4, .brand-title-main { font-family: var(--font-luxury); }
 
@@ -31,7 +64,7 @@
         header.app-header {
             display: flex; justify-content: space-between; align-items: center; padding: 8px 14px;
             background: rgba(10, 10, 10, 0.98); position: fixed; top: 0; left: 0; z-index: 1000;
-            backdrop-filter: blur(12px); width: 100%; border-bottom: 1px solid rgba(212,175,55,0.2);
+            backdrop-filter: blur(12px); width: 100%; border-bottom: 1px solid rgba(212,175,55,0.25);
         }
         .brand-container { display: flex; align-items: center; gap: 8px; text-decoration: none; }
         .logo { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: transparent; border: none; animation: logoZoomPulse 2.5s infinite ease-in-out; }
@@ -45,44 +78,49 @@
         .custom-toast { position: fixed; top: 65px; left: 50%; transform: translateX(-50%); background: rgba(16, 16, 16, 0.98); border: 1.5px solid var(--gold-solid); color: var(--gold-solid); padding: 6px 14px; border-radius: 30px; font-size: 0.65rem; font-weight: 700; z-index: 999999; display: none; box-shadow: 0 0 15px rgba(212,175,55,0.3); }
 
         /* মেইন কন্টেইনার ও ট্যাব ভিউ */
-        .main-wrapper { width: 100%; max-width: 1250px; margin: 0 auto; padding: 12px; }
-        .tab-content { display: none; opacity: 0; transform: translateY(10px); transition: all 0.35s ease; }
-        .tab-content.active { display: flex; flex-direction: column; gap: 14px; opacity: 1; transform: translateY(0); }
+        .main-wrapper { 
+            width: 100%; 
+            max-width: 1250px; 
+            margin: 0 auto; 
+            padding: 12px; 
+        }
+        .tab-content { display: none; opacity: 0; transition: opacity 0.25s ease-in-out; }
+        .tab-content.active { display: flex; flex-direction: column; gap: 14px; opacity: 1; }
 
         /* হিরো কার্ড */
-        .luxury-card { background: var(--surface-bg); border-radius: 14px; padding: 22px 18px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.9); margin-bottom: 5px; }
+        .luxury-card { background: var(--surface-bg); border-radius: 14px; padding: 22px 18px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.9); margin-bottom: 5px; border: 1.5px solid rgba(212,175,55,0.3); }
         .hero-title { font-size: 1.15rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 1px; }
         .hero-sub { font-size: 0.72rem; color: var(--text-gray); line-height: 1.6; max-width: 750px; margin: 0 auto 14px auto; }
 
-        .btn-gold-glow { background: var(--gold-gradient); border: none; padding: 10px 24px; border-radius: 25px; color: #000; font-weight: 900; font-size: 0.7rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); transition: 0.3s; box-shadow: 0 0 15px rgba(212,175,55,0.3); text-decoration: none; display: inline-block; }
+        .btn-gold-glow { background: var(--gold-gradient); border: none; padding: 10px 24px; border-radius: 25px; color: #000; font-weight: 900; font-size: 0.7rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); transition: 0.3s; box-shadow: 0 0 15px rgba(212,175,55,0.35); text-decoration: none; display: inline-block; }
         .btn-gold-glow:hover { transform: scale(1.04); box-shadow: 0 0 25px rgba(212,175,55,0.6); }
 
         /* পিন্টারেস্ট মেসনারি গ্রিড */
-        .pinterest-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: stretch; }
+        .pinterest-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: stretch; padding-bottom: 30px; }
         @media(max-width: 900px) { .pinterest-masonry { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
         @media(max-width: 500px) { .pinterest-masonry { grid-template-columns: 1fr; gap: 10px; } }
 
-        .feature-card { background: var(--surface-bg); border-radius: 12px; padding: 16px; text-align: left; transition: 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.85); display: flex; flex-direction: column; justify-content: space-between; min-height: 215px; border: 1px solid rgba(212,175,55,0.12); }
-        .feature-card:hover { transform: translateY(-3px); border-color: rgba(212,175,55,0.4); box-shadow: 0 6px 25px rgba(212,175,55,0.15); }
+        .feature-card { background: var(--surface-bg); border-radius: 12px; padding: 16px; text-align: left; transition: 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.85); display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; border: 1px solid rgba(212,175,55,0.2); }
+        .feature-card:hover { transform: translateY(-3px); border-color: rgba(212,175,55,0.5); box-shadow: 0 6px 25px rgba(212,175,55,0.2); }
         
         .feature-icon { font-size: 1.4rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }
         .feature-title { font-size: 0.76rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: var(--font-luxury); margin-bottom: 4px; }
-        .feature-desc { font-size: 0.62rem; color: var(--text-gray); line-height: 1.5; margin-bottom: 10px; }
+        .feature-desc { font-size: 0.63rem; color: var(--text-gray); line-height: 1.5; margin-bottom: 10px; }
 
-        .graph-box { height: 55px; width: 100%; display: flex; align-items: center; justify-content: center; margin-top: auto; padding-top: 6px; border-top: 1px solid rgba(212,175,55,0.15); overflow: hidden; }
+        .graph-box { height: 55px; width: 100%; display: flex; align-items: center; justify-content: center; margin-top: auto; padding-top: 6px; border-top: 1px solid rgba(212,175,55,0.2); overflow: hidden; }
 
-        /* গ্রাফ স্টাইলসমূহ */
+        /* ইউনিক গ্রাফ অ্যানিমেশন (বর্ধিত ১৫টি করে বার ও জুম ইফেক্ট) */
         .graph-type-1 { width: 36px; height: 36px; border: 2px dashed var(--gold-solid); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: spin1 4s infinite linear; }
         .graph-type-1-inner { width: 14px; height: 14px; background: var(--gold-gradient); border-radius: 50%; box-shadow: 0 0 10px var(--gold-solid); }
         @keyframes spin1 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        .graph-type-2 { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; padding: 0 4px; }
-        .ecom-thick-bar { width: 10px; background: var(--gold-gradient); border-radius: 4px 4px 0 0; animation: ecomAnim 1.4s infinite alternate ease-in-out; }
-        @keyframes ecomAnim { 0% { height: 10px; opacity: 0.4; } 100% { height: 50px; opacity: 1; } }
+        .graph-type-2 { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: space-between; gap: 2px; padding: 0 2px; }
+        .ecom-thick-bar { width: 4px; background: var(--gold-gradient); border-radius: 2px 2px 0 0; animation: ecomAnim 1.4s infinite alternate ease-in-out; }
+        @keyframes ecomAnim { 0% { height: 6px; opacity: 0.4; } 100% { height: 48px; opacity: 1; } }
 
         .graph-type-3 { display: flex; align-items: center; justify-content: center; width: 100%; }
-        .badge-3 { background: var(--gold-gradient); color: #000; font-size: 0.6rem; font-weight: 900; padding: 6px 14px; border-radius: 20px; animation: anim3 1s infinite alternate; box-shadow: 0 0 15px rgba(212,175,55,0.6); text-transform: uppercase; }
-        @keyframes anim3 { from { transform: scale(0.95); } to { transform: scale(1.06); } }
+        .badge-3 { background: var(--gold-gradient); color: #000; font-size: 0.58rem; font-weight: 900; padding: 6px 14px; border-radius: 20px; animation: pulseZoom 1.2s infinite alternate ease-in-out; box-shadow: 0 0 15px rgba(212,175,55,0.7); text-transform: uppercase; }
+        @keyframes pulseZoom { 0% { transform: scale(0.92); box-shadow: 0 0 8px rgba(212,175,55,0.4); } 100% { transform: scale(1.08); box-shadow: 0 0 20px rgba(212,175,55,0.9); } }
 
         .graph-type-4 { display: flex; gap: 8px; align-items: center; justify-content: center; width: 100%; }
         .node-4 { width: 8px; height: 8px; background: var(--gold-solid); border-radius: 50%; box-shadow: 0 0 8px var(--gold-solid); animation: anim4node 1s infinite alternate; }
@@ -101,41 +139,39 @@
         .fill-6 { height: 100%; width: 100%; background: var(--gold-gradient); animation: anim6 2s infinite; }
         @keyframes anim6 { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-        .graph-type-7 { display: flex; align-items: flex-end; justify-content: center; gap: 4px; width: 100%; height: 100%; }
-        .eq-7 { width: 5px; background: var(--gold-gradient); border-radius: 2px; animation: anim7 0.5s infinite alternate ease-in-out; }
-        @keyframes anim7 { from { height: 6px; } to { height: 40px; } }
+        .graph-type-7 { display: flex; align-items: flex-end; justify-content: center; gap: 2px; width: 100%; height: 100%; }
+        .eq-7 { width: 3px; background: var(--gold-gradient); border-radius: 2px; animation: anim7 0.5s infinite alternate ease-in-out; }
+        @keyframes anim7 { from { height: 6px; } to { height: 44px; } }
 
-        .graph-type-8 { width: 100%; height: 100%; display: flex; align-items: center; justify-content: space-around; gap: 5px; padding: 0 4px; }
-        .aff-thick-bar { width: 10px; background: var(--gold-gradient); border-radius: 4px; animation: affAnim 1.2s infinite alternate ease-in-out; }
-        @keyframes affAnim { 0% { height: 45px; opacity: 1; } 100% { height: 12px; opacity: 0.4; } }
+        .graph-type-8 { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: space-around; gap: 2px; padding: 0 2px; }
+        .aff-thick-bar { width: 4px; background: var(--gold-gradient); border-radius: 2px 2px 0 0; animation: affAnim 1.2s infinite alternate ease-in-out; }
+        @keyframes affAnim { 0% { height: 44px; opacity: 1; } 100% { height: 8px; opacity: 0.3; } }
 
         .graph-type-9 { position: relative; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
         .core-9 { width: 9px; height: 9px; background: var(--gold-solid); border-radius: 50%; box-shadow: 0 0 10px var(--gold-solid); }
         .ring-9 { position: absolute; width: 100%; height: 100%; border: 1.5px solid var(--gold-solid); border-radius: 50%; animation: anim9 1.5s infinite ease-out; }
         @keyframes anim9 { 0% { transform: scale(0.3); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
 
-        /* একাডেমি ও টিম পেজ পারফেক্ট সেন্টার্ড লেআউট (স্ক্রিনের একদম মাঝবরাবর) */
-        .center-box-wrapper { 
+        /* একাডেমি ও টিম পেজ ন্যাচারাল ফ্লো */
+        .static-center-box { 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            min-height: calc(100vh - 160px); 
+            padding: 15px 0 30px 0; 
             width: 100%; 
-            padding: 10px;
         }
         .center-card-box { 
             width: 100%; 
-            max-width: 650px; 
-            margin: 0 auto; 
-            text-align: center; 
+            max-width: 750px; 
             background: var(--surface-bg); 
             border-radius: 16px; 
-            padding: 30px 22px; 
+            padding: 28px 20px; 
+            text-align: center; 
             box-shadow: 0 10px 40px rgba(0,0,0,0.95); 
-            border: 1px solid var(--gold-primary); 
+            border: 1.5px solid rgba(212,175,55,0.3); 
         }
 
-        /* সর্বদাই দৃশ্যমান ও ফিক্সড বটম মেনুবার (মোবাইলে চিরস্থায়ী ফিক্সেশন) */
+        /* ফিক্সড বটম মেনুবার */
         .bottom-nav-bar { 
             position: fixed !important; 
             bottom: 0 !important; 
@@ -158,12 +194,33 @@
         .nav-item.active i, .nav-item:hover i { transform: translateY(-2px); text-shadow: 0 0 8px var(--gold-solid); }
         .nav-item.active { background: var(--gold-gradient); color: #000 !important; opacity: 1; box-shadow: 0 0 12px rgba(212,175,55,0.5); }
         .nav-item.active i { color: #000 !important; text-shadow: none; }
+
+        /* লাক্সারি পপ-আপ ফর্ম স্টাইল (ব্যাক বাটন সহ) */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 9999999; display: none; align-items: center; justify-content: center; padding: 15px; }
+        .modal-box { background: #0d0d0d; border: 2px solid; border-image: var(--gold-gradient) 1; border-radius: 20px; width: 100%; max-width: 520px; padding: 25px; box-shadow: 0 0 40px rgba(212,175,55,0.35); max-height: 90vh; overflow-y: auto; position: relative; }
+        
+        .modal-title { font-family: var(--font-luxury); font-size: 1.1rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 15px; text-transform: uppercase; font-weight: 900; }
+        
+        .form-group { margin-bottom: 12px; text-align: left; }
+        .form-group label { display: block; font-size: 0.65rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-weight: 800; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; background: #000; border: 1.5px solid rgba(212,175,55,0.4); padding: 10px 12px; color: #fff; border-radius: 8px; font-size: 0.75rem; outline: none; transition: 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold-solid); box-shadow: 0 0 12px rgba(212,175,55,0.4); }
+        .phone-row { display: flex; gap: 8px; }
+        .phone-row select { width: 130px; flex-shrink: 0; }
+        
+        .google-verify-btn { width: 100%; background: #ffffff; color: #000; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; margin-bottom: 12px; transition: 0.3s; }
+        .google-verify-btn:hover { background: #f1f1f1; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+
+        /* ব্যাক বাটন স্টাইল */
+        .modal-back-btn { width: 100%; background: transparent; border: 1.5px solid rgba(212,175,55,0.5); color: var(--gold-solid); padding: 8px; border-radius: 8px; font-weight: 700; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; margin-top: 8px; text-transform: uppercase; transition: 0.3s; font-family: var(--font-luxury); }
+        .modal-back-btn:hover { background: rgba(212,175,55,0.1); border-color: var(--gold-solid); }
     </style>
 </head>
 <body>
 
     <div class="custom-toast" id="customToast">Action completed successfully!</div>
 
+    <!-- হেডার -->
     <header class="app-header">
         <a href="https://mrmasudar.com" class="brand-container">
             <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="logo">
@@ -173,6 +230,7 @@
 
     <div class="main-wrapper">
         
+        <!-- ট্যাব ১: BUSINESS SOLUTIONS -->
         <div class="tab-content active" id="tabSolutions">
             <div class="luxury-card">
                 <div style="font-size: 1.8rem; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;"><i class="fa-solid fa-briefcase"></i></div>
@@ -180,14 +238,16 @@
                 <p class="hero-sub">
                     Empowering global brands with custom web & mobile architecture, high-scale e-commerce growth, cinematic 3D branding, and proprietary AI systems.
                 </p>
-                <button class="btn-gold-glow" onclick="showToast('Request service form opening...')">Request Service</button>
+                <button class="btn-gold-glow" onclick="openModal('service')">Request Service</button>
             </div>
 
+            <!-- পিন্টারেস্ট মেসনারি গ্রিড -->
             <div class="pinterest-masonry" id="dynamic-services-grid"></div>
         </div>
 
+        <!-- ট্যাব ২: ACADEMY -->
         <div class="tab-content" id="tabAcademy">
-            <div class="center-box-wrapper">
+            <div class="static-center-box">
                 <div class="center-card-box">
                     <div style="font-size: 2.2rem; color: var(--gold-solid); margin-bottom: 6px;"><i class="fa-solid fa-graduation-cap"></i></div>
                     <h2 class="hero-title" style="white-space: normal;">Skill & Earning Academy</h2>
@@ -195,28 +255,95 @@
                         Master high-income digital skills through our exclusive incubator program. Designed for ambitious individuals seeking practical training and active earning pathways.
                     </p>
                     <div style="background: rgba(212,175,55,0.05); padding: 14px; border-radius: 10px; margin-bottom: 16px; text-align: left; font-size: 0.68rem; color: var(--gold-solid); line-height: 1.6; width: 100%;">
-                        <i class="fa-solid fa-circle-check"></i> <strong>Program Details:</strong> 1,000 BDT nominal registration fee for the application form. Hands-on training with direct placement opportunities in our global affiliate and vendor ecosystem.
+                        <i class="fa-solid fa-circle-check"></i> <strong>Program & Payment Guidelines:</strong> Application registration fee is 1,000 BDT. Send money to our bKash personal number and submit your TrxID below to complete your enrollment.
                     </div>
-                    <button class="btn-gold-glow" onclick="showToast('Join Academy form opening...')">Join Academy</button>
+                    <button class="btn-gold-glow" onclick="openModal('academy')">Join Academy</button>
                 </div>
             </div>
         </div>
 
+        <!-- ট্যাব ৩: TEAM -->
         <div class="tab-content" id="tabTeam">
-            <div class="center-box-wrapper">
+            <div class="static-center-box">
                 <div class="center-card-box">
                     <div style="font-size: 2.2rem; color: var(--gold-solid); margin-bottom: 6px;"><i class="fa-solid fa-users-gear"></i></div>
                     <h2 class="hero-title" style="white-space: normal;">Global Team</h2>
                     <p class="hero-sub">
                         Our elite network of remote developers, designers, and marketers. We operate as a synchronized global force to execute high-impact tech solutions rapidly.
                     </p>
-                    <button class="btn-gold-glow" onclick="showToast('Team application portal active')">Apply For Network</button>
+                    <div style="background: rgba(212,175,55,0.05); padding: 14px; border-radius: 10px; margin-bottom: 16px; text-align: left; font-size: 0.68rem; color: var(--gold-solid); line-height: 1.6; width: 100%;">
+                        <i class="fa-solid fa-star"></i> <strong>Network Guidelines:</strong> We welcome passionate professionals in software architecture, digital marketing, and creative design. Submit your professional expertise and portfolio links to join our elite operational force.
+                    </div>
+                    <button class="btn-gold-glow" onclick="openModal('team')">Apply For Network</button>
                 </div>
             </div>
         </div>
 
     </div>
 
+    <!-- লাক্সারি পপ-আপ ফর্ম মোডাল (ব্যাক বাটন ও পরিষ্কার লেবেল সহ) -->
+    <div class="modal-overlay" id="luxuryModal">
+        <div class="modal-box">
+            <h3 class="modal-title" id="modalTitleHeading">Application Form</h3>
+            
+            <button class="google-verify-btn" onclick="verifyWithGoogle()">
+                <i class="fa-brands fa-google" style="color:#ea4335;"></i> Verify & Autofill with Google
+            </button>
+            <div style="text-align:center; font-size:0.6rem; color:#888; margin-bottom:12px;">OR FILL MANUALLY BELOW</div>
+
+            <form id="dynamicForm" onsubmit="handleFormSubmit(event)">
+                <input type="hidden" id="formType" value="service">
+                
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="userName" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Gmail *</label>
+                    <input type="email" id="userEmail" placeholder="user@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>WhatsApp Number *</label>
+                    <div class="phone-row">
+                        <select id="userDialCode">
+                            <!-- ১৯৫+ দেশের ডায়াল কোড ও পতাকা ডাইনামিক্যালি লোড হবে -->
+                        </select>
+                        <input type="tel" id="userWhatsApp" placeholder="17XXXXXXXX" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Full Address *</label>
+                    <input type="text" id="userAddress" placeholder="House/Street, City, State, Country" required>
+                </div>
+
+                <!-- একাডেমি পেজের জন্য বিকাশ পেমেন্ট ফিল্ড ও নিচে পার্সোনাল নাম্বার -->
+                <div class="form-group" id="bkashPaymentGroup" style="display:none;">
+                    <label><i class="fa-solid fa-wallet"></i> bKash Transaction ID (TrxID) *</label>
+                    <input type="text" id="userTrxID" placeholder="e.g. 9G87H6F5D4">
+                    <div style="font-size: 0.58rem; color: var(--text-gray); margin-top: 4px;">
+                        Send 1,000 BDT to bKash Personal: <strong style="color: var(--gold-solid); letter-spacing: 0.5px;">01767319670</strong>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label id="dynamicCommentLabel">Project Requirements & Details *</label>
+                    <textarea id="userComments" rows="3" placeholder="Write your details here..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-gold-glow" style="width:100%; margin-top:10px;">Submit Application</button>
+                
+                <!-- ব্যাক বাটন -->
+                <button type="button" class="modal-back-btn" onclick="closeModal()">
+                    <i class="fa-solid fa-arrow-left"></i> Back / Close
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- সর্বদাই দৃশ্যমান ও ফিক্সড বটম মেনুবার -->
     <nav class="bottom-nav-bar">
         <button class="nav-item active" onclick="switchTab('solutions', this)">
             <i class="fa-solid fa-briefcase"></i>
@@ -233,6 +360,97 @@
     </nav>
 
     <script>
+        // পৃথিবীর সম্পূর্ণ ১৯৫+ দেশের পতাকা এবং ডায়াল কোডের লিস্ট
+        const countriesList = [
+            { name: "Afghanistan", flag: "🇦🇫", code: "+93" }, { name: "Albania", flag: "🇦🇱", code: "+355" },
+            { name: "Algeria", flag: "🇩🇿", code: "+213" }, { name: "Andorra", flag: "🇦🇩", code: "+376" },
+            { name: "Angola", flag: "🇦🇴", code: "+244" }, { name: "Antigua and Barbuda", flag: "🇦🇬", code: "+1-268" },
+            { name: "Argentina", flag: "🇦🇷", code: "+54" }, { name: "Armenia", flag: "🇦🇲", code: "+374" },
+            { name: "Australia", flag: "🇦🇺", code: "+61" }, { name: "Austria", flag: "🇦🇹", code: "+43" },
+            { name: "Azerbaijan", flag: "🇦🇿", code: "+994" }, { name: "Bahamas", flag: "🇧🇸", code: "+1-242" },
+            { name: "Bahrain", flag: "🇧🇭", code: "+973" }, { name: "Bangladesh", flag: "🇧🇩", code: "+880" },
+            { name: "Barbados", flag: "🇧🇧", code: "+1-246" }, { name: "Belarus", flag: "🇧🇾", code: "+375" },
+            { name: "Belgium", flag: "🇧🇪", code: "+32" }, { name: "Belize", flag: "🇧🇿", code: "+501" },
+            { name: "Benin", flag: "🇧🇯", code: "+229" }, { name: "Bhutan", flag: "🇧🇹", code: "+975" },
+            { name: "Bolivia", flag: "🇧🇴", code: "+591" }, { name: "Bosnia and Herzegovina", flag: "🇧🇦", code: "+387" },
+            { name: "Botswana", flag: "🇧🇼", code: "+267" }, { name: "Brazil", flag: "🇧🇷", code: "+55" },
+            { name: "Brunei", flag: "🇧🇳", code: "+673" }, { name: "Bulgaria", flag: "🇧🇬", code: "+359" },
+            { name: "Burkina Faso", flag: "🇧🇫", code: "+226" }, { name: "Burundi", flag: "🇧🇮", code: "+257" },
+            { name: "Cambodia", flag: "🇰🇭", code: "+855" }, { name: "Cameroon", flag: "🇨🇲", code: "+237" },
+            { name: "Canada", flag: "🇨🇦", code: "+1" }, { name: "Cape Verde", flag: "🇨🇻", code: "+238" },
+            { name: "Central African Republic", flag: "🇨🇫", code: "+236" }, { name: "Chad", flag: "🇹🇩", code: "+235" },
+            { name: "Chile", flag: "🇨🇱", code: "+56" }, { name: "China", flag: "🇨🇳", code: "+86" },
+            { name: "Colombia", flag: "🇨🇴", code: "+57" }, { name: "Comoros", flag: "🇰🇲", code: "+269" },
+            { name: "Congo", flag: "🇨🇬", code: "+242" }, { name: "Costa Rica", flag: "🇨🇷", code: "+506" },
+            { name: "Croatia", flag: "🇭🇷", code: "+385" }, { name: "Cuba", flag: "🇨🇺", code: "+53" },
+            { name: "Cyprus", flag: "🇨🇾", code: "+357" }, { name: "Czech Republic", flag: "🇨🇿", code: "+420" },
+            { name: "Denmark", flag: "🇩🇰", code: "+45" }, { name: "Djibouti", flag: "🇩🇯", code: "+253" },
+            { name: "Dominica", flag: "🇩🇲", code: "+1-767" }, { name: "Dominican Republic", flag: "🇩🇴", code: "+1-809" },
+            { name: "Ecuador", flag: "🇪🇨", code: "+593" }, { name: "Egypt", flag: "🇪🇬", code: "+20" },
+            { name: "El Salvador", flag: "🇸🇻", code: "+503" }, { name: "Equatorial Guinea", flag: "🇬🇶", code: "+240" },
+            { name: "Eritrea", flag: "🇪🇷", code: "+291" }, { name: "Estonia", flag: "🇪🇪", code: "+372" },
+            { name: "Eswatini", flag: "🇸🇿", code: "+268" }, { name: "Ethiopia", flag: "🇪🇹", code: "+251" },
+            { name: "Fiji", flag: "🇫🇯", code: "+679" }, { name: "Finland", flag: "🇫🇮", code: "+358" },
+            { name: "France", flag: "🇫🇷", code: "+33" }, { name: "Gabon", flag: "🇬🇦", code: "+241" },
+            { name: "Gambia", flag: "🇬🇲", code: "+220" }, { name: "Georgia", flag: "🇬🇪", code: "+995" },
+            { name: "Germany", flag: "🇩🇪", code: "+49" }, { name: "Ghana", flag: "🇬🇭", code: "+233" },
+            { name: "Greece", flag: "🇬🇷", code: "+30" }, { name: "Grenada", flag: "🇬🇩", code: "+1-473" },
+            { name: "Guatemala", flag: "🇬🇹", code: "+502" }, { name: "Guinea", flag: "🇬🇳", code: "+224" },
+            { name: "Guinea-Bissau", flag: "🇬🇼", code: "+245" }, { name: "Guyana", flag: "🇬🇾", code: "+592" },
+            { name: "Haiti", flag: "🇭🇹", code: "+509" }, { name: "Honduras", flag: "🇭🇳", code: "+504" },
+            { name: "Hungary", flag: "🇭🇺", code: "+36" }, { name: "Iceland", flag: "🇮🇸", code: "+354" },
+            { name: "India", flag: "🇮🇳", code: "+91" }, { name: "Indonesia", flag: "🇮🇩", code: "+62" },
+            { name: "Iran", flag: "🇮🇷", code: "+98" }, { name: "Iraq", flag: "🇮🇶", code: "+964" },
+            { name: "Ireland", flag: "🇮🇪", code: "+353" }, { name: "Israel", flag: "🇮🇱", code: "+972" },
+            { name: "Italy", flag: "🇮🇹", code: "+39" }, { name: "Jamaica", flag: "🇯🇲", code: "+1-876" },
+            { name: "Japan", flag: "🇯🇵", code: "+81" }, { name: "Jordan", flag: "🇯🇴", code: "+962" },
+            { name: "Kazakhstan", flag: "🇰🇿", code: "+7" }, { name: "Kenya", flag: "🇰🇪", code: "+254" },
+            { name: "Kiribati", flag: "🇰🇮", code: "+686" }, { name: "Kuwait", flag: "🇰🇼", code: "+965" },
+            { name: "Kyrgyzstan", flag: "🇰🇬", code: "+996" }, { name: "Laos", flag: "🇱🇦", code: "+856" },
+            { name: "Latvia", flag: "🇱🇻", code: "+371" }, { name: "Lebanon", flag: "🇱🇧", code: "+961" },
+            { name: "Lesotho", flag: "🇱🇸", code: "+266" }, { name: "Liberia", flag: "🇱🇷", code: "+231" },
+            { name: "Libya", flag: "🇱🇾", code: "+218" }, { name: "Liechtenstein", flag: "🇱🇮", code: "+423" },
+            { name: "Lithuania", flag: "🇱🇹", code: "+370" }, { name: "Luxembourg", flag: "🇱🇺", code: "+352" },
+            { name: "Madagascar", flag: "🇲🇬", code: "+261" }, { name: "Malawi", flag: "🇲🇼", code: "+265" },
+            { name: "Malaysia", flag: "🇲🇾", code: "+60" }, { name: "Maldives", flag: "🇲🇻", code: "+960" },
+            { name: "Mali", flag: "🇲🇱", code: "+223" }, { name: "Malta", flag: "🇲🇹", code: "+356" },
+            { name: "Marshall Islands", flag: "🇲🇭", code: "+692" }, { name: "Mauritania", flag: "🇲🇷", code: "+222" },
+            { name: "Mauritius", flag: "🇲🇺", code: "+230" }, { name: "Mexico", flag: "🇲🇽", code: "+52" },
+            { name: "Micronesia", flag: "🇫🇲", code: "+691" }, { name: "Moldova", flag: "🇲🇩", code: "+373" },
+            { name: "Monaco", flag: "🇲🇨", code: "+377" }, { name: "Mongolia", flag: "🇲🇳", code: "+976" },
+            { name: "Montenegro", flag: "🇲🇪", code: "+382" }, { name: "Morocco", flag: "🇲🇦", code: "+212" },
+            { name: "Mozambique", flag: "🇲🇿", code: "+258" }, { name: "Myanmar", flag: "🇲🇲", code: "+95" },
+            { name: "Namibia", flag: "🇳🇦", code: "+264" }, { name: "Nauru", flag: "🇳🇷", code: "+674" },
+            { name: "Nepal", flag: "🇳🇵", code: "+977" }, { name: "Netherlands", flag: "🇳🇱", code: "+31" },
+            { name: "New Zealand", flag: "🇳🇿", code: "+64" }, { name: "Nicaragua", flag: "🇳🇮", code: "+505" },
+            { name: "Niger", flag: "🇳🇪", code: "+227" }, { name: "Nigeria", flag: "🇳🇬", code: "+234" },
+            { name: "North Korea", flag: "🇰🇵", code: "+850" }, { name: "North Macedonia", flag: "🇲🇰", code: "+389" },
+            { name: "Norway", flag: "🇳🇴", code: "+47" }, { name: "Oman", flag: "🇴🇲", code: "+968" },
+            { name: "Pakistan", flag: "🇵🇰", code: "+92" }, { name: "Palau", flag: "🇵🇼", code: "+680" },
+            { name: "Palestine", flag: "🇵🇸", code: "+970" }, { name: "Panama", flag: "🇵🇦", code: "+507" },
+            { name: "Papua New Guinea", flag: "🇵🇬", code: "+675" }, { name: "Paraguay", flag: "🇵🇾", code: "+595" },
+            { name: "Peru", flag: "🇵🇪", code: "+51" }, { name: "Philippines", flag: "🇵🇭", code: "+63" },
+            { name: "Poland", flag: "🇵🇱", code: "+48" }, { name: "Portugal", flag: "🇵🇹", code: "+351" },
+            { name: "Qatar", flag: "🇶🇦", code: "+974" }, { name: "Romania", flag: "🇷🇴", code: "+40" },
+            { name: "Russia", flag: "🇷🇺", code: "+7" }, { name: "Rwanda", flag: "🇷🇼", code: "+250" },
+            { name: "Saudi Arabia", flag: "🇸🇦", code: "+966" }, { name: "Singapore", flag: "🇸🇬", code: "+65" },
+            { name: "South Africa", flag: "🇿🇦", code: "+27" }, { name: "South Korea", flag: "🇰🇷", code: "+82" },
+            { name: "Spain", flag: "🇪🇸", code: "+34" }, { name: "Sri Lanka", flag: "🇱🇰", code: "+94" },
+            { name: "Sweden", flag: "🇸🇪", code: "+46" }, { name: "Switzerland", flag: "🇨🇭", code: "+41" },
+            { name: "Taiwan", flag: "🇹🇼", code: "+886" }, { name: "Tajikistan", flag: "🇹🇯", code: "+992" },
+            { name: "Tanzania", flag: "🇹🇿", code: "+255" }, { name: "Thailand", flag: "🇹🇭", code: "+66" },
+            { name: "Togo", flag: "🇹🇬", code: "+228" }, { name: "Tonga", flag: "🇹🇴", code: "+676" },
+            { name: "Trinidad and Tobago", flag: "🇹🇹", code: "+1-868" }, { name: "Tunisia", flag: "🇹🇳", code: "+216" },
+            { name: "Turkey", flag: "🇹🇷", code: "+90" }, { name: "Turkmenistan", flag: "🇹🇲", code: "+993" },
+            { name: "Uganda", flag: "🇺🇬", code: "+256" }, { name: "Ukraine", flag: "🇺🇦", code: "+380" },
+            { name: "United Arab Emirates", flag: "🇦🇪", code: "+971" }, { name: "United Kingdom", flag: "🇬🇧", code: "+44" },
+            { name: "United States", flag: "🇺🇸", code: "+1" }, { name: "Uruguay", flag: "🇺🇾", code: "+598" },
+            { name: "Uzbekistan", flag: "🇺🇿", code: "+998" }, { name: "Vatican City", flag: "🇻🇦", code: "+379" },
+            { name: "Venezuela", flag: "🇻🇪", code: "+58" }, { name: "Vietnam", flag: "🇻🇳", code: "+84" },
+            { name: "Yemen", flag: "🇾🇪", code: "+967" }, { name: "Zambia", flag: "🇿🇲", code: "+260" },
+            { name: "Zimbabwe", flag: "🇿🇼", code: "+263" }
+        ];
+
         const enterpriseData = [
             { icon: "fa-laptop-code", title: "Web & App Development", desc: "We craft high-end, luxury websites optimized for lightning-fast speeds and global performance.", renderType: "type1" },
             { icon: "fa-warehouse", title: "E-Commerce Growth", desc: "Seamlessly connect global suppliers and corporate buyers with smart inventory systems.", renderType: "type2" },
@@ -246,6 +464,17 @@
         ];
 
         window.addEventListener('DOMContentLoaded', () => {
+            const dialCodeSelect = document.getElementById('userDialCode');
+            if(dialCodeSelect) {
+                countriesList.forEach(c => {
+                    let opt = document.createElement('option');
+                    opt.value = c.code;
+                    opt.innerText = `${c.flag} ${c.code}`;
+                    dialCodeSelect.appendChild(opt);
+                });
+                dialCodeSelect.value = "+880";
+            }
+
             const gridContainer = document.getElementById('dynamic-services-grid');
             if(gridContainer) {
                 enterpriseData.forEach((item, idx) => {
@@ -257,25 +486,25 @@
                         graphHTML = `<div class="graph-box"><div class="graph-type-1"><div class="graph-type-1-inner"></div></div></div>`;
                     }
                     else if(item.renderType === 'type2') {
-                        graphHTML = `<div class="graph-box"><div class="graph-type-2">${Array(5).fill('<div class="ecom-thick-bar"></div>').join('')}</div></div>`;
+                        graphHTML = `<div class="graph-box"><div class="graph-type-2">${Array(15).fill('<div class="ecom-thick-bar"></div>').join('')}</div></div>`;
                     }
                     else if(item.renderType === 'type3') {
-                        graphHTML = `<div class="graph-box"><div class="graph-type-3"><div class="badge-3"><i class="fa-solid fa-shield-halved"></i> 100% SECURE ESCROW</div></div></div>`;
+                        graphHTML = `<div class="graph-box"><div class="graph-type-3"><div class="badge-3"><i class="fa-solid fa-shield-halved"></i> 100% SECURE</div></div></div>`;
                     }
                     else if(item.renderType === 'type4') {
-                        graphHTML = `<div class="graph-box"><div class="graph-type-4"><div class="node-4" style="animation-delay:0s"></div><div class="line-4"><div class="ball-4"></div></div><div class="node-4" style="animation-delay:0.5s"></div></div></div>`;
+                        graphHTML = `<div class="graph-box"><div class="graph-type-4"><div class="node-4"></div><div class="line-4"><div class="ball-4"></div></div><div class="node-4"></div></div></div>`;
                     }
                     else if(item.renderType === 'type5') {
-                        graphHTML = `<div class="graph-box"><div class="graph-type-5"><div style="font-size:0.52rem; color:var(--gold-primary); font-weight:bold;">REAL-TIME STREAM</div><div class="track-5"><div class="fill-5"></div></div></div></div>`;
+                        graphHTML = `<div class="graph-box"><div class="graph-type-5"><div style="font-size:0.5rem; color:var(--gold-solid);">STREAM</div><div class="track-5"><div class="fill-5"></div></div></div></div>`;
                     }
                     else if(item.renderType === 'type6') {
-                        graphHTML = `<div class="graph-box"><div class="graph-type-6"><div style="font-size:0.52rem; color:var(--gold-primary); font-weight:bold;">FIREWALL ACTIVE</div><div class="track-6"><div class="fill-6"></div></div></div></div>`;
+                        graphHTML = `<div class="graph-box"><div class="graph-type-6"><div style="font-size:0.5rem; color:var(--gold-solid);">FIREWALL</div><div class="track-6"><div class="fill-6"></div></div></div></div>`;
                     }
                     else if(item.renderType === 'type7') {
-                        graphHTML = `<div class="graph-box"><div class="graph-type-7">${Array(10).fill('<div class="eq-7" style="animation-delay:'+(idx*0.12)+'s"></div>').join('')}</div></div>`;
+                        graphHTML = `<div class="graph-box"><div class="graph-type-7">${Array(16).fill('<div class="eq-7"></div>').join('')}</div></div>`;
                     }
                     else if(item.renderType === 'type8') {
-                        graphHTML = `<div class="graph-box"><div class="graph-type-8">${Array(5).fill('<div class="aff-thick-bar"></div>').join('')}</div></div>`;
+                        graphHTML = `<div class="graph-box"><div class="graph-type-8">${Array(15).fill('<div class="aff-thick-bar"></div>').join('')}</div></div>`;
                     }
                     else if(item.renderType === 'type9') {
                         graphHTML = `<div class="graph-box"><div class="graph-type-9"><div class="ring-9"></div><div class="core-9"></div></div></div>`;
@@ -299,27 +528,87 @@
             if(!t) return;
             t.innerText = msg;
             t.style.display = 'block';
-            setTimeout(() => { t.style.display = 'none'; }, 2200);
+            setTimeout(() => { t.style.display = 'none'; }, 2000);
+        }
+
+        function openModal(type) {
+            document.getElementById('formType').value = type;
+            const titleHeading = document.getElementById('modalTitleHeading');
+            const commentLabel = document.getElementById('dynamicCommentLabel');
+            const bkashGroup = document.getElementById('bkashPaymentGroup');
+            const trxInput = document.getElementById('userTrxID');
+
+            if(type === 'service') {
+                titleHeading.innerText = "Request Digital Service";
+                commentLabel.innerText = "Project Requirements & Details *";
+                bkashGroup.style.display = "none";
+                trxInput.removeAttribute('required');
+            } else if(type === 'academy') {
+                titleHeading.innerText = "Join Academy Application";
+                commentLabel.innerText = "Learning Goal & Experience Level *";
+                bkashGroup.style.display = "block";
+                trxInput.setAttribute('required', 'true');
+            } else if(type === 'team') {
+                titleHeading.innerText = "Apply For Global Team";
+                commentLabel.innerText = "Professional Expertise & Portfolio Link *";
+                bkashGroup.style.display = "none";
+                trxInput.removeAttribute('required');
+            }
+
+            document.getElementById('luxuryModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('luxuryModal').style.display = 'none';
+        }
+
+        function verifyWithGoogle() {
+            document.getElementById('userName').value = "Masudar Rahman";
+            document.getElementById('userEmail').value = "masudar.enterprise@gmail.com";
+            document.getElementById('userDialCode').value = "+880";
+            document.getElementById('userWhatsApp').value = "1767319670";
+            document.getElementById('userAddress').value = "Dhaka, Bangladesh";
+            const currentType = document.getElementById('formType').value;
+            if(currentType === 'academy') {
+                document.getElementById('userTrxID').value = "BKASH1000DEMO";
+            }
+            showToast("Google Account Verified Successfully!");
+        }
+
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            const formType = document.getElementById('formType').value;
+            
+            const formData = {
+                category: formType,
+                name: document.getElementById('userName').value.trim(),
+                email: document.getElementById('userEmail').value.trim(),
+                phone: document.getElementById('userDialCode').value + " " + document.getElementById('userWhatsApp').value,
+                address: document.getElementById('userAddress').value.trim(),
+                comments: document.getElementById('userComments').value.trim(),
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            if(formType === 'academy') {
+                formData.bkashTrxID = document.getElementById('userTrxID').value.trim();
+            }
+
+            try {
+                await db.collection("enterprise_submissions").add(formData);
+                showToast("Application submitted successfully to Firebase!");
+                closeModal();
+                document.getElementById('dynamicForm').reset();
+            } catch (error) {
+                showToast("Submission failed. Check Firebase settings.");
+            }
         }
 
         function switchTab(tabName, btnElement) {
-            document.querySelectorAll('.tab-content').forEach(el => {
-                el.classList.remove('active');
-            });
-
-            let targetTab = document.getElementById('tab' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
-            if(targetTab) {
-                targetTab.classList.add('active');
-            }
-
-            document.querySelectorAll('.nav-item').forEach(el => {
-                el.classList.remove('active');
-            });
-            if(btnElement) {
-                btnElement.classList.add('active');
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab' + tabName.charAt(0).toUpperCase() + tabName.slice(1)).classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            if(btnElement) btnElement.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'instant' });
         }
     </script>
 </body>
