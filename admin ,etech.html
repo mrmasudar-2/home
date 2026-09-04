@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MR MASUDAR ENTERPRISE | Executive Admin Panel</title>
+    
+    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // আপনার মূল ফায়ারবেস কনফিগ এখানে বসাবেন
+        const firebaseConfig = {
+            apiKey: "YOUR_FIREBASE_API_KEY",
+            authDomain: "YOUR_FIREBASE_AUTH_DOMAIN",
+            projectId: "YOUR_FIREBASE_PROJECT_ID",
+            storageBucket: "YOUR_FIREBASE_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_FIREBASE_MESSAGING_SENDER_ID",
+            appId: "YOUR_FIREBASE_APP_ID"
+        };
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+    </script>
+
+    <style>
+        :root {
+            --bg-black: #050505;
+            --surface-bg: #0c0c0c;
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --gold-solid: #d4af37;
+            --text-white: #ffffff;
+            --text-gray: #b8b8b8;
+            --font-luxury: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            width: 100%; 
+            min-height: 100vh; 
+            background-color: var(--bg-black); 
+            color: var(--text-white); 
+            font-family: var(--font-body); 
+            padding: 70px 15px 30px 15px; 
+            -webkit-font-smoothing: antialiased; 
+        }
+
+        h1, h2, h3, h4, .brand-title-main { font-family: var(--font-luxury); }
+
+        /* হেডার */
+        header.admin-header {
+            display: flex; justify-content: space-between; align-items: center; padding: 10px 18px;
+            background: rgba(10, 10, 10, 0.98); position: fixed; top: 0; left: 0; z-index: 1000;
+            backdrop-filter: blur(12px); width: 100%; border-bottom: 1.5px solid rgba(212,175,55,0.3);
+        }
+        .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+        .brand-title-main { font-size: 0.8rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* মেইন র‍্যাপার */
+        .admin-container { max-width: 1200px; margin: 0 auto; }
+        .admin-title { font-size: 1.3rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ট্যাব বাটন */
+        .admin-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .admin-tab-btn { background: var(--surface-bg); border: 1.5px solid rgba(212,175,55,0.4); color: var(--text-gray); padding: 10px 20px; border-radius: 25px; font-weight: 700; font-size: 0.72rem; cursor: pointer; text-transform: uppercase; font-family: var(--font-luxury); transition: 0.3s; }
+        .admin-tab-btn.active { background: var(--gold-gradient); color: #000; border-color: var(--gold-solid); box-shadow: 0 0 15px rgba(212,175,55,0.4); }
+
+        /* ডেটা কার্ড লিস্ট */
+        .data-section { display: none; }
+        .data-section.active { display: flex; flex-direction: column; gap: 14px; }
+
+        .submission-card { background: var(--surface-bg); border: 1.5px solid rgba(212,175,55,0.25); border-radius: 12px; padding: 18px; box-shadow: 0 6px 20px rgba(0,0,0,0.8); transition: 0.3s; }
+        .submission-card:hover { border-color: var(--gold-solid); box-shadow: 0 0 20px rgba(212,175,55,0.2); }
+
+        .card-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid rgba(212,175,55,0.15); padding-bottom: 8px; }
+        .client-name { font-size: 0.85rem; font-weight: 800; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: var(--font-luxury); }
+        .timestamp { font-size: 0.6rem; color: var(--text-gray); }
+
+        .card-body-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; font-size: 0.7rem; color: var(--text-gray); margin-bottom: 10px; }
+        @media(max-width: 600px) { .card-body-grid { grid-template-columns: 1fr; } }
+        .card-body-grid span strong { color: #fff; }
+
+        .bkash-badge { background: rgba(255, 102, 196, 0.1); border: 1px solid #ff66c4; color: #ff66c4; padding: 4px 10px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; display: inline-block; margin-bottom: 8px; }
+        
+        .comments-box { background: #000; border: 1px solid rgba(212,175,55,0.3); padding: 10px; border-radius: 8px; font-size: 0.68rem; color: #ddd; line-height: 1.5; }
+        
+        .no-data { text-align: center; color: var(--text-gray); font-size: 0.8rem; padding: 40px; background: var(--surface-bg); border-radius: 12px; border: 1px dashed rgba(212,175,55,0.3); }
+    </style>
+</head>
+<body>
+
+    <!-- হেডার -->
+    <header class="admin-header">
+        <a href="index.html" class="brand-container">
+            <img src="https://lh3.googleusercontent.com/d/1iph42wSVX9xNglnVKSKTXicbInSJ3y4j=s400" alt="Logo" class="logo">
+            <span class="brand-title-main">MR MASUDAR ENTERPRISE | ADMIN</span>
+        </a>
+        <a href="index.html" style="color: var(--gold-solid); font-size: 0.75rem; text-decoration: none; font-weight: 700;">
+            <i class="fa-solid fa-arrow-left"></i> Back to Site
+        </a>
+    </header>
+
+    <div class="admin-container">
+        <h1 class="admin-title">Executive Control Center</h1>
+
+        <!-- ট্যাব সুইচিং বাটন -->
+        <div class="admin-tabs">
+            <button class="admin-tab-btn active" onclick="switchAdminTab('service', this)">
+                <i class="fa-solid fa-briefcase"></i> Solutions Submissions (<span id="countService">0</span>)
+            </button>
+            <button class="admin-tab-btn" onclick="switchAdminTab('academy', this)">
+                <i class="fa-solid fa-graduation-cap"></i> Academy Submissions (<span id="countAcademy">0</span>)
+            </button>
+            <button class="admin-tab-btn" onclick="switchAdminTab('team', this)">
+                <i class="fa-solid fa-users-gear"></i> Team Applications (<span id="countTeam">0</span>)
+            </button>
+        </div>
+
+        <!-- ১. সলিউশন সাবমিশন সেকশন -->
+        <div class="data-section active" id="secService">
+            <div id="listService"></div>
+        </div>
+
+        <!-- ২. একাডেমি সাবমিশন সেকশন -->
+        <div class="data-section" id="secAcademy">
+            <div id="listAcademy"></div>
+        </div>
+
+        <!-- ৩. টিম সাবমিশন সেকশন -->
+        <div class="data-section" id="secTeam">
+            <div id="listTeam"></div>
+        </div>
+    </div>
+
+    <script>
+        // ফায়ারবেস থেকে রিয়েল-টাইম ডেটা ফেচ করা
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchSubmissions();
+        });
+
+        function fetchSubmissions() {
+            db.collection("enterprise_submissions").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
+                let services = [];
+                let academies = [];
+                let teams = [];
+
+                snapshot.forEach((doc) => {
+                    let data = doc.id;
+                    let item = { id: doc.id, ...doc.data() };
+                    
+                    if(item.category === 'service') {
+                        services.push(item);
+                    } else if(item.category === 'academy') {
+                        academies.push(item);
+                    } else if(item.category === 'team') {
+                        teams.push(item);
+                    }
+                });
+
+                // কাউন্ট আপডেট
+                document.getElementById('countService').innerText = services.length;
+                document.getElementById('countAcademy').innerText = academies.length;
+                document.getElementById('countTeam').innerText = teams.length;
+
+                // লিস্ট রেন্ডার
+                renderSubmissions('listService', services, 'No service requests found.');
+                renderSubmissions('listAcademy', academies, 'No academy applications found.');
+                renderSubmissions('listTeam', teams, 'No team applications found.');
+            });
+        }
+
+        function renderSubmissions(containerId, dataArray, emptyMsg) {
+            const container = document.getElementById(containerId);
+            if(!container) return;
+
+            if(dataArray.length === 0) {
+                container.innerHTML = `<div class="no-data">${emptyMsg}</div>`;
+                return;
+            }
+
+            let html = '';
+            dataArray.forEach(item => {
+                let timeStr = item.createdAt ? new Date(item.createdAt.toDate()).toLocaleString() : 'Just now';
+                
+                let bkashHTML = item.bkashTrxID ? `
+                    <div>
+                        <span class="bkash-badge"><i class="fa-solid fa-wallet"></i> TrxID: ${item.bkashTrxID}</span>
+                    </div>
+                ` : '';
+
+                html += `
+                    <div class="submission-card">
+                        <div class="card-header-row">
+                            <span class="client-name"><i class="fa-solid fa-user-tie"></i> ${item.name || 'N/A'}</span>
+                            <span class="timestamp"><i class="fa-regular fa-clock"></i> ${timeStr}</span>
+                        </div>
+                        <div class="card-body-grid">
+                            <span><strong>Gmail:</strong> ${item.email || 'N/A'}</span>
+                            <span><strong>WhatsApp:</strong> ${item.phone || 'N/A'}</span>
+                            <span style="grid-column: span 2;"><strong>Address:</strong> ${item.address || 'N/A'}</span>
+                        </div>
+                        ${bkashHTML}
+                        <div class="comments-box">
+                            <strong style="color:var(--gold-solid); display:block; margin-bottom:3px;">Details / Requirements:</strong>
+                            ${item.comments || 'N/A'}
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function switchAdminTab(tabName, btnElement) {
+            document.querySelectorAll('.data-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('sec' + tabName.charAt(0).toUpperCase() + tabName.slice(1)).classList.add('active');
+            
+            document.querySelectorAll('.admin-tab-btn').forEach(el => el.classList.remove('active'));
+            if(btnElement) btnElement.classList.add('active');
+        }
+    </script>
+</body>
+</html>
